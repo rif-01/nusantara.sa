@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Nusantara Restaurant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: #ff0000;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .tagline {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background-color: #ddd;
+            margin: 20px 0;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 22px;
+            text-align: left;
+        }
+
+        .search-filter-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #2922e6;
+            color: white;
+            border-color: #2922e6;
+        }
+
+        .menu-category {
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .menu-item h3 {
+            color: #ff0000;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #ff0000;
+            font-size: 16px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #2922e6;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #1a15b3;
+            transform: translateY(-3px);
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .price-variants {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .menu-items {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .menu-item {
+                padding: 12px;
+            }
+
+            .menu-item img {
+                height: 100px;
+            }
+
+            .menu-item h3 {
+                font-size: 14px;
+            }
+
+            .menu-item p {
+                font-size: 12px;
+            }
+
+            .price, .price-variants {
+                font-size: 13px;
+            }
+
+            .search-box input {
+                padding: 10px 15px;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+                overflow-x: visible;
+                flex-wrap: wrap;
+            }
+
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .menu-item img {
+                height: 80px;
+            }
+            
+            .menu-item h3 {
+                font-size: 13px;
+            }
+            
+            .menu-item p {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="logo/logo nusantara.jpg" alt="Nusantara Restaurant Logo">
+        </div>
+        <h1>Nusantara Restaurant</h1>
+            <p class="location">Cabag Makkah</p>
+            <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+        
+        <hr>
+
+        <!-- Search and Filter Section -->
+        <div class="search-filter-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Cari menu...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">Semua</button>
+                <button class="filter-btn" data-category="nasi">Aneka Nasi</button>
+                <button class="filter-btn" data-category="mie-bakso">Mie & Bakso</button>
+                <button class="filter-btn" data-category="soup">Soup</button>
+                <button class="filter-btn" data-category="gorengan">Gorengan</button>
+                <button class="filter-btn" data-category="tea">Tea</button>
+                <button class="filter-btn" data-category="coffee">Coffee</button>
+                <button class="filter-btn" data-category="non-coffee">Non Coffee</button>
+                <button class="filter-btn" data-category="signature">Our Signature</button>
+                <button class="filter-btn" data-category="tradisional">Tradisional</button>
+            </div>
+        </div>
+        
+        <!-- Aneka Nasi -->
+        <div class="menu-category" data-category="nasi">
+            <h2>Aneka Nasi</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="img/nasi-goreng-spesial.jpg" alt="Nasi Goreng Spesial">
+                    <h3>Nasi Goreng Spesial</h3>
+                    <p>Nasi goreng dengan campuran daging ayam, udang, telur, dan sayuran, disajikan dengan kerupuk dan acar.</p>
+                    <div class="price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="foto menu makkah/nasgor.jpg" alt="Nasi Goreng Seafood">
+                    <h3>Nasi Goreng Seafood</h3>
+                    <p>Nasi goreng dengan aneka seafood seperti cumi, udang, dan kerang, dibumbui rempah khas Nusantara.</p>
+                    <div class="price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/nasi-goreng-ayam.jpg" alt="Nasi Goreng Ayam">
+                    <h3>Nasi Goreng Ayam</h3>
+                    <p>Nasi goreng sederhana dengan potongan ayam goreng, telur, dan bawang goreng yang renyah.</p>
+                    <div class="price">25 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/nasi-goreng-buntut.jpg" alt="Nasi Goreng Buntut">
+                    <h3>Nasi Goreng Buntut</h3>
+                    <p>Nasi goreng premium dengan potongan buntut sapi empuk dan bumbu spesial.</p>
+                    <div class="price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/nasi-ayam-goreng.jpg" alt="Nasi Ayam Goreng">
+                    <h3>Nasi Ayam Goreng</h3>
+                    <p>Nasi putih dengan ayam goreng kremes, sambal, lalapan, dan kerupuk.</p>
+                    <div class="price">25 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/nasi-ayam-penyet.jpg" alt="Nasi Ayam Penyet">
+                    <h3>Nasi Ayam Penyet</h3>
+                    <p>Ayam goreng yang dipenyet dengan sambal pedas, disajikan dengan nasi, tempe, tahu, dan lalapan.</p>
+                    <div class="price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/nasi-ayam-bakar.jpg" alt="Nasi Ayam Bakar">
+                    <h3>Nasi Ayam Bakar</h3>
+                    <p>Ayam bakar bumbu kecap dengan aroma smokey, disajikan dengan nasi, sambal, dan lalapan segar.</p>
+                    <div class="price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/nasi-bebek-goreng.jpg" alt="Nasi Bebek Goreng">
+                    <h3>Nasi Bebek Goreng</h3>
+                    <p>Bebek goreng krispi dengan bumbu rempah khas, disajikan dengan nasi, sambal, dan lalapan.</p>
+                    <div class="price">35 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/ikan-nila-goreng.jpg" alt="Ikan Nila Goreng">
+                    <h3>Ikan Nila Goreng</h3>
+                    <p>Ikan nila segar digoreng kering dengan bumbu kuning, disajikan dengan nasi, sambal, dan lalapan.</p>
+                    <div class="price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="foto menu makkah/nasi rendang.jpeg" alt="Nasi Campur">
+                    <h3>Nasi Campur</h3>
+                    <p>Nasi dengan berbagai lauk pilihan seperti ayam, tempe, tahu, telur, sambal, dan kerupuk.</p>
+                    <div class="price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/sate-ayam.jpg" alt="Sate Ayam">
+                    <h3>Sate Ayam</h3>
+                    <p>Potongan ayam yang ditusuk dan dibakar, disajikan dengan bumbu kacang, lontong, dan bawang merah.</p>
+                    <div class="price">25 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/sate-kambing.jpg" alt="Sate Kambing">
+                    <h3>Sate Kambing</h3>
+                    <p>Daging kambing muda yang ditusuk dan dibakar, disajikan dengan bumbu kacang atau kecap.</p>
+                    <div class="price">30 SAR</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mie & Bakso -->
+        <div class="menu-category" data-category="mie-bakso">
+            <h2>Mie & Bakso</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="foto menu makkah/bakso.jpeg" alt="Bakso">
+                    <h3>Bakso</h3>
+                    <p>Bakso sapi kenyal dengan kuah kaldu sapi, disajikan dengan mie, tahu, dan bihun.</p>
+                    <div class="price">20 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="foto menu makkah/mi ayam spesial.jpg" alt="Mie Ayam">
+                    <h3>Mie Ayam</h3>
+                    <p>Mie kuning dengan topping ayam cincang, pangsit, dan sayuran, disajikan dengan kuah kaldu.</p>
+                    <div class="price">25 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="foto menu makkah/mi ayam bakso.webp" alt="Mie Ayam Bakso">
+                    <h3>Mie Ayam Bakso</h3>
+                    <p>Mie ayam lengkap dengan tambahan bakso sapi sebagai pelengkap.</p>
+                    <div class="price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/mie-goreng.jpg" alt="Mie Goreng/Kuah">
+                    <h3>Mie Goreng/Kuah</h3>
+                    <p>Mie kuning yang bisa dipilih digoreng atau berkuah, dengan sayuran dan bumbu khas.</p>
+                    <div class="price">25 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/kwetiau-goreng.jpg" alt="Mie Kwetiau Goreng">
+                    <h3>Mie Kwetiau Goreng</h3>
+                    <p>Kwetiau digoreng dengan kecap manis, daging, udang, dan sayuran.</p>
+                    <div class="price">25 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/kwetiau-kuah.jpg" alt="Mie Kwetiau Kuah">
+                    <h3>Mie Kwetiau Kuah</h3>
+                    <p>Kwetiau berkuah kaldu dengan daging, udang, dan sayuran segar.</p>
+                    <div class="price">25 SAR</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Soup -->
+        <div class="menu-category" data-category="soup">
+            <h2>Soup</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="img/sop-ayam.jpg" alt="Soup Ayam">
+                    <h3>Soup Ayam</h3>
+                    <p>Kuah kaldu ayam bening dengan potongan daging ayam, wortel, kentang, dan daun seledri.</p>
+                    <div class="price">25 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/sop-iga.jpg" alt="Soup Iga">
+                    <h3>Soup Iga</h3>
+                    <p>Iga sapi empuk dengan kuah kaldu bening, wortel, kentang, dan rempah-rempah.</p>
+                    <div class="price">35 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/sop-buntut.jpg" alt="Soup Buntut">
+                    <h3>Soup Buntut</h3>
+                    <p>Buntut sapi empuk dengan kuah kaldu kental, wortel, kentang, dan rempah pilihan.</p>
+                    <div class="price">35 SAR</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Gorengan -->
+        <div class="menu-category" data-category="gorengan">
+            <h2>Gorengan</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="img/risol.jpg" alt="Risol">
+                    <h3>Risol</h3>
+                    <p>Risol mayo dengan isian wortel, kentang, daging, dan mayonaise.</p>
+                    <div class="price">10 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/tahu-isi.jpg" alt="Tahu Isi">
+                    <h3>Tahu Isi</h3>
+                    <p>Tahu goreng berisi sayuran seperti wortel dan kol dengan bumbu yang gurih.</p>
+                    <div class="price">10 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="foto menu makkah/bala bala 1.jpeg" alt="Bala-bala">
+                    <h3>Bala-bala</h3>
+                    <p>Gorengan khas Sunda yang terbuat dari sayuran yang dicelupkan ke dalam adonan tepung.</p>
+                    <div class="price">10 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/pastel.jpg" alt="Pastel">
+                    <h3>Pastel</h3>
+                    <p>Kulit pastel renyah dengan isian bihun, wortel, dan daging cincang.</p>
+                    <div class="price">10 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/pisang-molen.jpg" alt="Pisang Molen">
+                    <h3>Pisang Molen</h3>
+                    <p>Pisang raja dibungkus kulit pastry dan digoreng hingga renyah.</p>
+                    <div class="price">10 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/pisang-nugget.jpg" alt="Pisang Nugget">
+                    <h3>Pisang Nugget Topping Coklat & Keju</h3>
+                    <p>Pisang goreng tepung dengan topping coklat dan keju leleh.</p>
+                    <div class="price">12 SAR</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tea -->
+        <div class="menu-category" data-category="tea">
+            <h2>Tea</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="img/tea.jpg" alt="Tea">
+                    <h3>Tea</h3>
+                    <p>Teh panas atau dingin pilihan dengan aroma yang menyegarkan.</p>
+                    <div class="price-variants">
+                        <div>Hot: 2 SAR</div>
+                        <div>Ice: 5 SAR</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/lemon-tea.jpg" alt="Lemon Tea">
+                    <h3>Lemon Tea</h3>
+                    <p>Teh dengan perasan lemon segar yang memberikan rasa asam manis.</p>
+                    <div class="price-variants">
+                        <div>Hot: 3 SAR</div>
+                        <div>Ice: 6 SAR</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/lychee-tea.jpg" alt="Lychee Tea">
+                    <h3>Lychee Tea</h3>
+                    <p>Teh dengan sirup leci yang memberikan rasa manis dan aroma khas.</p>
+                    <div class="price-variants">
+                        <div>Hot: 12 SAR</div>
+                        <div>Ice: 12 SAR</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Coffee -->
+        <div class="menu-category" data-category="coffee">
+            <h2>Coffee</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="img/espresso.jpg" alt="Espresso">
+                    <h3>Espresso</h3>
+                    <p>Kopi murni yang diseduh dengan tekanan tinggi, menghasilkan rasa yang kuat.</p>
+                    <div class="price-variants">
+                        <div>Hot: 8 SAR</div>
+                        <div>Ice: -</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/americano.jpg" alt="Americano">
+                    <h3>Americano</h3>
+                    <p>Espresso yang ditambahkan air panas, menghasilkan kopi yang lebih ringan.</p>
+                    <div class="price-variants">
+                        <div>Hot: 10 SAR</div>
+                        <div>Ice: 12 SAR</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/drip-coffee.jpg" alt="Drip Coffee">
+                    <h3>Drip Coffee</h3>
+                    <p>Kopi tubruk tradisional yang diseduh secara manual untuk mendapatkan rasa yang otentik.</p>
+                    <div class="price-variants">
+                        <div>Hot: 10 SAR</div>
+                        <div>Ice: 13 SAR</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/latte.jpg" alt="Latte">
+                    <h3>Latte</h3>
+                    <p>Espresso dengan susu steamed dan sedikit busa susu di atasnya.</p>
+                    <div class="price-variants">
+                        <div>Hot: 10 SAR</div>
+                        <div>Ice: 13 SAR</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/cappuccino.jpg" alt="Cappuccino">
+                    <h3>Cappuccino</h3>
+                    <p>Espresso dengan perbandingan seimbang antara susu steamed dan busa susu.</p>
+                    <div class="price-variants">
+                        <div>Hot: 13 SAR</div>
+                        <div>Ice: -</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/mochaccino.jpg" alt="Mochaccino">
+                    <h3>Mochaccino</h3>
+                    <p>Perpaduan antara coklat, espresso, dan susu steamed dengan whipped cream di atasnya.</p>
+                    <div class="price-variants">
+                        <div>Hot: 13 SAR</div>
+                        <div>Ice: 15 SAR</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/spanish-latte.jpg" alt="Spanish Latte">
+                    <h3>Spanish Latte</h3>
+                    <p>Latte dengan tambahan susu kental manis yang memberikan rasa creamy dan manis.</p>
+                    <div class="price-variants">
+                        <div>Hot: 13 SAR</div>
+                        <div>Ice: 15 SAR</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/caramel-latte.jpg" alt="Caramel Latte">
+                    <h3>Caramel Latte</h3>
+                    <p>Latte dengan tambahan sirup caramel yang memberikan rasa manis dan aroma khas.</p>
+                    <div class="price-variants">
+                        <div>Hot: 13 SAR</div>
+                        <div>Ice: 15 SAR</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/kopi-susu-gula-aren.jpg" alt="Kopi Susu Gula Aren">
+                    <h3>Kopi Susu Gula Aren</h3>
+                    <p>Kopi dengan susu dan gula aren asli yang memberikan rasa manis alami.</p>
+                    <div class="price-variants">
+                        <div>Hot: 13 SAR</div>
+                        <div>Ice: 15 SAR</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Non Coffee -->
+        <div class="menu-category" data-category="non-coffee">
+            <h2>Non Coffee</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="img/matcha-latte.jpg" alt="Matcha Latte">
+                    <h3>Matcha Latte</h3>
+                    <p>Minuman berbasis matcha (teh hijau bubuk) dengan susu steamed yang creamy.</p>
+                    <div class="price-variants">
+                        <div>Hot: 13 SAR</div>
+                        <div>Ice: 15 SAR</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/chocolate.jpg" alt="Chocolate">
+                    <h3>Chocolate</h3>
+                    <p>Coklat panas atau dingin yang kaya rasa dengan whipped cream di atasnya.</p>
+                    <div class="price-variants">
+                        <div>Hot: 13 SAR</div>
+                        <div>Ice: 15 SAR</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Our Signature -->
+        <div class="menu-category" data-category="signature">
+            <h2>Our Signature</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="img/es-klepon.jpg" alt="Es Klepon">
+                    <h3>Es Klepon</h3>
+                    <p>Minuman segar dengan klepon (makanan tradisional dari ketan berisi gula merah) dan es serut.</p>
+                    <div class="price">15 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/es-mocco.jpg" alt="Es Mocco">
+                    <h3>Es Mocco</h3>
+                    <p>Kreasi unik kami yang memadukan kopi, coklat, dan susu dengan es yang menyegarkan.</p>
+                    <div class="price">17 SAR</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tradisional -->
+        <div class="menu-category" data-category="tradisional">
+            <h2>Tradisional</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="img/kopi-kapal-api.jpg" alt="Kopi Kapal Api">
+                    <h3>Kopi Kapal Api</h3>
+                    <p>Kopi tubruk khas Indonesia dengan rasa yang kuat dan aroma yang khas.</p>
+                    <div class="price">5 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/soda-gembira.jpg" alt="Soda Gembira">
+                    <h3>Soda Gembira</h3>
+                    <p>Minuman soda dengan sirup merah dan susu kental manis yang menyegarkan.</p>
+                    <div class="price">10 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/es-cincau.jpg" alt="Es Cincau">
+                    <h3>Es Cincau</h3>
+                    <p>Minuman dengan cincau hitam, santan, dan gula merah cair yang menyegarkan.</p>
+                    <div class="price">10 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/es-campur.jpg" alt="Es Campur">
+                    <h3>Es Campur</h3>
+                    <p>Campuran berbagai bahan seperti nata de coco, kolang-kaling, alpukat, dan sirup dalam es serut.</p>
+                    <div class="price">10 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/es-cendol.jpg" alt="Es Cendol">
+                    <h3>Es Cendol</h3>
+                    <p>Minuman tradisional dengan cendol (tepung beras hijau), santan, dan gula merah.</p>
+                    <div class="price">10 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/stmj.jpg" alt="STMJ">
+                    <h3>STMJ</h3>
+                    <p>Susu Telur Madu Jahe - minuman hangat yang menyehatkan dan menghangatkan tubuh.</p>
+                    <div class="price">15 SAR</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">Kembali ke Beranda</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const menuCategories = document.querySelectorAll('.menu-category');
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            // Filter by category
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.dataset.category;
+                    
+                    menuCategories.forEach(categoryEl => {
+                        if (category === 'all' || categoryEl.dataset.category === category) {
+                            categoryEl.style.display = 'block';
+                        } else {
+                            categoryEl.style.display = 'none';
+                        }
+                    });
+                    
+                    // Reset search when changing category
+                    searchInput.value = '';
+                });
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                let hasResults = false;
+                
+                menuCategories.forEach(category => {
+                    let categoryHasResults = false;
+                    const items = category.querySelectorAll('.menu-item');
+                    
+                    items.forEach(item => {
+                        const itemName = item.querySelector('h3').textContent.toLowerCase();
+                        const itemDesc = item.querySelector('p') ? item.querySelector('p').textContent.toLowerCase() : '';
+                        
+                        if (itemName.includes(searchTerm) || itemDesc.includes(searchTerm)) {
+                            item.style.display = 'block';
+                            categoryHasResults = true;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Show/hide category based on results
+                    if (categoryHasResults) {
+                        category.style.display = 'block';
+                        hasResults = true;
+                    } else {
+                        // Only hide if not showing all categories
+                        const activeFilter = document.querySelector('.filter-btn.active').dataset.category;
+                        if (activeFilter !== 'all') {
+                            category.style.display = 'none';
+                        }
+                    }
+                });
+                
+                // Show "no results" message if needed
+                const noResults = document.querySelector('.no-results');
+                if (!hasResults && searchTerm.length > 0) {
+                    if (!noResults) {
+                        const noResultsDiv = document.createElement('div');
+                        noResultsDiv.className = 'no-results';
+                        noResultsDiv.textContent = 'Tidak ada hasil yang ditemukan';
+                        document.querySelector('.container').insertBefore(noResultsDiv, document.querySelector('.back-button'));
+                    }
+                } else if (noResults) {
+                    noResults.remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

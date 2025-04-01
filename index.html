@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Beranda - Nusantara Restaurant SA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 3px solid #ff0000;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            color: #ff0000;
+            margin-bottom: 8px;
+            font-size: 28px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .tagline {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            padding: 0 10px;
+            font-weight: 500;
+        }
+        
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+            margin: 20px 0;
+        }
+        
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 22px;
+            padding: 0 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: #ff0000;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        /* Location Section */
+        .location-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .location-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            text-align: left;
+        }
+        
+        .location-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .location-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .location-info {
+            padding: 15px;
+        }
+        
+        .location-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #ff0000;
+        }
+        
+        .location-address {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .location-button {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #2922e6;
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .location-button:hover {
+            background: #1a15b3;
+        }
+
+        /* Menu Section */
+        .branch-menu {
+            margin: 25px 0;
+        }
+        
+        .branch-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ff0000;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .branch-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .branch-icon {
+            font-size: 20px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-item {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .menu-item img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .menu-item-name {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .menu-item-price {
+            font-size: 14px;
+            color: #ff0000;
+            font-weight: bold;
+        }
+        
+        .view-all {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #2922e6;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .view-all:hover {
+            background: #1a15b3;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            color: #ff0000;
+            margin-bottom: 10px;
+        }
+        
+        .feature-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .feature-desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Social Media */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: transform 0.3s;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            transform: scale(1.1) translateY(-3px);
+        }
+        
+        .instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+        
+        .tiktok {
+            background: #000000;
+        }
+        
+        .facebook {
+            background: #1877F2;
+        }
+        
+        .whatsapp {
+            background: #25D366;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (min-width: 600px) {
+            .location-container {
+                flex-direction: row;
+                justify-content: space-between;
+                max-width: 100%;
+                padding: 0 20px;
+            }
+            
+            .location-card {
+                width: 48%;
+                max-width: 380px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .branch-menu {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="logo/logo nusantara.jpg" alt="Nusantara Restaurant Logo">
+        </div>
+        <h1>Nusantara Restaurant SA</h1>
+        <p class="tagline">Rasa Autentik Indonesia di Arab Saudi</p>
+        
+        <hr>
+        
+        <!-- Lokasi Cabang -->
+        <h2>Lokasi Kami</h2>
+        <div class="location-container">
+            <div class="location-card">
+                <img src="logo/nusa mad.jpg" alt="Nusantara Madinah" class="location-image">
+                <div class="location-info">
+                    <div class="location-name">Nusantara Madinah</div>
+                    <p class="location-address">Al Qadisiyah, Madinah 42315</p>
+                    <a href="https://maps.app.goo.gl/qkQsi6T9zdceWKWt6" class="location-button" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> Lihat Peta
+                    </a>
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <img src="logo/nusa mak.jpg" alt="Nusantara Makkah" class="location-image">
+                <div class="location-info">
+                    <div class="location-name">Nusantara Makkah</div>
+                    <p class="location-address">Al Aziziyah, Makkah 24243</p>
+                    <a href="https://maps.app.goo.gl/j5FELQ1x9Kr31ydC7" class="location-button" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> Lihat Peta
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Menu Cabang Madinah -->
+        <div class="branch-menu">
+            <h2>Menu Kami</h2>
+            <div class="branch-header">
+                <div class="branch-name">Nusantara Madinah</div>
+                <div class="branch-icon">🍛</div>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="img/nasi-goreng-spesial.jpg" alt="Nasi Goreng Spesial">
+                    <div class="menu-item-name">Nasi Goreng Spesial</div>
+                    <div class="menu-item-price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/sate-ayam.jpg" alt="Sate Ayam">
+                    <div class="menu-item-name">Sate Ayam</div>
+                    <div class="menu-item-price">25 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/sop-buntut.jpg" alt="Sop Buntut">
+                    <div class="menu-item-name">Sop Buntut</div>
+                    <div class="menu-item-price">35 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/mie-ayam.jpg" alt="Mie Ayam">
+                    <div class="menu-item-name">Mie Ayam</div>
+                    <div class="menu-item-price">25 SAR</div>
+                </div>
+            </div>
+            <a href="menu nusantara madinah.html" class="view-all">Lihat Semua Menu Madinah</a>
+        </div>
+        
+        <!-- Menu Cabang Makkah -->
+        <div class="branch-menu">
+            <div class="branch-header" style="background: #ff0000;">
+                <div class="branch-name">Nusantara Makkah</div>
+                <div class="branch-icon">🍲</div>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="img/nasi-ayam-penyet.jpg" alt="Nasi Ayam Penyet">
+                    <div class="menu-item-name">Nasi Ayam Penyet</div>
+                    <div class="menu-item-price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/nasi-goreng-seafood.jpg" alt="Nasi Goreng Seafood">
+                    <div class="menu-item-name">Nasi Goreng Seafood</div>
+                    <div class="menu-item-price">30 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/sop-iga.jpg" alt="Sop Iga">
+                    <div class="menu-item-name">Sop Iga</div>
+                    <div class="menu-item-price">35 SAR</div>
+                </div>
+                <div class="menu-item">
+                    <img src="img/kwetiau-goreng.jpg" alt="Mie Kwetiau">
+                    <div class="menu-item-name">Mie Kwetiau</div>
+                    <div class="menu-item-price">25 SAR</div>
+                </div>
+            </div>
+            <a href="menu nusantara makkah.html" class="view-all">Lihat Semua Menu Makkah</a>
+        </div>
+                      
+        <!-- Sosial Media -->
+        <h2>Ikuti Kami</h2>
+        <div class="social-links">
+            <a href="https://www.instagram.com/nusantara.sa/" class="social-link instagram" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://tiktok.com/nusantara.sa" class="social-link tiktok" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://facebook.com/nusantara.sa" class="social-link facebook" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/966547766654" class="social-link whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
