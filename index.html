@@ -20,16 +20,68 @@
             color: #333;
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
         }
         
+        /* Container with semi-transparent background */
         .container {
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
             padding: 15px;
             text-align: center;
+            position: relative;
+            background-color: rgba(255, 245, 222, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            z-index: 1;
         }
+
+        /* Ornament Positioning */
+        .ornament {
+            position: absolute;
+            width: 250px;  /* Diperbesar dari 150px */
+            height: 250px; /* Diperbesar dari 150px */
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.2;/* Dipertebal dari 0.15 */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: all 0.3s ease; /* Efek halus saat hover */
+        }
+
+        /* Efek saat hover (opsional) */
+        .ornament:hover {
+            opacity: 0.2; /* Lebih terang saat dihover */
+            transform: scale(1.05); /* Sedikit membesar */
+        }
+
+        /* Posisi ornamen */
+        .ornament-top-left {
+            top: auto;
+            left: -15px;
+            background-image: url('ornamen/top-left.png');
+        }
+
         
+        .ornament-bottom-right {
+            bottom: 0px;
+            right: -15px;
+            background-image: url('ornamen/bottom-right.png');
+        }
+
+        /* Responsive untuk mobile */
+        @media (max-width: 768px) {
+            .ornament {
+                width: 180px;  /* Ukuran lebih kecil di mobile */
+                height: 180px;
+                opacity: 0.25; /* Sedikit lebih transparan di mobile */
+            }
+        }
+
+        /* Rest of your existing CSS styles... */
         .logo {
             width: 120px;
             height: 120px;
@@ -70,7 +122,7 @@
         
         h2 {
             color: #333;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-size: 22px;
             padding: 0 10px;
             position: relative;
@@ -87,6 +139,16 @@
             left: 50%;
             transform: translateX(-50%);
             border-radius: 3px;
+        }
+
+        .section-description {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 15px;
         }
 
         /* Location Section */
@@ -116,6 +178,7 @@
             width: 100%;
             height: 150px;
             object-fit: cover;
+            cursor: pointer;
         }
         
         .location-info {
@@ -201,6 +264,12 @@
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 8px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .menu-item img:hover {
+            opacity: 0.9;
         }
         
         .menu-item-name {
@@ -312,6 +381,46 @@
             background: #25D366;
         }
 
+        /* Modal for enlarged images */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 8px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #ff0000;
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 480px) {
             .menu-grid {
@@ -348,6 +457,11 @@
     </style>
 </head>
 <body>
+      <!-- Wrapper baru untuk ornamen -->
+    <div class="ornament-wrapper">
+        <!-- Background Ornaments in 2 Corners -->
+    <div class="ornament ornament-top-left"></div>
+    <div class="ornament ornament-bottom-right"></div>
     <div class="container">
         <div class="logo">
             <img src="logo/logo nusantara.jpg" alt="Nusantara Restaurant Logo">
@@ -359,25 +473,29 @@
         
         <!-- Lokasi Cabang -->
         <h2>Lokasi Kami</h2>
+        <p class="section-description">
+            Nikmati hidangan autentik Indonesia di dua lokasi strategis kami di Arab Saudi. 
+            Setiap cabang menawarkan suasana yang nyaman dan pelayanan yang ramah.
+        </p>
         <div class="location-container">
             <div class="location-card">
-                <img src="logo/nusa mad.jpg" alt="Nusantara Madinah" class="location-image">
+                <img src="logo/nusa mad.jpg" alt="Nusantara Madinah" class="location-image" onclick="openModal(this.src, this.alt)">
                 <div class="location-info">
                     <div class="location-name">Nusantara Madinah</div>
                     <p class="location-address">Bada'ah, Madinah 42311</p>
                     <a href="https://maps.app.goo.gl/qkQsi6T9zdceWKWt6" class="location-button" target="_blank">
-                        <i class="fas fa-map-marker-alt"></i> Lihat Peta
+                        <i class="fas fa-map-marker-alt"></i> Our Location
                     </a>
                 </div>
             </div>
             
             <div class="location-card">
-                <img src="logo/nusa mak.jpg" alt="Nusantara Makkah" class="location-image">
+                <img src="logo/nusa mak.jpg" alt="Nusantara Makkah" class="location-image" onclick="openModal(this.src, this.alt)">
                 <div class="location-info">
                     <div class="location-name">Nusantara Makkah</div>
                     <p class="location-address">Al Kakiyyah, Makkah 24352</p>
                     <a href="https://maps.app.goo.gl/j5FELQ1x9Kr31ydC7" class="location-button" target="_blank">
-                        <i class="fas fa-map-marker-alt"></i> Lihat Peta
+                        <i class="fas fa-map-marker-alt"></i> Our Location
                     </a>
                 </div>
             </div>
@@ -386,29 +504,33 @@
         <!-- Menu Cabang Madinah -->
         <div class="branch-menu">
             <h2>Menu Kami</h2>
+            <p class="section-description">
+                Jelajahi berbagai hidangan khas Indonesia yang dibuat dengan bahan-bahan pilihan 
+                dan resep tradisional. Setiap hidangan kami sajikan dengan cita rasa yang autentik.
+            </p>
             <div class="branch-header">
                 <div class="branch-name">Nusantara Madinah</div>
                 <div class="branch-icon">🍛</div>
             </div>
             <div class="menu-grid">
                 <div class="menu-item">
-                    <img src="foto menu madinah/nasi goreng/nasgor spesial.jpg" alt="Nasi Goreng Spesial">
+                    <img src="foto menu madinah/nasi goreng/nasgor spesial.jpg" alt="Nasi Goreng Spesial" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Nasi Goreng Spesial</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/sate ayam.jpg" alt="Sate Ayam">
+                    <img src="foto menu madinah/menu pilihan/sate ayam.jpg" alt="Sate Ayam" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Sate Ayam</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/aneka soup/buntut.jpg" alt="Sop Buntut">
+                    <img src="foto menu madinah/aneka soup/buntut.jpg" alt="Sop Buntut" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Sop Buntut</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/(spesial menu)/mie ayam.jpg" alt="Mie Ayam">
+                    <img src="foto menu madinah/(spesial menu)/mie ayam.jpg" alt="Mie Ayam" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Mie Ayam</div>
                 </div>
             </div>
-            <a href="menu nusantara madinah.html" class="view-all">Click Here For More</a>
+            <a href="menu nusantara madinah.html" class="view-all">Lihat Semua Menu</a>
         </div>
         
         <!-- Menu Cabang Makkah -->
@@ -419,27 +541,31 @@
             </div>
             <div class="menu-grid">
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/ayam penyet.jpg" alt="Nasi Ayam Penyet">
+                    <img src="foto menu makkah/aneka nasi/ayam penyet.jpg" alt="Nasi Ayam Penyet" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Nasi Ayam Penyet</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/nasgor seafood.jpg" alt="Nasi Goreng Seafood">
+                    <img src="foto menu makkah/aneka nasi/nasgor seafood.jpg" alt="Nasi Goreng Seafood" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Nasi Goreng Seafood</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/soup/Sop iga.jpg" alt="Sop Iga">
+                    <img src="foto menu makkah/soup/Sop iga.jpg" alt="Sop Iga" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Sop Iga</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/mieso/kwetiau goreng.jpg" alt="Mie Kwetiau">
+                    <img src="foto menu makkah/mieso/kwetiau goreng.jpg" alt="Mie Kwetiau" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Mie Kwetiau</div>
                 </div>
             </div>
-            <a href="menu nusantara makkah.html" class="view-all">Click Here For More</a>
+            <a href="menu nusantara makkah.html" class="view-all">Lihat Semua Menu</a>
         </div>
                       
         <!-- Sosial Media -->
         <h2>Ikuti Kami</h2>
+        <p class="section-description">
+            Tetap terhubung dengan Nusantara Restaurant melalui media sosial kami untuk mendapatkan 
+            informasi terbaru tentang promo, menu spesial, dan acara menarik lainnya.
+        </p>
         <div class="social-links">
             <a href="https://www.instagram.com/nusantara.sa/" class="social-link instagram" target="_blank">
                 <i class="fab fa-instagram"></i>
@@ -455,5 +581,44 @@
             </a>
         </div>
     </div>
+    
+    <!-- Modal for enlarged images -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" style="color: white; text-align: center; padding: 10px; position: absolute; bottom: 20px; width: 100%;"></div>
+    </div>
+    
+    <script>
+        // Function to open modal with clicked image
+        function openModal(src, alt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const captionText = document.getElementById('caption');
+            
+            modal.style.display = "block";
+            modalImg.src = src;
+            captionText.innerHTML = alt;
+            
+            // Close modal when clicking outside the image
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            };
+        }
+        
+        // Function to close modal
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+        
+        // Close modal when pressing ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
