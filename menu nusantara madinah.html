@@ -23,21 +23,7 @@
             position: relative;
             min-height: 100vh;
         }
-        
-        /* Container with semi-transparent background */
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 15px;
-            text-align: center;
-            position: relative;
-            background-color: rgba(255, 245, 222, 0.85);
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-            z-index: 1;
-        }
-
+                
         /* Ornament Positioning */
         .ornament {
             position: absolute;
@@ -86,6 +72,19 @@
             }
         }
 
+        /* Container with semi-transparent background */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            background-color: rgba(255, 245, 222, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            z-index: 1;
+        }
+
         .logo {
             width: 150px;
             height: 150px;
@@ -128,7 +127,6 @@
             margin-bottom: 20px;
             font-size: 22px;
             text-align: left;
-            padding: 0 10px;
             position: relative;
             display: inline-block;
         }
@@ -191,7 +189,6 @@
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 14px;
         }
 
         .filter-btn:hover, .filter-btn.active {
@@ -357,16 +354,14 @@
             }
             
             .filter-buttons {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 10px;
-                -webkit-overflow-scrolling: touch;
+                justify-content: center;
+                overflow-x: visible;
+                flex-wrap: wrap;
             }
-            
+
             .filter-btn {
-                white-space: nowrap;
-                font-size: 13px;
                 padding: 6px 12px;
+                font-size: 14px;
             }
         }
 
