@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nusantara Restaurant SA</title>
-    <link rel="icon" href="logo/logo nusantara.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Restoran Nusantara di Arab Saudi menyajikan masakan autentik Indonesia dengan cita rasa asli">
+    <link rel="icon" href="logo/logo-nusantara.webp" type="image/webp">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <style>
         * {
             margin: 0;
@@ -41,58 +43,52 @@
         /* Ornament Positioning */
         .ornament {
             position: absolute;
-            width: 250px;  /* Diperbesar dari 150px */
-            height: 250px; /* Diperbesar dari 150px */
+            width: 250px;
+            height: 250px;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.2;/* Dipertebal dari 0.15 */
+            opacity: 0.2;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            transition: all 0.3s ease; /* Efek halus saat hover */
-        }
-
-        /* Efek saat hover (opsional) */
-        .ornament:hover {
-            opacity: 0.2; /* Lebih terang saat dihover */
-            transform: scale(1.05); /* Sedikit membesar */
+            transition: all 0.3s ease;
         }
 
         /* Posisi ornamen */
         .ornament-top-left {
             top: 0px;
             left: -10px;
-            background-image: url('ornamen/top-left.png');
+            background-image: url('ornamen/top-left.webp');
         }
 
         .ornament-midle-top {
             top: 960px;
             right: 30px;
-            background-image: url('ornamen/midle-top.png');
+            background-image: url('ornamen/midle-top.webp');
         }
 
         .ornament-midle-bottom {
             bottom: 670px;
             left: 15px;
-            background-image: url('ornamen/midle-bottom.png');
+            background-image: url('ornamen/midle-bottom.webp');
         }
 
         .ornament-bottom-right {
             bottom: 0px;
             right: -10px;
-            background-image: url('ornamen/bottom-right.png');
+            background-image: url('ornamen/bottom-right.webp');
         }
 
         /* Responsive untuk mobile */
         @media (max-width: 768px) {
             .ornament {
-                width: 180px;  /* Ukuran lebih kecil di mobile */
+                width: 180px;
                 height: 180px;
-                opacity: 0.25; /* Sedikit lebih transparan di mobile */
+                opacity: 0.25;
             }
         }
 
-        /* Rest of your existing CSS styles... */
+        /* Logo */
         .logo {
             width: 120px;
             height: 120px;
@@ -107,6 +103,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            loading: lazy;
         }
         
         h1 {
@@ -190,6 +187,7 @@
             height: 150px;
             object-fit: cover;
             cursor: pointer;
+            loading: lazy;
         }
         
         .location-info {
@@ -277,10 +275,7 @@
             margin-bottom: 8px;
             cursor: pointer;
             transition: opacity 0.3s;
-        }
-        
-        .menu-item img:hover {
-            opacity: 0.9;
+            loading: lazy;
         }
         
         .menu-item-name {
@@ -432,6 +427,40 @@
             color: #ff0000;
         }
 
+        /* Loading spinner */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 245, 222, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff0000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 480px) {
             .menu-grid {
@@ -468,17 +497,23 @@
     </style>
 </head>
 <body>
-      <!-- Wrapper baru untuk ornamen -->
+    <!-- Loading spinner -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Wrapper untuk ornamen -->
     <div class="ornament-wrapper">
         <!-- Background Ornaments in 2 Corners -->
         <div class="ornament ornament-top-left"></div>
         <div class="ornament ornament-midle-top"></div>
         <div class="ornament ornament-midle-bottom"></div>
         <div class="ornament ornament-bottom-right"></div>
+    </div>
 
     <div class="container">
         <div class="logo">
-            <img src="logo/logo nusantara.jpg" alt="Nusantara Restaurant Logo">
+            <img src="logo/logo-nusantara.webp" alt="Nusantara Restaurant Logo" width="120" height="120">
         </div>
         <h1>Nusantara Restaurant SA</h1>
         <p class="tagline">Rasa Autentik Indonesia di Arab Saudi</p>
@@ -493,22 +528,22 @@
         </p>
         <div class="location-container">
             <div class="location-card">
-                <img src="logo/nusa mad.jpg" alt="Nusantara Madinah" class="location-image" onclick="openModal(this.src, this.alt)">
+                <img src="logo/nusa-mad.webp" alt="Nusantara Madinah" class="location-image" width="600" height="150" onclick="openModal(this.src, this.alt)">
                 <div class="location-info">
                     <div class="location-name">Nusantara Madinah</div>
                     <p class="location-address">Lurusan masjid An Nabawi gate 339</p>
-                    <a href="https://maps.app.goo.gl/qkQsi6T9zdceWKWt6" class="location-button" target="_blank">
+                    <a href="https://maps.app.goo.gl/qkQsi6T9zdceWKWt6" class="location-button" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-map-marker-alt"></i> Our Location
                     </a>
                 </div>
             </div>
             
             <div class="location-card">
-                <img src="logo/nusa mak.jpg" alt="Nusantara Makkah" class="location-image" onclick="openModal(this.src, this.alt)">
+                <img src="logo/nusa-mak.webp" alt="Nusantara Makkah" class="location-image" width="600" height="150" onclick="openModal(this.src, this.alt)">
                 <div class="location-info">
                     <div class="location-name">Nusantara Makkah</div>
                     <p class="location-address">Rooftop (Lt. 2) pasar grosir Al Waha, Al Kakiyyah</p>
-                    <a href="https://maps.app.goo.gl/j5FELQ1x9Kr31ydC7" class="location-button" target="_blank">
+                    <a href="https://maps.app.goo.gl/j5FELQ1x9Kr31ydC7" class="location-button" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-map-marker-alt"></i> Our Location
                     </a>
                 </div>
@@ -528,23 +563,23 @@
             </div>
             <div class="menu-grid">
                 <div class="menu-item">
-                    <img src="foto menu madinah/nasi goreng/nasgor spesial.jpg" alt="Nasi Goreng Spesial" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-madinah/nasi-goreng/nasgor-spesial.webp" alt="Nasi Goreng Spesial" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Nasi Goreng Spesial</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/sate ayam.jpg" alt="Sate Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-madinah/menu-pilihan/sate-ayam.webp" alt="Sate Ayam" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Sate Ayam</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/aneka soup/buntut.jpg" alt="Sop Buntut" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-madinah/aneka-soup/buntut.webp" alt="Sop Buntut" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Sop Buntut</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/(spesial menu)/mie ayam.jpg" alt="Mie Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-madinah/spesial-menu/mie-ayam.webp" alt="Mie Ayam" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Mie Ayam</div>
                 </div>
             </div>
-            <a href="menu nusantara madinah.html" class="view-all">Click Here For More</a>
+            <a href="menu-nusantara-madinah.html" class="view-all">Click Here For More</a>
         </div>
         
         <!-- Menu Cabang Makkah -->
@@ -555,23 +590,23 @@
             </div>
             <div class="menu-grid">
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/ayam penyet.jpg" alt="Nasi Ayam Penyet" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/ayam-penyet.webp" alt="Nasi Ayam Penyet" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Nasi Ayam Penyet</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/nasgor seafood.jpg" alt="Nasi Goreng Seafood" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/nasgor-seafood.webp" alt="Nasi Goreng Seafood" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Nasi Goreng Seafood</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/soup/Sop iga.jpg" alt="Sop Iga" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/soup/sop-iga.webp" alt="Sop Iga" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Sop Iga</div>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/mieso/kwetiau goreng.jpg" alt="Mie Kwetiau" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/mie-bakso/kwetiau-goreng.webp" alt="Mie Kwetiau" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <div class="menu-item-name">Mie Kwetiau</div>
                 </div>
             </div>
-            <a href="menu nusantara makkah.html" class="view-all">Click Here For More</a>
+            <a href="menu-nusantara-makkah.html" class="view-all">Click Here For More</a>
         </div>
                       
         <!-- Sosial Media -->
@@ -582,16 +617,16 @@
             Untuk berbagai pelayanan, seperti pemesanan <strong>nasi box, catering dsb.</strong> bisa langsung <a href="https://wa.me/966547766654">hubungi kami</a> 
         </p>
         <div class="social-links">
-            <a href="https://www.instagram.com/nusantara.sa/" class="social-link instagram" target="_blank">
+            <a href="https://www.instagram.com/nusantara.sa/" class="social-link instagram" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://www.tiktok.com/@nusantara.sa?_t=ZS-8vEJiv2Xdez&_r=1" class="social-link tiktok" target="_blank">
+            <a href="https://www.tiktok.com/@nusantara.sa?_t=ZS-8vEJiv2Xdez&_r=1" class="social-link tiktok" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-tiktok"></i>
             </a>
-            <a href="https://facebook.com/nusantara.sa" class="social-link facebook" target="_blank">
+            <a href="https://facebook.com/nusantara.sa" class="social-link facebook" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://wa.me/966547766654" class="social-link whatsapp" target="_blank">
+            <a href="https://wa.me/966547766654" class="social-link whatsapp" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-whatsapp"></i>
             </a>
         </div>
@@ -600,20 +635,41 @@
     <!-- Modal for enlarged images -->
     <div id="imageModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
+        <img class="modal-content" id="modalImage" alt="Enlarged view">
         <div id="caption" style="color: white; text-align: center; padding: 10px; position: absolute; bottom: 20px; width: 100%;"></div>
     </div>
     
     <script>
+        // Tampilkan loader saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sembunyikan loader setelah semua konten dimuat
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    const loader = document.getElementById('loader');
+                    loader.classList.add('hidden');
+                    
+                    // Hapus loader dari DOM setelah animasi selesai
+                    loader.addEventListener('transitionend', function() {
+                        loader.remove();
+                    });
+                }, 500); // Minimal tampilkan loader selama 500ms
+            });
+        });
+
         // Function to open modal with clicked image
         function openModal(src, alt) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const captionText = document.getElementById('caption');
             
-            modal.style.display = "block";
-            modalImg.src = src;
-            captionText.innerHTML = alt;
+            // Preload gambar sebelum ditampilkan di modal
+            const img = new Image();
+            img.src = src;
+            img.onload = function() {
+                modal.style.display = "block";
+                modalImg.src = src;
+                captionText.innerHTML = alt;
+            };
             
             // Close modal when clicking outside the image
             modal.onclick = function(event) {
@@ -633,6 +689,19 @@
             if (event.key === 'Escape') {
                 closeModal();
             }
+        });
+
+        // Preload gambar penting
+        function preloadImage(url) {
+            const img = new Image();
+            img.src = url;
+        }
+
+        // Preload gambar-gambar penting
+        window.addEventListener('load', function() {
+            preloadImage('logo/logo-nusantara.webp');
+            preloadImage('logo/nusa-mad.webp');
+            preloadImage('logo/nusa-mak.webp');
         });
     </script>
 </body>

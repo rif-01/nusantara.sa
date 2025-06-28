@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Menu - Nusantara Madinah</title>
     <link rel="icon" href="logo/logo nusantara.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <style>
         * {
             margin: 0;
@@ -31,7 +32,7 @@
             height: 250px;
             z-index: 0;
             pointer-events: none;
-            opacity: 0,2;
+            opacity: 0.2;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -68,7 +69,7 @@
             .ornament {
                 width: 180px;
                 height: 180px;
-                opacity: 0.25;
+                opacity: 0.15;
             }
         }
 
@@ -99,6 +100,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
         
         h1 {
@@ -164,6 +166,12 @@
             border: 1px solid #ddd;
             font-size: 16px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: #2922e6;
+            outline: none;
         }
 
         .search-box i {
@@ -189,6 +197,7 @@
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 14px;
         }
 
         .filter-btn:hover, .filter-btn.active {
@@ -216,6 +225,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
             text-align: left;
+            position: relative;
+            overflow: hidden;
         }
         
         .menu-item:hover {
@@ -231,6 +242,7 @@
             margin-bottom: 10px;
             cursor: pointer;
             transition: opacity 0.3s;
+            background: #f5f5f5;
         }
         
         .menu-item img:hover {
@@ -259,6 +271,9 @@
             border-radius: 25px;
             text-decoration: none;
             transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
         }
         
         .back-button:hover {
@@ -273,6 +288,32 @@
             color: #666;
         }
 
+        /* Loading placeholder */
+        .loading-placeholder {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Lazy load class */
+        .lazy {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .lazy.loaded {
+            opacity: 1;
+        }
+
         /* Modal for enlarged images */
         .modal {
             display: none;
@@ -284,6 +325,12 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
             overflow: auto;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .modal-content {
@@ -296,6 +343,12 @@
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 8px;
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from { transform: translate(-50%, -50%) scale(0.9); }
+            to { transform: translate(-50%, -50%) scale(1); }
         }
         
         .close {
@@ -361,7 +414,7 @@
 
             .filter-btn {
                 padding: 6px 12px;
-                font-size: 14px;
+                font-size: 12px;
             }
         }
 
@@ -394,7 +447,7 @@
 
     <div class="container">
         <div class="logo">
-            <img src="logo/logo nusantara.jpg" alt="Nusantara Restaurant Logo">
+            <img src="logo/logo nusantara.jpg" alt="Nusantara Restaurant Logo" loading="lazy">
         </div>
         <h1>Nusantara Madinah</h1>
         <p class="tagline">Nikmati kelezatan kuliner khas Indonesia dan Asia</p>
@@ -429,37 +482,37 @@
             <h2>Spesial Menu</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu madinah/(spesial menu)/mie ayam.jpg" alt="Mie Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/(spesial menu)/mie ayam.jpg" alt="Mie Ayam" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Mie Ayam</h3>
                     <p>Mie Ayam dengan perpaduan daging ayam yang dipotong kotak</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/(spesial menu)/mie ayam bakso.jpg" alt="Mie Ayam Bakso" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/(spesial menu)/mie ayam bakso.jpg" alt="Mie Ayam Bakso" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Mie Ayam Bakso</h3>
                     <p>Mie Ayam dengan 2 bakso spesial</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/(spesial menu)/mie goreng.jpg" alt="Mie Goreng" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/(spesial menu)/mie goreng.jpg" alt="Mie Goreng" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Mie Goreng</h3>
                     <p>Mie goreng dengan bumbu khas</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/(spesial menu)/mie kuah.jpg" alt="Mie Kuah" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/(spesial menu)/mie kuah.jpg" alt="Mie Kuah" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Mie Kuah</h3>
                     <p>Mie dengan kuah kaldu ayam</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/(spesial menu)/mie bakso.jpg" alt="Mie Bakso" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/(spesial menu)/mie bakso.jpg" alt="Mie Bakso" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Mie Bakso</h3>
                     <p>Bakso dengan paduan mie kriting dan mihun</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/(spesial menu)/kwetiau goreng.jpg" alt="Kwetiau Goreng" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/(spesial menu)/kwetiau goreng.jpg" alt="Kwetiau Goreng" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Kwetiau Goreng</h3>
                     <p>Kwetiau dengan bumbu racikan spesial</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/(spesial menu)/kwetiau kuah.jpg" alt="Kwetiau Kuah" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/(spesial menu)/kwetiau kuah.jpg" alt="Kwetiau Kuah" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Kwetiau Kuah</h3>
                     <p>Kwetiau dengan kuah khas</p>
                 </div>
@@ -471,7 +524,7 @@
             <h2>Sarapan</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu madinah/sarapan/bubur ayam.jpg" alt="Bubur Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/sarapan/bubur ayam.jpg" alt="Bubur Ayam" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Bubur Ayam</h3>
                     <p>Bubur dengan suwiran ayam dan bumbu khas</p>
                 </div>
@@ -483,21 +536,21 @@
             <h2>Nasi Goreng</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu madinah/nasi goreng/nasgor spesial.jpg" alt="Nasi Goreng Spesial" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/nasi goreng/nasgor spesial.jpg" alt="Nasi Goreng Spesial" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Goreng Spesial</h3>
                     <p>Nasi goreng dengan ayam, udang, telur, dan kerupuk</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/nasi goreng/nasgor ayam.jpg" alt="Nasi Goreng Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/nasi goreng/nasgor ayam.jpg" alt="Nasi Goreng Ayam" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Goreng Ayam</h3>
                     <p>Nasi goreng dengan ayam</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/nasi goreng/nasgor seafood.jpg" alt="Nasi Goreng Seafood" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/nasi goreng/nasgor seafood.jpg" alt="Nasi Goreng Seafood" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Goreng Seafood</h3>
                     <p>Nasi goreng dengan campuran seafood</p>
                 </div><div class="menu-item">
-                    <img src="foto menu madinah/nasi goreng/nasgor kampung.jpg" alt="Nasi Goreng Kampung" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/nasi goreng/nasgor kampung.jpg" alt="Nasi Goreng Kampung" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Goreng Kampung</h3>
                     <p>Nasi goreng dengan potongan bakso dan telor</p>
                 </div>
@@ -509,17 +562,17 @@
             <h2>Aneka Soup</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu madinah/aneka soup/buntut.jpg" alt="Soup Buntut" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/aneka soup/buntut.jpg" alt="Soup Buntut" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Soup Buntut</h3>
                     <p>Soup buntut dengan rempah pilihan</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/aneka soup/soup ayam.jpg" alt="Soup Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/aneka soup/soup ayam.jpg" alt="Soup Ayam" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Soup Ayam</h3>
                     <p>Soup ayam dengan kaldu gurih</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/aneka soup/soto ayam.jpg" alt="Soto Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/aneka soup/soto ayam.jpg" alt="Soto Ayam" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Soto Ayam</h3>
                     <p>Soto ayam dengan suwiran ayam</p>
                 </div>
@@ -531,12 +584,12 @@
             <h2>Aneka Nasi Campur</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu madinah/aneka nasi campur/rendang.jpg" alt="Nasi Rendang" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/aneka nasi campur/rendang.jpg" alt="Nasi Rendang" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Rendang</h3>
                     <p>Nasi dengan rendang daging sapi khas Padang</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/aneka nasi campur/nasi campur.jpg" alt="Nasi Campur" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/aneka nasi campur/nasi campur.jpg" alt="Nasi Campur" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Campur</h3>
                     <p>Nasi dengan berbagai lauk pilihan</p>
                 </div>
@@ -548,52 +601,52 @@
             <h2>Menu Pilihan</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/ayam goreng.jpg" alt="Ayam Goreng" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/menu pilihan/ayam goreng.jpg" alt="Ayam Goreng" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Ayam Goreng</h3>
                     <p>Ayam goreng dengan tahu dan sambal goreng yang gurih</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/ayam-bakar.jpg" alt="Ayam Bakar" onclick="openModal(this.src, this.alt)">
+                    <img src="img/ayam-bakar.jpg" alt="Ayam Bakar" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Ayam Bakar</h3>
                     <p>Ayam bakar dengan bumbu kecap</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/ayam penyet.jpg" alt="Ayam Penyet" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/menu pilihan/ayam penyet.jpg" alt="Ayam Penyet" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Ayam Penyet</h3>
                     <p>Ayam Penyet dengan dengan sambal ijo</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/bebek goreng.jpg" alt="Bebek Goreng" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/menu pilihan/bebek goreng.jpg" alt="Bebek Goreng" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Bebek Goreng</h3>
                     <p>Bebek Goreng dengan bumbu khas</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/bebek bakar.jpg" alt="Bebek Bakar" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/menu pilihan/bebek bakar.jpg" alt="Bebek Bakar" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Bebek Bakar</h3>
                     <p>Bebek bakar dengan bumbu kecap spesial</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/ikan asam manis.jpg" alt="Ikan Asam Manis" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/menu pilihan/ikan asam manis.jpg" alt="Ikan Asam Manis" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Ikan Asam Manis</h3>
                     <p>Ikan dengan campuran sayur pilihan</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/ikan bakar.jpg" alt="Ikan Bakar" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/menu pilihan/ikan bakar.jpg" alt="Ikan Bakar" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Ikan Bakar</h3>
                     <p>Ikan bakar dengan bumbu kecap gurih</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/ikan goreng.jpg" alt="Ikan Goreng" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/menu pilihan/ikan goreng.jpg" alt="Ikan Goreng" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Ikan Goreng</h3>
                     <p>Ikan goreng dengan bumbu pilihan</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/sate ayam.jpg" alt="Sate Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/menu pilihan/sate ayam.jpg" alt="Sate Ayam" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Sate Ayam</h3>
                     <p>Sate ayam dengan bumbu kacang Spesial</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/menu pilihan/sate kambing.jpg" alt="Sate Daging" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/menu pilihan/sate kambing.jpg" alt="Sate Daging" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Sate daging</h3>
                     <p>Sate Daging dengan bumbu kacang spesial</p>
                 </div>
@@ -605,27 +658,27 @@
             <h2>Gorengan</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu madinah/gorengan/bala-bala.jpg" alt="Bala-bala" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/gorengan/bala-bala.jpg" alt="Bala-bala" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Bala-bala</h3>
                     <p>Bala-bala goreng renyah</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/tempe.jpg" alt="Tempe" onclick="openModal(this.src, this.alt)">
+                    <img src="img/tempe.jpg" alt="Tempe" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Tempe</h3>
                     <p>Tempe goreng krispi</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/gorengan/molen.jpg" alt="Molen" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/gorengan/molen.jpg" alt="Molen" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Molen</h3>
                     <p>Pisang dengan baluran tepung renyah</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/gorengan/pastel.jpg" alt="Pastel" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/gorengan/pastel.jpg" alt="Pastel" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Pastel</h3>
                     <p>Pastel dengan isi campuran sayuran</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/gorengan/risol.jpg" alt="Risol" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/gorengan/risol.jpg" alt="Risol" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Risol</h3>
                     <p>Risol dengan isian sosis dan mayoneis</p>
                 </div>
@@ -637,17 +690,17 @@
             <h2>Aneka Es</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu madinah/aneka es/es campur.jpg" alt="Es Campur" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/aneka es/es campur.jpg" alt="Es Campur" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Es Campur</h3>
                     <p>Es dengan berbagai isian buah dan jelly</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/aneka es/" alt="Es Teler" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/aneka es/" alt="Es Teler" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Es Teler</h3>
                     <p>Es dengan isian jelly yang beragam dan coconut</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu madinah/aneka es/es cincau.jpg" alt="Es Cincau" onclick="openModal(this.src, this.alt)">
+                    <img src="foto menu madinah/aneka es/es cincau.jpg" alt="Es Cincau" loading="lazy" class="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Es Cincau</h3>
                     <p>Es dengan irisan cincau</p>
                 </div>
@@ -780,7 +833,7 @@
     <!-- Modal for enlarged images -->
     <div id="imageModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
+        <img class="modal-content" id="modalImage" loading="eager">
         <div id="caption" style="color: white; text-align: center; padding: 10px; position: absolute; bottom: 20px; width: 100%;"></div>
     </div>
 
@@ -793,6 +846,7 @@
             
             modal.style.display = "block";
             modalImg.src = src;
+            modalImg.alt = alt;
             captionText.innerHTML = alt;
             
             // Close modal when clicking outside the image
@@ -815,7 +869,35 @@
             }
         });
 
+        // Lazy load images
         document.addEventListener('DOMContentLoaded', function() {
+            const lazyImages = [].slice.call(document.querySelectorAll('img.lazy'));
+            
+            if ('IntersectionObserver' in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src || lazyImage.src;
+                            lazyImage.classList.remove('lazy');
+                            lazyImage.classList.add('loaded');
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            } else {
+                // Fallback for browsers without IntersectionObserver
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImage.src = lazyImage.dataset.src || lazyImage.src;
+                    lazyImage.classList.remove('lazy');
+                    lazyImage.classList.add('loaded');
+                });
+            }
+
             const searchInput = document.getElementById('searchInput');
             const filterButtons = document.querySelectorAll('.filter-btn');
             const menuCategories = document.querySelectorAll('.menu-category');

@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Menu - Nusantara Restaurant</title>
-    <link rel="icon" href="logo/logo nusantara.png" type="image/png">
+    <title>Menu Lengkap - Nusantara Restaurant</title>
+    <meta name="description" content="Menu lengkap Nusantara Restaurant dengan berbagai hidangan khas Indonesia di Arab Saudi">
+    <link rel="icon" href="logo/logo-nusantara.webp" type="image/webp">
+    
+    <!-- Preload resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="logo/logo-nusantara.webp" as="image">
+    <link rel="preload" href="ornamen/top-left.webp" as="image">
+    <link rel="preload" href="ornamen/midle-top.webp" as="image">
+    <link rel="preload" href="ornamen/midle-bottom.webp" as="image">
+    <link rel="preload" href="ornamen/bottom-right.webp" as="image">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -24,7 +35,7 @@
             min-height: 100vh;
         }
 
-        /* Ornament Positioning */
+        /* Ornament Positioning - Diubah ke format WebP */
         .ornament {
             position: absolute;
             width: 250px;
@@ -35,35 +46,33 @@
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            transition: all 0.3s ease;
         }
 
-        /* Ornament positions */
         .ornament-top-left {
-            top: 0px;
+            top: 0;
             left: -10px;
-            background-image: url('ornamen/top-left.png');
+            background-image: url('ornamen/top-left.webp');
         }
 
         .ornament-midle-top {
             top: 960px;
             right: 30px;
-            background-image: url('ornamen/midle-top.png');
+            background-image: url('ornamen/midle-top.webp');
         }
 
         .ornament-midle-bottom {
             bottom: 670px;
             left: 15px;
-            background-image: url('ornamen/midle-bottom.png');
+            background-image: url('ornamen/midle-bottom.webp');
         }
 
         .ornament-bottom-right {
-            bottom: 0px;
+            bottom: 0;
             right: -10px;
-            background-image: url('ornamen/bottom-right.png');
+            background-image: url('ornamen/bottom-right.webp');
         }
 
-        /* Responsive for mobile */
+        /* Responsive for mobile - Tetap sama */
         @media (max-width: 768px) {
             .ornament {
                 width: 180px;
@@ -98,6 +107,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            loading: eager; /* Logo penting, load segera */
         }
 
         h1 {
@@ -138,7 +148,6 @@
             background: #ff0000;
             bottom: -8px;
             left: 0;
-            transform: translateX(0);
             border-radius: 3px;
         }
 
@@ -201,6 +210,7 @@
             text-align: left;
         }
 
+        /* Grid tetap 2 kolom di mobile */
         .menu-items {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -213,7 +223,7 @@
             border-radius: 15px;
             padding: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             text-align: left;
         }
 
@@ -229,11 +239,7 @@
             border-radius: 10px;
             margin-bottom: 10px;
             cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .menu-item img:hover {
-            opacity: 0.9;
+            loading: lazy; /* Lazy load untuk gambar menu */
         }
 
         .menu-item h3 {
@@ -272,10 +278,38 @@
             color: #666;
         }
 
-        .price-variants {
-            margin-top: 5px;
-            font-size: 14px;
-            color: #555;
+        /* Loading spinner */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 245, 222, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff0000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Modal for enlarged images */
@@ -318,7 +352,7 @@
             color: #ff0000;
         }
 
-        /* Mobile Responsive Styles */
+        /* Mobile Responsive Styles - Tetap 2 kolom */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -347,58 +381,50 @@
             }
 
             .menu-item img {
-                height: 100px;
+                height: 120px;
             }
 
             .menu-item h3 {
-                font-size: 14px;
+                font-size: 16px;
             }
 
             .menu-item p {
-                font-size: 12px;
-            }
-
-            .price, .price-variants {
                 font-size: 13px;
             }
 
             .search-box input {
                 padding: 10px 15px;
+                font-size: 14px;
             }
 
             .filter-buttons {
-                justify-content: center;
-                overflow-x: visible;
-                flex-wrap: wrap;
+                gap: 8px;
             }
 
             .filter-btn {
                 padding: 6px 12px;
-                font-size: 14px;
+                font-size: 13px;
             }
         }
 
         @media (max-width: 480px) {
             .menu-items {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom */
             }
             
             .menu-item img {
-                height: 80px;
-            }
-            
-            .menu-item h3 {
-                font-size: 13px;
-            }
-            
-            .menu-item p {
-                font-size: 11px;
+                height: 100px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background Ornaments in 4 Corners -->
+    <!-- Loading spinner -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Background Ornaments -->
     <div class="ornament ornament-top-left"></div>
     <div class="ornament ornament-midle-top"></div>
     <div class="ornament ornament-midle-bottom"></div>
@@ -406,7 +432,7 @@
 
     <div class="container">
         <div class="logo">
-            <img src="logo/logo nusantara.jpg" alt="Nusantara Restaurant Logo">
+            <img src="logo/logo-nusantara.webp" alt="Nusantara Restaurant Logo" width="150" height="150">
         </div>
         <h1>Nusantara Makkah</h1>
         <p class="tagline">Nikmati kelezatan kuliner khas Indonesia dan Asia</p>
@@ -416,8 +442,8 @@
         <!-- Search and Filter Section -->
         <div class="search-filter-container">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Cari menu...">
-                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Cari menu..." aria-label="Cari menu">
+                <i class="fas fa-search" aria-hidden="true"></i>
             </div>
             <div class="filter-buttons">
                 <button class="filter-btn active" data-category="all">Semua</button>
@@ -438,64 +464,64 @@
             <h2>Aneka Nasi</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/nasgor spesial.jpg" alt="Nasi Goreng Spesial" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/nasgor-spesial.webp" alt="Nasi Goreng Spesial" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Goreng Spesial</h3>
                     <p>Nasi goreng dengan campuran daging ayam, udang, telur, dan sayuran, disajikan dengan kerupuk dan acar.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/nasgor seafood.jpg" alt="Nasi Goreng Seafood" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/nasgor-seafood.webp" alt="Nasi Goreng Seafood" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Goreng Seafood</h3>
                     <p>Nasi goreng dengan aneka seafood seperti cumi, udang, dan kerang, dibumbui rempah khas Nusantara.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/" alt="Nasi Goreng Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/nasgor-ayam.webp" alt="Nasi Goreng Ayam" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Goreng Ayam</h3>
                     <p>Nasi goreng sederhana dengan potongan ayam goreng, telur, dan bawang goreng yang renyah.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/nasgor buntut.jpg" alt="Nasi Goreng Buntut" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/nasgor-buntut.webp" alt="Nasi Goreng Buntut" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Goreng Buntut</h3>
                     <p>Nasi goreng premium dengan potongan buntut sapi empuk dan bumbu spesial.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/ayam goreng.jpg" alt="Nasi Ayam Goreng" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/ayam-goreng.webp" alt="Nasi Ayam Goreng" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Ayam Goreng</h3>
                     <p>Nasi putih dengan ayam goreng kremes, sambal, lalapan, dan kerupuk.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/ayam penyet.jpg" alt="Nasi Ayam Penyet" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/ayam-penyet.webp" alt="Nasi Ayam Penyet" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Ayam Penyet</h3>
-                    <p>Ayam goreng yang dipenyet dengan sambal pedas, disajikan dengan nasi, tempe, tahu, dan lalapan</p>
+                    <p>Ayam goreng yang dipenyet dengan sambal pedas, disajikan dengan nasi, tempe, tahu, dan lalapan.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/ayam bakar.jpg" alt="Nasi Ayam Bakar" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/ayam-bakar.webp" alt="Nasi Ayam Bakar" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Ayam Bakar</h3>
-                    <p>Ayam bakar bumbu kecap dengan aroma smokey, disajikan dengan nasi, sambal, dan lalapan segar</p>
+                    <p>Ayam bakar bumbu kecap dengan aroma smokey, disajikan dengan nasi, sambal, dan lalapan segar.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/bebek goreng serundeng.jpg" alt="Nasi Bebek Goreng" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/bebek-goreng.webp" alt="Nasi Bebek Goreng" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Bebek Goreng</h3>
-                    <p>Bebek goreng krispi dengan bumbu rempah khas, disajikan dengan nasi, sambal, dan lalapan</p>
+                    <p>Bebek goreng krispi dengan bumbu rempah khas, disajikan dengan nasi, sambal, dan lalapan.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/nila goreng.jpg" alt="Ikan Nila Goreng" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/nila-goreng.webp" alt="Ikan Nila Goreng" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Ikan Nila Goreng</h3>
-                    <p>Ikan nila segar digoreng kering dengan bumbu kuning, disajikan dengan nasi, sambal, dan lalapan</p>
+                    <p>Ikan nila segar digoreng kering dengan bumbu kuning, disajikan dengan nasi, sambal, dan lalapan.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/nasi rendang.jpeg" alt="Nasi Campur" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/nasi-campur.webp" alt="Nasi Campur" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Nasi Campur</h3>
                     <p>Nasi dengan berbagai lauk pilihan seperti ayam, tempe, tahu, telur, sambal, dan kerupuk.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/" alt="Sate Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/sate-ayam.webp" alt="Sate Ayam" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Sate Ayam</h3>
-                    <p>Potongan ayam yang ditusuk dan dibakar, disajikan dengan bumbu kacang, lontong, dan bawang merah</p>
+                    <p>Potongan ayam yang ditusuk dan dibakar, disajikan dengan bumbu kacang, lontong, dan bawang merah.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/aneka nasi/sate kambing.jpg" alt="Sate Kambing" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/aneka-nasi/sate-kambing.webp" alt="Sate Kambing" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Sate Kambing</h3>
-                    <p>Daging kambing muda yang ditusuk dan dibakar, disajikan dengan bumbu kacang atau kecap</p>
+                    <p>Daging kambing muda yang ditusuk dan dibakar, disajikan dengan bumbu kacang atau kecap.</p>
                 </div>
             </div>
         </div>
@@ -505,37 +531,37 @@
             <h2>Mie & Bakso</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu makkah/mieso/bakso.jpg" alt="Bakso" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/mie-bakso/bakso.webp" alt="Bakso" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Bakso</h3>
                     <p>Bakso sapi kenyal dengan kuah kaldu sapi, disajikan dengan mie, tahu, dan bihun.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/mieso/" alt="Mie Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/mie-bakso/mie-ayam.webp" alt="Mie Ayam" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Mie Ayam</h3>
                     <p>Mie kuning dengan topping ayam cincang, pangsit, dan sayuran, disajikan dengan kuah kaldu.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/mieso/mie ayam bakso.jpg" alt="Mie Ayam Bakso" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/mie-bakso/mie-ayam-bakso.webp" alt="Mie Ayam Bakso" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Mie Ayam Bakso</h3>
                     <p>Mie ayam lengkap dengan tambahan bakso sapi sebagai pelengkap.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/mieso/mie goreng.jpg" alt="Mie Goreng/Kuah" onclick="openModal(this.src, this.alt)">
-                    <h3>Mie Goreng/Kuah</h3>
-                    <p>Mie kuning yang digoreng, dengan sayuran dan bumbu khas</p>
+                    <img src="foto-menu-makkah/mie-bakso/mie-goreng.webp" alt="Mie Goreng" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
+                    <h3>Mie Goreng</h3>
+                    <p>Mie kuning yang digoreng, dengan sayuran dan bumbu khas.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/mieso/mie kuah.jpg" alt="Mie Goreng/Kuah" onclick="openModal(this.src, this.alt)">
-                    <h3>Mie Goreng/Kuah</h3>
-                    <p>Mie kuning kuah, dengan sayuran dan bumbu khas</p>
+                    <img src="foto-menu-makkah/mie-bakso/mie-kuah.webp" alt="Mie Kuah" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
+                    <h3>Mie Kuah</h3>
+                    <p>Mie kuning kuah, dengan sayuran dan bumbu khas.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/mieso/kwetiau goreng.jpg" alt="Mie Kwetiau Goreng" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/mie-bakso/kwetiau-goreng.webp" alt="Mie Kwetiau Goreng" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Mie Kwetiau Goreng</h3>
                     <p>Kwetiau digoreng dengan kecap manis, daging, udang, dan sayuran.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/kwetiau-kuah.jpg" alt="Mie Kwetiau Kuah" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/mie-bakso/kwetiau-kuah.webp" alt="Mie Kwetiau Kuah" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Mie Kwetiau Kuah</h3>
                     <p>Kwetiau berkuah kaldu dengan daging, udang, dan sayuran segar.</p>
                 </div>
@@ -547,17 +573,17 @@
             <h2>Soup</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="img/sop-ayam.jpg" alt="Soup Ayam" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/soup/sop-ayam.webp" alt="Soup Ayam" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Soup Ayam</h3>
                     <p>Kuah kaldu ayam bening dengan potongan daging ayam, wortel, kentang, dan daun seledri.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/soup/Sop iga.jpg" alt="Soup Iga" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/soup/sop-iga.webp" alt="Soup Iga" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Soup Iga</h3>
                     <p>Iga sapi empuk dengan kuah kaldu bening, wortel, kentang, dan rempah-rempah.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/soup/buntut.jpg" alt="Soup Buntut" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/soup/sop-buntut.webp" alt="Soup Buntut" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Soup Buntut</h3>
                     <p>Buntut sapi empuk dengan kuah kaldu kental, wortel, kentang, dan rempah pilihan.</p>
                 </div>
@@ -569,39 +595,39 @@
             <h2>Gorengan</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu makkah/gorengan/risol.jpg" alt="Risol" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/gorengan/risol.webp" alt="Risol" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Risol</h3>
                     <p>Risol mayo dengan isian wortel, kentang, daging, dan mayonaise.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/tahu-isi.jpg" alt="Tahu Isi" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/gorengan/tahu-isi.webp" alt="Tahu Isi" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Tahu Isi</h3>
                     <p>Tahu goreng berisi sayuran seperti wortel dan kol dengan bumbu yang gurih.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/gorengan/bala-bala.jpg" alt="Bala-bala" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/gorengan/bala-bala.webp" alt="Bala-bala" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Bala-bala</h3>
                     <p>Gorengan khas Sunda yang terbuat dari sayuran yang dicelupkan ke dalam adonan tepung.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/pastel.jpg" alt="Pastel" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/gorengan/pastel.webp" alt="Pastel" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Pastel</h3>
                     <p>Kulit pastel renyah dengan isian bihun, wortel, dan daging cincang.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/gorengan/molen.jpg" alt="Pisang Molen" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/gorengan/pisang-molen.webp" alt="Pisang Molen" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Pisang Molen</h3>
                     <p>Pisang raja dibungkus kulit pastry dan digoreng hingga renyah.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/gorengan/pisang goreng cokelat (2).jpg" alt="Pisang Nugget" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/gorengan/pisang-goreng-cokelat (2).webp" alt="Pisang Nugget" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Pisang Nugget Topping Coklat & Keju</h3>
                     <p>Pisang goreng tepung dengan topping coklat dan keju leleh.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/gorengan/" alt="Tempe Mendoan" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/gorengan/tempe-mendoan.webp" alt="Tempe Mendoan" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Tempe Mendoan</h3>
-                    <p>Tempe yang diiris tipis dan dibaluri tepung</p>
+                    <p>Tempe yang diiris tipis dan dibaluri tepung.</p>
                 </div>
             </div>
         </div>
@@ -611,17 +637,17 @@
             <h2>Tea</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="img/tea.jpg" alt="Tea" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/tea.webp" alt="Tea" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Tea</h3>
                     <p>Teh panas atau dingin pilihan dengan aroma yang menyegarkan.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/lemon-tea.jpg" alt="Lemon Tea" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/lemon-tea.webp" alt="Lemon Tea" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Lemon Tea</h3>
                     <p>Teh dengan perasan lemon segar yang memberikan rasa asam manis.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/lychee-tea.jpg" alt="Lychee Tea" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/lychee-tea.webp" alt="Lychee Tea" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Lychee Tea</h3>
                     <p>Teh dengan sirup leci yang memberikan rasa manis dan aroma khas.</p>
                 </div>
@@ -633,47 +659,47 @@
             <h2>Coffee</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="img/espresso.jpg" alt="Espresso" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/espresso.webp" alt="Espresso" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Espresso</h3>
                     <p>Kopi murni yang diseduh dengan tekanan tinggi, menghasilkan rasa yang kuat.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/americano.jpg" alt="Americano" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/americano.webp" alt="Americano" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Americano</h3>
                     <p>Espresso yang ditambahkan air panas, menghasilkan kopi yang lebih ringan.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/drip-coffee.jpg" alt="Drip Coffee" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/drip-coffee.webp" alt="Drip Coffee" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Drip Coffee</h3>
                     <p>Kopi tubruk tradisional yang diseduh secara manual untuk mendapatkan rasa yang otentik.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/latte.jpg" alt="Latte" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/latte.webp" alt="Latte" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Latte</h3>
                     <p>Espresso dengan susu steamed dan sedikit busa susu di atasnya.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/cappuccino.jpg" alt="Cappuccino" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/cappuccino.webp" alt="Cappuccino" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Cappuccino</h3>
                     <p>Espresso dengan perbandingan seimbang antara susu steamed dan busa susu.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/mochaccino.jpg" alt="Mochaccino" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/mochaccino.webp" alt="Mochaccino" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Mochaccino</h3>
                     <p>Perpaduan antara coklat, espresso, dan susu steamed dengan whipped cream di atasnya.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/spanish-latte.jpg" alt="Spanish Latte" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/spanish-latte.webp" alt="Spanish Latte" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Spanish Latte</h3>
                     <p>Latte dengan tambahan susu kental manis yang memberikan rasa creamy dan manis.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/caramel-latte.jpg" alt="Caramel Latte" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/caramel-latte.webp" alt="Caramel Latte" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Caramel Latte</h3>
                     <p>Latte dengan tambahan sirup caramel yang memberikan rasa manis dan aroma khas.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/kopi-susu-gula-aren.jpg" alt="Kopi Susu Gula Aren" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/kopi-susu.webp" alt="Kopi Susu Gula Aren" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Kopi Susu Gula Aren</h3>
                     <p>Kopi dengan susu dan gula aren asli yang memberikan rasa manis alami.</p>
                 </div>
@@ -685,12 +711,12 @@
             <h2>Non Coffee</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="img/matcha-latte.jpg" alt="Matcha Latte" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/matcha-latte.webp" alt="Matcha Latte" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Matcha Latte</h3>
                     <p>Minuman berbasis matcha (teh hijau bubuk) dengan susu steamed yang creamy.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/chocolate.jpg" alt="Chocolate" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/chocolate.webp" alt="Chocolate" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Chocolate</h3>
                     <p>Coklat panas atau dingin yang kaya rasa dengan whipped cream di atasnya.</p>
                 </div>
@@ -702,14 +728,14 @@
             <h2>Our Signature</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="foto menu makkah/signiture/" alt="Es Klepon" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/signature/es-klepon.webp" alt="Es Klepon" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Es Klepon</h3>
                     <p>Minuman segar dengan klepon (makanan tradisional dari ketan berisi gula merah) dan es serut.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="foto menu makkah/signiture/pina colada.jpg" alt="Pina Colada" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/signiture/pina-colada.webp" alt="Pina Colada" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Pina Colada</h3>
-                    <p>Jus nanas dengan aroma kelapa yang menyegarkan</p>
+                    <p>Jus nanas dengan aroma kelapa yang menyegarkan.</p>
                 </div>
             </div>
         </div>
@@ -719,32 +745,32 @@
             <h2>Tradisional</h2>
             <div class="menu-items">
                 <div class="menu-item">
-                    <img src="img/kopi-kapal-api.jpg" alt="Kopi Kapal Api" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/kopi-kapal-api.webp" alt="Kopi Kapal Api" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Kopi Kapal Api</h3>
                     <p>Kopi tubruk khas Indonesia dengan rasa yang kuat dan aroma yang khas.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/soda-gembira.jpg" alt="Soda Gembira" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/soda-gembira.webp" alt="Soda Gembira" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Soda Gembira</h3>
                     <p>Minuman soda dengan sirup merah dan susu kental manis yang menyegarkan.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/es-cincau.jpg" alt="Es Cincau" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/tradisional/cincau.webp" alt="Es Cincau" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Es Cincau</h3>
                     <p>Minuman dengan cincau hitam, santan, dan gula merah cair yang menyegarkan.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/es-campur.jpg" alt="Es Campur" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/tradisional/es-campur.webp" alt="Es Campur" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Es Campur</h3>
                     <p>Campuran berbagai bahan seperti nata de coco, kolang-kaling, alpukat, dan sirup dalam es serut.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/es-cendol.jpg" alt="Es Cendol" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/tradisional/es-cendol.webp" alt="Es Cendol" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>Es Cendol</h3>
                     <p>Minuman tradisional dengan cendol (tepung beras hijau), santan, dan gula merah.</p>
                 </div>
                 <div class="menu-item">
-                    <img src="img/stmj.jpg" alt="STMJ" onclick="openModal(this.src, this.alt)">
+                    <img src="foto-menu-makkah/minuman/stmj.webp" alt="STMJ" width="300" height="160" loading="lazy" onclick="openModal(this.src, this.alt)">
                     <h3>STMJ</h3>
                     <p>Susu Telur Madu Jahe - minuman hangat yang menyehatkan dan menghangatkan tubuh.</p>
                 </div>
@@ -756,23 +782,44 @@
 
     <!-- Modal for enlarged images -->
     <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
+        <span class="close" onclick="closeModal()" aria-label="Tutup">&times;</span>
+        <img class="modal-content" id="modalImage" alt="Enlarged view">
         <div id="caption" style="color: white; text-align: center; padding: 10px; position: absolute; bottom: 20px; width: 100%;"></div>
     </div>
 
     <script>
-        // Function to open modal with clicked image
+        // Tampilkan loader saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sembunyikan loader setelah semua konten dimuat
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    const loader = document.getElementById('loader');
+                    loader.classList.add('hidden');
+                    
+                    // Hapus loader dari DOM setelah animasi selesai
+                    loader.addEventListener('transitionend', function() {
+                        loader.remove();
+                    });
+                }, 500); // Minimal tampilkan loader selama 500ms
+            });
+        });
+
+        // Image Modal Functions
         function openModal(src, alt) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const captionText = document.getElementById('caption');
             
-            modal.style.display = "block";
-            modalImg.src = src;
-            captionText.innerHTML = alt;
+            // Preload image before showing modal
+            const img = new Image();
+            img.src = src;
+            img.onload = function() {
+                modal.style.display = "block";
+                modalImg.src = src;
+                captionText.innerHTML = alt;
+                document.body.style.overflow = 'hidden';
+            };
             
-            // Close modal when clicking outside the image
             modal.onclick = function(event) {
                 if (event.target === modal) {
                     closeModal();
@@ -780,94 +827,85 @@
             };
         }
         
-        // Function to close modal
         function closeModal() {
             document.getElementById('imageModal').style.display = "none";
+            document.body.style.overflow = 'auto';
         }
         
-        // Close modal when pressing ESC key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
             }
         });
 
-        // Original menu filtering script
+        // Menu Filtering and Search Functionality dengan debounce
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('searchInput');
             const filterButtons = document.querySelectorAll('.filter-btn');
             const menuCategories = document.querySelectorAll('.menu-category');
-            const menuItems = document.querySelectorAll('.menu-item');
+            
+            let searchTimeout;
             
             // Filter by category
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    // Remove active class from all buttons
                     filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Add active class to clicked button
                     this.classList.add('active');
                     
                     const category = this.dataset.category;
                     
                     menuCategories.forEach(categoryEl => {
-                        if (category === 'all' || categoryEl.dataset.category === category) {
-                            categoryEl.style.display = 'block';
-                        } else {
-                            categoryEl.style.display = 'none';
-                        }
+                        categoryEl.style.display = (category === 'all' || categoryEl.dataset.category === category) 
+                            ? 'block' 
+                            : 'none';
                     });
                     
-                    // Reset search when changing category
                     searchInput.value = '';
                 });
             });
             
-            // Search functionality
+            // Search functionality with debounce
             searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                let hasResults = false;
-                
-                menuCategories.forEach(category => {
-                    let categoryHasResults = false;
-                    const items = category.querySelectorAll('.menu-item');
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    const searchTerm = this.value.trim().toLowerCase();
+                    let hasResults = false;
                     
-                    items.forEach(item => {
-                        const itemName = item.querySelector('h3').textContent.toLowerCase();
-                        const itemDesc = item.querySelector('p').textContent.toLowerCase();
+                    menuCategories.forEach(category => {
+                        let categoryHasResults = false;
+                        const items = category.querySelectorAll('.menu-item');
                         
-                        if (itemName.includes(searchTerm) || itemDesc.includes(searchTerm)) {
-                            item.style.display = 'block';
-                            categoryHasResults = true;
-                        } else {
-                            item.style.display = 'none';
+                        items.forEach(item => {
+                            const itemText = item.textContent.toLowerCase();
+                            const matchesSearch = searchTerm === '' || itemText.includes(searchTerm);
+                            
+                            item.style.display = matchesSearch ? 'block' : 'none';
+                            
+                            if (matchesSearch) {
+                                categoryHasResults = true;
+                                hasResults = true;
+                            }
+                        });
+                        
+                        const activeFilter = document.querySelector('.filter-btn.active').dataset.category;
+                        if (activeFilter !== 'all') {
+                            category.style.display = categoryHasResults ? 'block' : 'none';
                         }
                     });
                     
-                    // Show/hide category based on results
-                    if (categoryHasResults) {
-                        category.style.display = 'block';
-                        hasResults = true;
-                    } else {
-                        // Only hide if not showing all categories
-                        const activeFilter = document.querySelector('.filter-btn.active').dataset.category;
-                        if (activeFilter !== 'all') {
-                            category.style.display = 'none';
+                    // Show/hide no results message
+                    const noResults = document.querySelector('.no-results');
+                    if (!hasResults && searchTerm.length > 0) {
+                        if (!noResults) {
+                            const noResultsDiv = document.createElement('div');
+                            noResultsDiv.className = 'no-results';
+                            noResultsDiv.textContent = 'Tidak ada hasil yang ditemukan';
+                            document.querySelector('.container').insertBefore(noResultsDiv, document.querySelector('.back-button'));
                         }
+                    } else if (noResults) {
+                        noResults.remove();
                     }
-                });
-                
-                // Show "no results" message if needed
-                const noResults = document.querySelector('.no-results');
-                if (!hasResults && searchTerm.length > 0) {
-                    if (!noResults) {
-                        const noResultsDiv = document.createElement('div');
-                        noResultsDiv.className = 'no-results';
-                        noResultsDiv.textContent = 'Tidak ada hasil yang ditemukan';
-                        document.querySelector('.container').insertBefore(noResultsDiv, document.querySelector('.back-button'));
-                    }
-                } else if (noResults) {
-                    noResults.remove();
-                }
+                }, 300);
             });
         });
     </script>
