@@ -1,708 +1,204 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nusantara Restaurant SA</title>
-    <meta name="description" content="Restoran Nusantara di Arab Saudi menyajikan masakan autentik Indonesia dengan cita rasa asli">
-    <link rel="icon" href="logo/logo-nusantara.webp" type="image/webp">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        body {
-            background-color: #fff5de;
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-            min-height: 100vh;
-        }
-        
-        /* Container with semi-transparent background */
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 15px;
-            text-align: center;
-            position: relative;
-            background-color: rgba(255, 245, 222, 0.85);
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-            z-index: 1;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nusantara Restaurant SA – Rasa Autentik Indonesia di Arab Saudi</title>
+  <meta name="description" content="Restoran Nusantara di Arab Saudi menyajikan masakan autentik Indonesia dengan cita rasa asli. Lokasi di Madinah & Makkah, buka 24 jam.">
+  <link rel="icon" href="logo/logo-nusantara.webp" type="image/webp">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        /* Ornament Positioning */
-        .ornament {
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.2;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            transition: all 0.3s ease;
-        }
-
-        /* Posisi ornamen */
-        .ornament-top-left {
-            top: 0px;
-            left: -10px;
-            background-image: url('ornamen/top-left.webp');
-        }
-
-        .ornament-midle-top {
-            top: 960px;
-            right: 30px;
-            background-image: url('ornamen/midle-top.webp');
-        }
-
-        .ornament-midle-bottom {
-            bottom: 670px;
-            left: 15px;
-            background-image: url('ornamen/midle-bottom.webp');
-        }
-
-        .ornament-bottom-right {
-            bottom: 0px;
-            right: -10px;
-            background-image: url('ornamen/bottom-right.webp');
-        }
-
-        /* Responsive untuk mobile */
-        @media (max-width: 768px) {
-            .ornament {
-                width: 180px;
-                height: 180px;
-                opacity: 0.25;
-            }
-        }
-
-        /* Logo */
-        .logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 3px solid #ff0000;
-        }
-        
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            loading: lazy;
-        }
-        
-        h1 {
-            color: #ff0000;
-            margin-bottom: 8px;
-            font-size: 28px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        
-        .tagline {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-            padding: 0 10px;
-            font-weight: 500;
-        }
-        
-        hr {
-            border: none;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #ddd, transparent);
-            margin: 20px 0;
-        }
-        
-        h2 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 22px;
-            padding: 0 10px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        h2:after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 3px;
-            background: #ff0000;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 3px;
-        }
-
-        .section-description {
-            font-size: 15px;
-            color: #666;
-            margin-bottom: 20px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 15px;
-        }
-
-        /* Location Section */
-        .location-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 20px auto;
-            width: 100%;
-            max-width: 600px;
-        }
-        
-        .location-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s;
-            text-align: left;
-        }
-        
-        .location-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .location-image {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            cursor: pointer;
-            loading: lazy;
-        }
-        
-        .location-info {
-            padding: 15px;
-        }
-        
-        .location-name {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 7px;
-            color: #ff0000;
-        }
-        
-        .location-address {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-       
-        .location-button {
-            display: inline-block;
-            padding: 8px 15px;
-            background: #2922e6;
-            color: white;
-            border-radius: 20px;
-            font-size: 14px;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-        
-        .location-button:hover {
-            background: #1a15b3;
-        }
-
-        /* Menu Section */
-        .branch-menu {
-            margin: 25px 0;
-        }
-        
-        .branch-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #ff0000;
-            color: white;
-            padding: 12px 15px;
-            border-radius: 12px 12px 0 0;
-        }
-        
-        .branch-name {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        
-        .branch-icon {
-            font-size: 20px;
-        }
-        
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            background: white;
-            padding: 15px;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        .menu-item {
-            background: #f9f9f9;
-            border-radius: 10px;
-            padding: 10px;
-            transition: transform 0.3s;
-        }
-        
-        .menu-item:hover {
-            transform: scale(1.03);
-        }
-        
-        .menu-item img {
-            width: 100%;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            loading: lazy;
-        }
-        
-        .menu-item-name {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        
-        .menu-item-price {
-            font-size: 14px;
-            color: #ff0000;
-            font-weight: bold;
-        }
-        
-        .view-all {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #2922e6;
-            color: white;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        
-        .view-all:hover {
-            background: #1a15b3;
-        }
-
-        /* Features Section */
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .feature-item {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .feature-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .feature-icon {
-            font-size: 24px;
-            color: #ff0000;
-            margin-bottom: 10px;
-        }
-        
-        .feature-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .feature-desc {
-            font-size: 13px;
-            color: #666;
-        }
-
-        /* Social Media */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
-        }
-        
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            transition: transform 0.3s;
-            color: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            text-decoration: none;
-        }
-        
-        .social-link:hover {
-            transform: scale(1.1) translateY(-3px);
-        }
-        
-        .instagram {
-            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-        }
-        
-        .tiktok {
-            background: #000000;
-        }
-        
-        .facebook {
-            background: #1877F2;
-        }
-        
-        .whatsapp {
-            background: #25D366;
-        }
-
-        /* Modal for enlarged images */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            overflow: auto;
-        }
-        
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 90%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 8px;
-        }
-        
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        
-        .close:hover {
-            color: #ff0000;
-        }
-
-        /* Loading spinner */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 245, 222, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-        
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #ff0000;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 480px) {
-            .menu-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
-                
-        @media (min-width: 600px) {
-            .location-container {
-                flex-direction: row;
-                justify-content: space-between;
-                max-width: 100%;
-                padding: 0 20px;
-            }
-            
-            .location-card {
-                width: 48%;
-                max-width: 380px;
-            }
-            
-            .menu-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .branch-menu {
-                max-width: 100%;
-                padding: 0 20px;
-            }
-        }
-    </style>
+  <style>
+    :root {
+      --clr-primary: #e60000;
+      --clr-primary-dark: #b30000;
+      --clr-accent: #2922e6;
+      --clr-accent-dark: #1a15b3;
+      --clr-bg: #fff5de;
+      --clr-text: #333;
+    }
+    html { scroll-behavior: smooth; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background: var(--clr-bg); color: var(--clr-text); line-height: 1.6; overflow-x: hidden; min-height: 100vh; position: relative; }
+    .container { width: 100%; max-width: 800px; margin: 0 auto; padding: 15px; text-align: center; background: rgba(255, 245, 222, .85); border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,.05); position: relative; z-index: 1; }
+    .ornament { position: absolute; width: 250px; height: 250px; background-size: contain; background-repeat: no-repeat; background-position: center; opacity: .2; pointer-events: none; z-index: 0; }
+    .ornament-top-left { top: 0; left: -10px; background-image: url('ornamen/top-left.webp'); }
+    .ornament-midle-top { top: 960px; right: 30px; background-image: url('ornamen/midle-top.webp'); }
+    .ornament-midle-bottom { bottom: 670px; left: 15px; background-image: url('ornamen/midle-bottom.webp'); }
+    .ornament-bottom-right { bottom: 0; right: -10px; background-image: url('ornamen/bottom-right.webp'); }
+    @media (max-width: 768px) { .ornament { width: 180px; height: 180px; opacity: .25; } }
+    .logo { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 15px; overflow: hidden; border: 3px solid var(--clr-primary); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+    .logo img { width: 100%; height: 100%; object-fit: cover; }
+    h1 { color: var(--clr-primary); font-size: 28px; margin-bottom: 8px; }
+    .tagline { font-size: 16px; color: #666; margin-bottom: 20px; }
+    hr { border: none; height: 1px; background: linear-gradient(to right, transparent, #ddd, transparent); margin: 20px 0; }
+    h2 { color: var(--clr-text); font-size: 22px; margin-bottom: 10px; position: relative; display: inline-block; }
+    h2::after { content: ''; position: absolute; width: 50px; height: 3px; background: var(--clr-primary); bottom: -8px; left: 50%; transform: translateX(-50%); border-radius: 3px; }
+    .section-description { font-size: 15px; color: #555; max-width: 700px; margin: 0 auto 20px; padding: 0 15px; }
+    .location-container { display: flex; flex-direction: column; gap: 15px; margin: 20px auto; max-width: 600px; }
+    .location-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,.08); transition: transform .3s; text-align: left; }
+    .location-card:hover { transform: translateY(-5px); }
+    .location-image { width: 100%; height: 150px; object-fit: cover; cursor: pointer; }
+    .location-info { padding: 15px; }
+    .location-name { font-size: 18px; font-weight: bold; color: var(--clr-primary); margin-bottom: 5px; }
+    .location-address { font-size: 14px; color: #666; margin-bottom: 10px; }
+    .location-button { display: inline-block; padding: 8px 15px; background: var(--clr-accent); color: #fff; border-radius: 20px; font-size: 14px; text-decoration: none; transition: background .3s; }
+    .location-button:hover { background: var(--clr-accent-dark); }
+    .branch-menu { margin: 25px 0; }
+    .branch-header { display: flex; align-items: center; justify-content: space-between; background: var(--clr-primary); color: #fff; padding: 12px 15px; border-radius: 12px 12px 0 0; }
+    .branch-name { font-size: 18px; font-weight: bold; }
+    .branch-icon { font-size: 20px; }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; background: #fff; padding: 15px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+    .menu-item { background: #f9f9f9; border-radius: 10px; padding: 10px; transition: transform .3s; cursor: pointer; }
+    .menu-item:hover { transform: scale(1.03); }
+    .menu-item img { width: 100%; height: 80px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; }
+    .menu-item-name { font-size: 14px; font-weight: bold; color: var(--clr-text); }
+    .view-all { display: inline-block; margin-top: 15px; padding: 10px 20px; background: var(--clr-accent); color: #fff; border-radius: 25px; font-weight: bold; transition: background .3s; text-decoration: none; }
+    .view-all:hover { background: var(--clr-accent-dark); }
+    .social-links { display: flex; justify-content: center; gap: 15px; margin: 25px 0; }
+    .social-link { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,.1); transition: transform .3s; text-decoration: none; }
+    .social-link:hover { transform: scale(1.1) translateY(-3px); }
+    .instagram { background: linear-gradient(45deg,#405DE6,#5851DB,#833AB4,#C13584,#E1306C,#FD1D1D); }
+    .tiktok { background: #000; }
+    .facebook { background: #1877F2; }
+    .whatsapp { background: #25D366; }
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.9); z-index: 1000; align-items: center; justify-content: center; }
+    .modal-content { max-width: 90%; max-height: 90%; border-radius: 8px; }
+    .close { position: absolute; top: 20px; right: 30px; font-size: 35px; color: #fff; cursor: pointer; transition: color .3s; }
+    .close:hover { color: var(--clr-primary); }
+    .loader { position: fixed; inset: 0; background: rgba(255,245,222,.9); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity .5s, visibility .5s; }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-spinner { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top-color: var(--clr-primary); border-radius: 50%; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--clr-primary); outline-offset: 2px; }
+    @media (min-width: 600px) {
+      .location-container { flex-direction: row; justify-content: space-between; max-width: 100%; padding: 0 20px; }
+      .location-card { flex: 1 1 48%; max-width: 380px; }
+      .menu-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .wa-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(0,0,0,.25); z-index: 999; animation: pulse 2s infinite; text-decoration: none; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
 </head>
 <body>
-    <!-- Loading spinner -->
-    <div class="loader" id="loader">
-        <div class="loader-spinner"></div>
-    </div>
+  <div class="loader" id="loader"><div class="loader-spinner"></div></div>
+  <div class="ornament ornament-top-left"></div>
+  <div class="ornament ornament-midle-top"></div>
+  <div class="ornament ornament-midle-bottom"></div>
+  <div class="ornament ornament-bottom-right"></div>
 
-    <!-- Wrapper untuk ornamen -->
-    <div class="ornament-wrapper">
-        <!-- Background Ornaments in 2 Corners -->
-        <div class="ornament ornament-top-left"></div>
-        <div class="ornament ornament-midle-top"></div>
-        <div class="ornament ornament-midle-bottom"></div>
-        <div class="ornament ornament-bottom-right"></div>
-    </div>
+  <div class="container">
+    <div class="logo"><img src="logo/logo-nusantara.webp" alt="Logo Nusantara Restaurant" width="120" height="120"></div>
+    <h1>Nusantara Restaurant SA</h1>
+    <p class="tagline">Rasa Autentik Indonesia di Arab Saudi</p>
 
-    <div class="container">
-        <div class="logo">
-            <img src="logo/logo-nusantara.webp" alt="Nusantara Restaurant Logo" width="120" height="120">
-        </div>
-        <h1>Nusantara Restaurant SA</h1>
-        <p class="tagline">Rasa Autentik Indonesia di Arab Saudi</p>
-        
-        <hr>
-        
-        <!-- Lokasi Cabang -->
-        <h2>Lokasi Kami</h2>
-        <p class="section-description">
-            Nikmati hidangan autentik Indonesia di dua lokasi strategis kami di Arab Saudi. 
-            Setiap cabang menawarkan suasana yang nyaman dan pelayanan yang ramah.
-        </p>
-        <div class="location-container">
-            <div class="location-card">
-                <img src="logo/nusa-mad.webp" alt="Nusantara Madinah" class="location-image" width="600" height="150" onclick="openModal(this.src, this.alt)">
-                <div class="location-info">
-                    <div class="location-name">Nusantara Madinah</div>
-                    <p class="location-address">Lurusan masjid An Nabawi gate 339</p>
-                    <a href="https://maps.app.goo.gl/qkQsi6T9zdceWKWt6" class="location-button" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-map-marker-alt"></i> Our Location
-                    </a>
-                </div>
-            </div>
-            
-            <div class="location-card">
-                <img src="logo/nusa-mak.webp" alt="Nusantara Makkah" class="location-image" width="600" height="150" onclick="openModal(this.src, this.alt)">
-                <div class="location-info">
-                    <div class="location-name">Nusantara Makkah</div>
-                    <p class="location-address">Rooftop (Lt. 2) pasar grosir Al Waha, Al Kakiyyah</p>
-                    <a href="https://maps.app.goo.gl/j5FELQ1x9Kr31ydC7" class="location-button" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-map-marker-alt"></i> Our Location
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Menu Cabang Madinah -->
-        <div class="branch-menu">
-            <h2>Menu Kami</h2>
-            <p class="section-description">
-                Jelajahi berbagai hidangan khas Indonesia yang dibuat dengan bahan-bahan pilihan 
-                dan resep tradisional. Setiap hidangan kami sajikan dengan cita rasa yang autentik.
-            </p>
-            <div class="branch-header">
-                <div class="branch-name">Nusantara Madinah</div>
-                <div class="branch-icon">🍛</div>
-            </div>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <img src="foto-menu-madinah/nasi-goreng/nasgor-seafood.webp" alt="Nasi Goreng Spesial" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
-                    <div class="menu-item-name">Nasi Goreng Spesial</div>
-                </div>
-                <div class="menu-item">
-                    <img src="foto-menu-madinah/menu-pilihan/sate-ayam.webp" alt="Sate Ayam" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
-                    <div class="menu-item-name">Sate Ayam</div>
-                </div>
-                <div class="menu-item">
-                    <img src="foto-menu-madinah/aneka-soup/buntut.webp" alt="Sop Buntut" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
-                    <div class="menu-item-name">Sop Buntut</div>
-                </div>
-                <div class="menu-item">
-                    <img src="foto-menu-madinah/spesial-menu/mie-ayam.webp" alt="Mie Ayam" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
-                    <div class="menu-item-name">Mie Ayam</div>
-                </div>
-            </div>
-            <a href="menu-nusantara-madinah.html" class="view-all">Click Here For More</a>
-        </div>
-        
-        <!-- Menu Cabang Makkah -->
-        <div class="branch-menu">
-            <div class="branch-header" style="background: #ff0000;">
-                <div class="branch-name">Nusantara Makkah</div>
-                <div class="branch-icon">🍲</div>
-            </div>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <img src="foto-menu-makkah/aneka-nasi/ayam-penyet.webp" alt="Nasi Ayam Penyet" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
-                    <div class="menu-item-name">Nasi Ayam Penyet</div>
-                </div>
-                <div class="menu-item">
-                    <img src="foto-menu-makkah/aneka-nasi/nasgor-seafood.webp" alt="Nasi Goreng Seafood" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
-                    <div class="menu-item-name">Nasi Goreng Seafood</div>
-                </div>
-                <div class="menu-item">
-                    <img src="foto-menu-makkah/soup/sop-iga.webp" alt="Sop Iga" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
-                    <div class="menu-item-name">Sop Iga</div>
-                </div>
-                <div class="menu-item">
-                    <img src="foto-menu-makkah/mie-bakso/kwetiau-goreng.webp" alt="Mie Kwetiau" width="300" height="80" loading="lazy" onclick="openModal(this.src, this.alt)">
-                    <div class="menu-item-name">Mie Kwetiau</div>
-                </div>
-            </div>
-            <a href="menu-nusantara-makkah.html" class="view-all">Click Here For More</a>
-        </div>
-                      
-        <!-- Sosial Media -->
-        <h2>Ikuti Kami</h2>
-        <p class="section-description">
-            Ikuti dan berinteraksi dengan kami di berbagai platform sosial media untuk informasi lainnya.
-            Berbagai masukan dan kritikan sangatlah berguna bagi kami. 
-            Untuk berbagai pelayanan, seperti pemesanan <strong>nasi box, catering dsb.</strong> bisa langsung <a href="https://wa.me/966547766654">hubungi kami</a> 
-        </p>
-        <div class="social-links">
-            <a href="https://www.instagram.com/nusantara.sa/" class="social-link instagram" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@nusantara.sa?_t=ZS-8vEJiv2Xdez&_r=1" class="social-link tiktok" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://facebook.com/nusantara.sa" class="social-link facebook" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://wa.me/966547766654" class="social-link whatsapp" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-        </div>
-    </div>
-    
-    <!-- Modal for enlarged images -->
-    <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage" alt="Enlarged view">
-        <div id="caption" style="color: white; text-align: center; padding: 10px; position: absolute; bottom: 20px; width: 100%;"></div>
-    </div>
-    
-    <script>
-        // Tampilkan loader saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            // Sembunyikan loader setelah semua konten dimuat
-            window.addEventListener('load', function() {
-                setTimeout(function() {
-                    const loader = document.getElementById('loader');
-                    loader.classList.add('hidden');
-                    
-                    // Hapus loader dari DOM setelah animasi selesai
-                    loader.addEventListener('transitionend', function() {
-                        loader.remove();
-                    });
-                }, 500); // Minimal tampilkan loader selama 500ms
-            });
-        });
+    <hr>
 
-        // Function to open modal with clicked image
-        function openModal(src, alt) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const captionText = document.getElementById('caption');
-            
-            // Preload gambar sebelum ditampilkan di modal
-            const img = new Image();
-            img.src = src;
-            img.onload = function() {
-                modal.style.display = "block";
-                modalImg.src = src;
-                captionText.innerHTML = alt;
-            };
-            
-            // Close modal when clicking outside the image
-            modal.onclick = function(event) {
-                if (event.target === modal) {
-                    closeModal();
-                }
-            };
-        }
-        
-        // Function to close modal
-        function closeModal() {
-            document.getElementById('imageModal').style.display = "none";
-        }
-        
-        // Close modal when pressing ESC key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
-        });
+    <section aria-labelledby="lokasi" lang="id">
+      <h2 id="lokasi">Lokasi Kami</h2>
+      <p class="section-description">Nikmati hidangan autentik Indonesia di dua lokasi strategis kami di Arab Saudi. Setiap cabang menawarkan suasana nyaman dan pelayanan ramah.</p>
+      <div class="location-container">
+        <div class="location-card">
+          <img src="logo/nusa-mad.webp" alt="Eksterior Nusantara Madinah" onclick="openModal(this.src)" class="location-image" width="600" height="150">
+          <div class="location-info">
+            <div class="location-name">Nusantara Madinah</div>
+            <p class="location-address">Lurusan Masjid An-Nabawi, Gate 339</p>
+            <a href="https://maps.app.goo.gl/qkQsi6T9zdceWKWt6" class="location-button" target="_blank" rel="noopener">Lokasi Madinah</a>
+          </div>
+        </div>
+        <div class="location-card">
+          <img src="logo/nusa-mak.webp" alt="Eksterior Nusantara Makkah" onclick="openModal(this.src)" class="location-image" width="600" height="150">
+          <div class="location-info">
+            <div class="location-name">Nusantara Makkah</div>
+            <p class="location-address">Rooftop (Lt. 2) Pasar Grosir Al-Waha, Al-Kakiyyah</p>
+            <a href="https://maps.app.goo.gl/j5FELQ1x9Kr31ydC7" class="location-button" target="_blank" rel="noopener">Lokasi Madinah</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        // Preload gambar penting
-        function preloadImage(url) {
-            const img = new Image();
-            img.src = url;
-        }
+    <section aria-labelledby="menu" lang="id">
+      <h2 id="menu">Menu Kami</h2>
+      <p class="section-description">Jelajahi berbagai hidangan khas Indonesia yang dibuat dengan bahan pilihan dan resep tradisional.</p>
 
-        // Preload gambar-gambar penting
-        window.addEventListener('load', function() {
-            preloadImage('logo/logo-nusantara.webp');
-            preloadImage('logo/nusa-mad.webp');
-            preloadImage('logo/nusa-mak.webp');
-        });
-    </script>
+      <!-- Madinah -->
+      <div class="branch-menu">
+        <div class="branch-header"><span class="branch-name">Nusantara Madinah</span><span class="branch-icon">🍛</span></div>
+        <div class="menu-grid">
+          <div class="menu-item"><img src="foto-menu-madinah/nasi-goreng/nasgor-seafood.webp" alt="Nasi Goreng Spesial" onclick="openModal(this.src)" width="300" height="200" loading="lazy"><div class="menu-item-name">Nasi Goreng Spesial</div></div>
+          <div class="menu-item"><img src="foto-menu-madinah/menu-pilihan/sate-ayam.webp" alt="Sate Ayam" onclick="openModal(this.src)" width="300" height="200" loading="lazy"><div class="menu-item-name">Sate Ayam</div></div>
+          <div class="menu-item"><img src="foto-menu-madinah/aneka-soup/buntut.webp" alt="Sop Buntut" onclick="openModal(this.src)" width="300" height="200" loading="lazy"><div class="menu-item-name">Sop Buntut</div></div>
+          <div class="menu-item"><img src="foto-menu-madinah/spesial-menu/mie-ayam.webp" alt="Mie Ayam" onclick="openModal(this.src)" width="300" height="200" loading="lazy"><div class="menu-item-name">Mie Ayam</div></div>
+        </div>
+        <a href="menu-nusantara-madinah.html" class="view-all">Lihat Menu Lengkap</a>
+      </div>
+
+      <!-- Makkah -->
+      <div class="branch-menu">
+        <div class="branch-header"><span class="branch-name">Nusantara Makkah</span><span class="branch-icon">🍲</span></div>
+        <div class="menu-grid">
+          <div class="menu-item"><img src="foto-menu-makkah/aneka-nasi/ayam-penyet.webp" alt="Nasi Ayam Penyet" onclick="openModal(this.src)" width="300" height="200" loading="lazy"><div class="menu-item-name">Nasi Ayam Penyet</div></div>
+          <div class="menu-item"><img src="foto-menu-makkah/aneka-nasi/nasgor-seafood.webp" alt="Nasi Goreng Seafood" onclick="openModal(this.src)" width="300" height="200" loading="lazy"><div class="menu-item-name">Nasi Goreng Seafood</div></div>
+          <div class="menu-item"><img src="foto-menu-makkah/soup/sop-iga.webp" alt="Sop Iga" onclick="openModal(this.src)" width="300" height="200" loading="lazy"><div class="menu-item-name">Sop Iga</div></div>
+          <div class="menu-item"><img src="foto-menu-makkah/mie-bakso/kwetiau-goreng.webp" alt="Mie Kwetiau" onclick="openModal(this.src)" width="300" height="200" loading="lazy"><div class="menu-item-name">Mie Kwetiau</div></div>
+        </div>
+        <a href="menu-nusantara-makkah.html" class="view-all">Lihat Menu Lengkap</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="sosmed" lang="id">
+      <h2 id="sosmed">Ikuti Kami</h2>
+      <p class="section-description">Dapatkan update promo, menu baru & informasi lainnya. Untuk <strong>nasi box, catering</strong> silakan <a href="https://wa.me/966547766654?text=Assalamualaikum%2C%20saya%20ingin%20pesan%20catering%2Fmenu%20box" style="color: var(--clr-primary); font-weight: bold;">hubungi kami via WhatsApp</a>.</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/nusantara.sa/" class="social-link instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i><span class="sr-only">Instagram</span></a>
+        <a href="https://www.tiktok.com/@nusantara.sa" class="social-link tiktok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i><span class="sr-only">TikTok</span></a>
+        <a href="https://facebook.com/nusantara.sa" class="social-link facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span class="sr-only">Facebook</span></a>
+       
+      </div>
+    </section>
+  </div>
+
+  <div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <span class="close" aria-label="Tutup">&times;</span>
+    <img id="modalImage" class="modal-content" alt="">
+  </div>
+
+  <a href="https://wa.me/966547766654?text=Assalamualaikum%2C%20saya%20ingin%20pesan%20catering%2Fmenu%20box" class="wa-float" target="_blank" rel="noopener" aria-label="Chat WhatsApp Nusantara"><i class="fab fa-whatsapp"></i></a>
+
+  <script>
+    window.addEventListener('load', () => document.getElementById('loader').classList.add('hidden'));
+    function openModal(src) {
+      const modal = document.getElementById('imageModal');
+      document.getElementById('modalImage').src = src;
+      modal.style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+    document.querySelector('.close').addEventListener('click', closeModal);
+    document.getElementById('imageModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Restaurant",
+    "name":"Nusantara Restaurant SA",
+    "image":"https://nusantara-sa.com/logo/logo-nusantara.webp",
+    "address":[
+      { "@type":"PostalAddress","streetAddress":"Lurusan Masjid An-Nabawi, Gate 339","addressLocality":"Madinah","addressRegion":"Al Madinah","addressCountry":"SA" },
+      { "@type":"PostalAddress","streetAddress":"Rooftop Pasar Grosir Al-Waha, Al-Kakiyyah","addressLocality":"Makkah","addressRegion":"Makkah","addressCountry":"SA" }
+    ],
+    "servesCuisine":"Indonesian",
+    "priceRange":"SAR 20–40",
+    "openingHours":["Mo-Su 00:00-24:00"],
+    "telephone":"+966547766654",
+    "url":"https://nusantara-sa.com",
+    "sameAs":["https://www.instagram.com/nusantara.sa/","https://facebook.com/nusantara.sa","https://wa.me/966547766654"]
+  }
+  </script>
 </body>
 </html>
