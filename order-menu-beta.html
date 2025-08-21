@@ -1129,6 +1129,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 300);
   });
 });
+// Fallback: sembunyikan loader setelah 3 detik
+  setTimeout(() => {
+    document.getElementById('loader')?.classList.add('hidden');
+  }, 3000);
 </script>
 </body>
 </html>
