@@ -1,96 +1,106 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu Lengkap – Nusantara Restaurant</title>
-  <meta name="description" content="Menu lengkap Nusantara Restaurant dengan berbagai hidangan khas Indonesia di Arab Saudi">
-  <link rel="icon" href="logo/logo-nusantara.webp" type="image/webp">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- VARIABEL WARNA & GAYA SERAGAM -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nusantara Madinah</title>
+  <meta name="description" content="Menu lengkap Nusantara Restaurant dengan berbagai hidangan khas Indonesia di Arab Saudi" />
+  <link rel="icon" href="logo/logo-nusantara.webp" type="image/webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    :root{
+    :root {
       --clr-primary:#e60000;
       --clr-primary-dark:#b30000;
       --clr-accent:#2922e6;
-      --clr-accent-dark:#1a15b3;
       --clr-bg:#fff5de;
       --clr-text:#333;
     }
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;-webkit-tap-highlight-color:transparent}
-    html{scroll-behavior:smooth}
-    body{background:var(--clr-bg);color:var(--clr-text);line-height:1.6;overflow-x:hidden;min-height:100vh;position:relative}
-
-    /* ornamen persis seperti index.html */
-    .ornament{position:absolute;width:250px;height:250px;background-size:contain;background-repeat:no-repeat;background-position:center;opacity:.2;pointer-events:none;z-index:0}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+    body{background:var(--clr-bg);color:var(--clr-text);line-height:1.6;overflow-x:hidden}
+    .ornament{position:absolute;width:180px;height:180px;background-size:contain;background-repeat:no-repeat;background-position:center;opacity:.2;pointer-events:none;z-index:0}
     .ornament-top-left{top:0;left:-10px;background-image:url('ornamen/top-left.webp')}
     .ornament-midle-top{top:960px;right:30px;background-image:url('ornamen/midle-top.webp')}
     .ornament-midle-bottom{bottom:670px;left:15px;background-image:url('ornamen/midle-bottom.webp')}
     .ornament-bottom-right{bottom:0;right:-10px;background-image:url('ornamen/bottom-right.webp')}
-    @media(max-width:768px){.ornament{width:180px;height:180px;opacity:.25}}
-
-    .container{max-width:800px;margin:0 auto;padding:20px;text-align:center;position:relative;background:rgba(255,245,222,.85);border-radius:15px;box-shadow:0 0 20px rgba(0,0,0,.05);z-index:1}
+    .container{max-width:800px;margin:0 auto;padding:20px;text-align:center;background:rgba(255,245,222,.85);border-radius:15px;box-shadow:0 0 20px rgba(0,0,0,.05);position:relative;z-index:1}
     .logo{width:120px;height:120px;border-radius:50%;margin:0 auto 15px;overflow:hidden;border:3px solid var(--clr-primary);box-shadow:0 4px 12px rgba(0,0,0,.1)}
     .logo img{width:100%;height:100%;object-fit:cover}
-    h1{color:var(--clr-primary);margin-bottom:8px;font-size:28px}
+    h1{color:var(--clr-primary);font-size:28px;margin-bottom:8px}
     .tagline{font-size:16px;color:#666;margin-bottom:20px}
     hr{border:none;height:1px;background:linear-gradient(to right,transparent,#ddd,transparent);margin:20px 0}
     h2{color:var(--clr-text);margin:25px 0 15px;font-size:22px;position:relative;display:inline-block}
-    h2:after{content:'';position:absolute;width:50px;height:3px;background:var(--clr-primary);bottom:-8px;left:0;border-radius:3px}
+    h2:after{content:'';position:absolute;width:50px;height:3px;background:var(--clr-primary);bottom:-8px;left:50%;transform:translateX(-50%);border-radius:3px}
     .search-filter-container{display:flex;flex-direction:column;gap:15px;margin-bottom:30px}
     .search-box{position:relative;width:100%;max-width:500px;margin:0 auto}
     .search-box input{width:100%;padding:12px 20px;border-radius:25px;border:1px solid #ddd;font-size:16px}
     .search-box i{position:absolute;right:20px;top:50%;transform:translateY(-50%);color:#666}
     .filter-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:10px}
-    .filter-btn{padding:8px 15px;background:#fff;border:1px solid #ddd;border-radius:20px;cursor:pointer;transition:.3s}
+    .filter-btn{padding:8px 15px;background:#fff;border:1px solid #ddd;border-radius:20px;cursor:pointer;transition:.3s;font-size:14px}
     .filter-btn:hover,.filter-btn.active{background:var(--clr-accent);color:#fff;border-color:var(--clr-accent)}
-    .menu-category{margin-bottom:40px;text-align:left}
+    .menu-category{margin-bottom:40px;text-align:center}
     .menu-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:20px}
     @media(max-width:768px){.menu-items{grid-template-columns:repeat(2,1fr);gap:12px}}
-    @media(max-width:480px){.menu-items{grid-template-columns:repeat(2,1fr)}}
-    .menu-item{background:#fff;border-radius:15px;padding:15px;box-shadow:0 4px 8px rgba(0,0,0,.1);transition:.3s;text-align:left}
+    .menu-item{background:#fff;border-radius:15px;padding:15px;box-shadow:0 4px 8px rgba(0,0,0,.1);transition:.3s;text-align:left;display:flex;flex-direction:column;justify-content:space-between}
     .menu-item:hover{transform:translateY(-5px);box-shadow:0 8px 16px rgba(0,0,0,.15)}
     .menu-item img{width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:10px;cursor:pointer}
     .menu-item h3{color:var(--clr-primary);margin-bottom:5px;font-size:18px}
-    .menu-item p{color:#666;font-size:14px;line-height:1.4}
+    .menu-item p{color:#666;font-size:14px;line-height:1.4;flex-grow:1}
+    .menu-footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px}
+    .menu-price{font-weight:bold;font-size:15px}
+    .qty-controls{display:flex;align-items:center;gap:4px}
+    .qty-btn{width:20px;height:20px;border:none;background:var(--clr-accent);color:#fff;border-radius:50%;font-size:12px;cursor:pointer}
+    .qty-value{font-size:14px;font-weight:bold;min-width:20px;text-align:center}
     .back-button{display:inline-block;margin-top:30px;padding:10px 20px;background:var(--clr-accent);color:#fff;border-radius:25px;text-decoration:none;transition:.3s}
-    .back-button:hover{background:var(--clr-accent-dark);transform:translateY(-3px)}
+    .back-button:hover{background:#1b17b0;transform:translateY(-3px)}
     .no-results{grid-column:1/-1;text-align:center;padding:20px;color:#666}
     .loader{position:fixed;inset:0;background:rgba(255,245,222,.9);display:flex;align-items:center;justify-content:center;z-index:9999;transition:.5s}
     .loader.hidden{opacity:0;visibility:hidden}
     .loader-spinner{width:50px;height:50px;border:5px solid #f3f3f3;border-top-color:var(--clr-primary);border-radius:50%;animation:spin 1s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000;align-items:center;justify-content:center}
-    .modal-content{max-width:90%;max-height:90%;border-radius:8px}
-    .close{position:absolute;top:20px;right:30px;font-size:35px;color:#fff;cursor:pointer;transition:.3s}
+    .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 8px;
+        }
+    .close{position:absolute;top:20px;right:30px;font-size:35px;color:#fff;cursor:pointer}
     .close:hover{color:var(--clr-primary)}
-
-    /* ---- CART CSS ---- */
     .cart-float{position:fixed;right:15px;bottom:15px;z-index:999;background:var(--clr-accent);color:#fff;border:none;border-radius:50%;width:60px;height:60px;font-size:24px;box-shadow:0 4px 12px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;justify-content:center}
     .cart-float .badge{position:absolute;top:-5px;right:-5px;background:var(--clr-primary);font-size:12px;width:22px;height:22px;border-radius:50%;line-height:22px}
     .cart-drawer{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:none;align-items:flex-end;justify-content:center}
     .cart-drawer.open{display:flex}
     .cart-content{background:var(--clr-bg);width:100%;max-width:500px;max-height:80vh;border-radius:15px 15px 0 0;padding:20px;overflow-y:auto}
     .cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-    .cart-item span{flex:1}
     .cart-note{display:inline-block;border-bottom:1px dashed #666;font-size:13px;color:#666;cursor:text;outline:none;min-width:80px}
     .cart-note:empty:before{content:"Spesial note";color:#aaa}
     .send-wa{background:var(--clr-accent);color:#fff;padding:12px 0;border:none;border-radius:25px;width:100%;margin-top:15px;font-size:16px;cursor:pointer}
-</style>
+  </style>
 </head>
-
 <body>
-<!-- Loader & Ornamen -->
 <div class="loader" id="loader"><div class="loader-spinner"></div></div>
-<div class="ornament ornament-top-left"></div>
-<div class="ornament ornament-midle-top"></div>
-<div class="ornament ornament-midle-bottom"></div>
-<div class="ornament ornament-bottom-right"></div>
+<div class="ornament ornament-top-left"></div><div class="ornament ornament-midle-top"></div>
+<div class="ornament ornament-midle-bottom"></div><div class="ornament ornament-bottom-right"></div>
 
 <div class="container">
-  <div class="logo"><img src="logo/logo-nusantara.webp" alt="Logo" width="120" height="120"></div>
-  <h1>Menu Lengkap – Nusantara Madinah</h1>
+  <div class="logo"><img src="logo/logo-nusantara.webp" alt="Logo"></div>
+  <h1>Nusantara Madinah</h1>
   <p class="tagline">Nikmati kelezatan kuliner khas Indonesia dan Asia</p>
 
   <div class="search-filter-container">
@@ -114,187 +124,311 @@
 
   <!-- Spesial Menu -->
   <div class="menu-category" data-category="spesial">
-    <h2>Spesial Menu</h2>
-    <div class="menu-items">
-      <div class="menu-item">
-        <img src="foto-menu-madinah/spesial-menu/mie-ayam.webp" alt="Mie Ayam"   class="lazy">
-        <h3>Mie Ayam</h3>
-        <p>Mie Ayam dengan perpaduan daging ayam yang dipotong kotak</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">18 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('mie-ayam',-1)">−</button>
-            <span id="qty-mie-ayam">0</span>
-            <button class="qty-btn" onclick="chg('mie-ayam',1)">+</button>
+      <h2>Spesial Menu</h2>
+      <div class="menu-items">
+          <div class="menu-item">
+            <img src="foto-menu-madinah/spesial-menu/mie-ayam.webp" alt="Mie Ayam" onclick="openModal(this.src)">
+            <h3>Mie Ayam</h3>
+            <p>Mie Ayam dengan perpaduan daging ayam</p>
+            <div class="menu-footer"><span class="menu-price">25 SAR</span>
+              <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('mie-ayam',-1)">−</button><span class="qty-value" id="qty-mie-ayam">0</span>
+              <button class="qty-btn" onclick="chg('mie-ayam',1)">+</button></div></div>
           </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/spesial-menu/mie-ayam-bakso.webp" alt="Mie Ayam Bakso"   class="lazy">
-        <h3>Mie Ayam Bakso</h3>
-        <p>Mie Ayam dengan 2 bakso spesial</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">20 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('mie-ayam-bakso',-1)">−</button>
-            <span id="qty-mie-ayam-bakso">0</span>
-            <button class="qty-btn" onclick="chg('mie-ayam-bakso',1)">+</button>
+          <div class="menu-item">
+            <img src="foto-menu-madinah/spesial-menu/mie-bakso.webp" alt="Mie Bakso" onclick="openModal(this.src)">
+            <h3>Mie Bakso</h3>
+            <p>Bakso dengan paduan mie kriting dan mihun</p>
+            <div class="menu-footer"><span class="menu-price">25 SAR</span>
+              <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('mie-bakso',-1)">−</button><span class="qty-value" id="qty-mie-bakso">0</span>
+              <button class="qty-btn" onclick="chg('mie-bakso',1)">+</button></div></div>
           </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/spesial-menu/mie-goreng.webp" alt="Mie Goreng"   class="lazy">
-        <h3>Mie Goreng</h3>
-        <p>Mie goreng dengan bumbu khas</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">17 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('mie-goreng',-1)">−</button>
-            <span id="qty-mie-goreng">0</span>
-            <button class="qty-btn" onclick="chg('mie-goreng',1)">+</button>
+          <div class="menu-item"><img src="foto-menu-madinah/spesial-menu/mie-ayam-bakso.webp" alt="Mie Ayam Bakso" onclick="openModal(this.src)">
+            <h3>Mie Ayam Bakso</h3>
+            <p>Mie Ayam dengan 2 bakso spesial</p>
+            <div class="menu-footer"><span class="menu-price">30 SAR</span>
+              <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('mie-ayam-bakso',-1)">−</button><span class="qty-value" id="qty-mie-ayam-bakso">0</span>
+              <button class="qty-btn" onclick="chg('mie-ayam-bakso',1)">+</button></div></div>
           </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/spesial-menu/mie-kuah.webp" alt="Mie Kuah"   class="lazy">
-        <h3>Mie Kuah</h3>
-        <p>Mie dengan kuah kaldu ayam</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">17 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('mie-kuah',-1)">−</button>
-            <span id="qty-mie-kuah">0</span>
-            <button class="qty-btn" onclick="chg('mie-kuah',1)">+</button>
+          <div class="menu-item"><img src="foto-menu-madinah/spesial-menu/mie-goreng.webp" alt="Mie Goreng" onclick="openModal(this.src)">
+            <h3>Mie Goreng</h3>
+            <p>Mie goreng dengan bumbu khas</p>
+            <div class="menu-footer"><span class="menu-price">25 SAR</span>
+              <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('mie-goreng',-1)">−</button><span class="qty-value" id="qty-mie-goreng">0</span>
+              <button class="qty-btn" onclick="chg('mie-goreng',1)">+</button></div></div>
           </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/spesial-menu/mie-bakso.webp" alt="Mie Bakso"   class="lazy">
-        <h3>Mie Bakso</h3>
-        <p>Bakso dengan paduan mie kriting dan mihun</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">19 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('mie-bakso',-1)">−</button>
-            <span id="qty-mie-bakso">0</span>
-            <button class="qty-btn" onclick="chg('mie-bakso',1)">+</button>
+          <div class="menu-item"><img src="foto-menu-madinah/spesial-menu/mie-kuah.webp" alt="Mie Kuah" onclick="openModal(this.src)">
+            <h3>Mie Kuah</h3>
+            <p>Mie dengan kuah kaldu ayam</p>
+            <div class="menu-footer"><span class="menu-price">25 SAR</span>
+              <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('mie-kuah',-1)">−</button><span class="qty-value" id="qty-mie-kuah">0</span>
+              <button class="qty-btn" onclick="chg('mie-kuah',1)">+</button></div></div>
           </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/spesial-menu/kwetiau-goreng.webp" alt="Kwetiau Goreng"   class="lazy">
-        <h3>Kwetiau Goreng</h3>
-        <p>Kwetiau dengan bumbu racikan spesial</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">18 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('kwetiau-goreng',-1)">−</button>
-            <span id="qty-kwetiau-goreng">0</span>
-            <button class="qty-btn" onclick="chg('kwetiau-goreng',1)">+</button>
+          <div class="menu-item"><img src="foto-menu-madinah/spesial-menu/kwetiau-goreng.webp" alt="Kwetiau Goreng" onclick="openModal(this.src)">
+            <h3>Kwetiau Goreng</h3>
+            <p>Kwetiau dengan bumbu racikan spesial</p>
+            <div class="menu-footer"><span class="menu-price">25 SAR</span>
+              <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('kwetiau-goreng',-1)">−</button><span class="qty-value" id="qty-kwetiau-goreng">0</span>
+              <button class="qty-btn" onclick="chg('kwetiau-goreng',1)">+</button></div></div>
           </div>
-        </div>
+          <div class="menu-item"><img src="foto-menu-madinah/spesial-menu/kwetiau-kuah.webp" alt="Kwetiau Kuah" onclick="openModal(this.src)">
+            <h3>Kwetiau Kuah</h3>
+            <p>Kwetiau dengan kuah khas</p>
+            <div class="menu-footer"><span class="menu-price">25 SAR</span>
+              <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('kwetiau-kuah',-1)">−</button><span class="qty-value" id="qty-kwetiau-kuah">0</span>
+              <button class="qty-btn" onclick="chg('kwetiau-kuah',1)">+</button></div></div>
+          </div>   
+          <!-- Lanjutkan dengan format yang sama untuk semua item -->
       </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/spesial-menu/kwetiau-kuah.webp" alt="Kwetiau Kuah"   class="lazy">
-        <h3>Kwetiau Kuah</h3>
-        <p>Kwetiau dengan kuah khas</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">18 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('kwetiau-kuah',-1)">−</button>
-            <span id="qty-kwetiau-kuah">0</span>
-            <button class="qty-btn" onclick="chg('kwetiau-kuah',1)">+</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Sarapan -->
   <div class="menu-category" data-category="sarapan">
     <h2>Sarapan</h2>
     <div class="menu-items">
-      <div class="menu-item">
-        <img src="foto-menu-madinah/sarapan/bubur-ayam.webp" alt="Bubur Ayam"   class="lazy">
-        <h3>Bubur Ayam</h3>
-        <p>Bubur dengan suwiran ayam dan bumbu khas</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">15 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('bubur-ayam',-1)">−</button>
-            <span id="qty-bubur-ayam">0</span>
-            <button class="qty-btn" onclick="chg('bubur-ayam',1)">+</button>
+      <div class="menu-item"><img src="foto-menu-madinah/sarapan/bubur-ayam.webp" alt="Bubur Ayam" onclick="openModal(this.src)"><h3>Bubur Ayam</h3><p>Bubur dengan suwiran ayam dan bumbu khas</p><div class="menu-footer"><span class="menu-price">25 SAR</span><div class="qty-controls"><button class="qty-btn" onclick="chg('bubur-ayam',-1)">−</button><span class="qty-value" id="qty-bubur-ayam">0</span><button class="qty-btn" onclick="chg('bubur-ayam',1)">+</button></div></div></div>
+    </div>
+  </div>
+
+  <!-- Aneka Nasi -->
+  <div class="menu-category" data-category="nasi-campur">
+      <h2>Nasi Campur</h2>
+      <div class="menu-items">
+        
+        <div class="menu-item">
+        <img src="foto-menu-madinah/aneka-nasi-campur/rendang.webp" alt="Nasi Rendang" onclick="openModal(this.src)">
+        <h3>Nasi Rendang</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('nasi-rendang',-1)">−</button>
+            <span class="qty-value" id="qty-nasi-rendang">0</span>
+            <button class="qty-btn" onclick="chg('nasi-rendang',1)">+</button></div></div>
+        </div>
+        <div class="menu-item">
+          <img src="foto-menu-madinah/aneka-nasi-campur/nasi-campur.webp" alt="Nasi Campur" onclick="openModal(this.src)">
+          <h3>Nasi Campur</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">30 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('nasi-campur',-1)">−</button>
+              <span class="qty-value" id="qty-nasi-campur">0</span>
+              <button class="qty-btn" onclick="chg('nasi-campur',1)">+</button></div></div>
+        </div>
+      </div>
+  </div>
+
+  <!-- Menu Pilihan -->
+  <div class="menu-category" data-category="pilihan">
+      <h2>Menu Pilihan</h2>
+      <div class="menu-items">
+
+        <div class="menu-item">
+          <img src="foto-menu-madinah/menu-pilihan/ayam-goreng.webp" alt="Ayam Goreng" onclick="openModal(this.src)">
+          <h3>Ayam Goreng</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">25 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('ayam-goreng',-1)">−</button>
+              <span class="qty-value" id="qty-ayam-goreng">0</span>
+              <button class="qty-btn" onclick="chg('ayam-goreng',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="foto-menu-madinah/menu-pilihan/ayam-bakar.webp" alt="Ayam Bakar" onclick="openModal(this.src)">
+          <h3>Ayam Bakar</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">25 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('ayam-bakar',-1)">−</button>
+              <span class="qty-value" id="qty-ayam-bakar">0</span>
+              <button class="qty-btn" onclick="chg('ayam-bakar',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="foto-menu-madinah/menu-pilihan/ayam-penyet.webp" alt="Ayam Penyet" onclick="openModal(this.src)">
+          <h3>Ayam Penyet</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">30 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('ayam-penyet',-1)">−</button>
+              <span class="qty-value" id="qty-ayam-penyet">0</span>
+              <button class="qty-btn" onclick="chg('ayam-penyet',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- BEBEK -->
+        <div class="menu-item">
+          <img src="foto-menu-madinah/menu-pilihan/bebek-goreng.webp" alt="Bebek Goreng" onclick="openModal(this.src)">
+          <h3>Bebek Goreng</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">35 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('bebek-goreng',-1)">−</button>
+              <span class="qty-value" id="qty-bebek-goreng">0</span>
+              <button class="qty-btn" onclick="chg('bebek-goreng',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="foto-menu-madinah/menu-pilihan/bebek-bakar.webp" alt="Bebek Bakar" onclick="openModal(this.src)">
+          <h3>Bebek Bakar</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">35 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('bebek-bakar',-1)">−</button>
+              <span class="qty-value" id="qty-bebek-bakar">0</span>
+              <button class="qty-btn" onclick="chg('bebek-bakar',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IKAN -->
+        <div class="menu-item">
+          <img src="foto-menu-madinah/menu-pilihan/ikan-asam-manis.webp" alt="Ikan Asam Manis" onclick="openModal(this.src)">
+          <h3>Ikan Asam Manis</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">35 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('ikan-asam-manis',-1)">−</button>
+              <span class="qty-value" id="qty-ikan-asam-manis">0</span>
+              <button class="qty-btn" onclick="chg('ikan-asam-manis',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="foto-menu-madinah/menu-pilihan/ikan-goreng.webp" alt="Ikan Goreng" onclick="openModal(this.src)">
+          <h3>Ikan Goreng</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">30 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('ikan-goreng',-1)">−</button>
+              <span class="qty-value" id="qty-ikan-goreng">0</span>
+              <button class="qty-btn" onclick="chg('ikan-goreng',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="foto-menu-madinah/menu-pilihan/ikan-bakar.webp" alt="Ikan Bakar" onclick="openModal(this.src)">
+          <h3>Ikan Bakar</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">30 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('ikan-bakar',-1)">−</button>
+              <span class="qty-value" id="qty-ikan-bakar">0</span>
+              <button class="qty-btn" onclick="chg('ikan-bakar',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="foto-menu-madinah/menu-pilihan/sate-ayam.webp" alt="sate ayam" onclick="openModal(this.src)">
+          <h3>Sate Ayam</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">25 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('sate-ayam',-1)">−</button>
+              <span class="qty-value" id="qty-sate-ayam">0</span>
+              <button class="qty-btn" onclick="chg('sate-ayam',1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="foto-menu-madinah/menu-pilihan/sate-daging0.webp" alt="sate daging" onclick="openModal(this.src)">
+          <h3>Sate Daging</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">30 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('sate-daging',-1)">−</button>
+              <span class="qty-value" id="qty-sate-daging">0</span>
+              <button class="qty-btn" onclick="chg('sate-daging',1)">+</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
   <!-- Nasi Goreng -->
   <div class="menu-category" data-category="nasi-goreng">
     <h2>Nasi Goreng</h2>
     <div class="menu-items">
-      <div class="menu-item">
-        <img src="foto-menu-madinah/nasi-goreng/nasgor-spesial.webp" alt="Nasi Goreng Spesial"   class="lazy">
-        <h3>Nasi Goreng Spesial</h3>
-        <p>Nasi goreng dengan ayam, udang, telur, dan kerupuk</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">22 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('nasgor-spesial',-1)">−</button>
-            <span id="qty-nasgor-spesial">0</span>
-            <button class="qty-btn" onclick="chg('nasgor-spesial',1)">+</button>
-          </div>
-        </div>
-      </div>
 
-      <div class="menu-item">
-        <img src="foto-menu-madinah/nasi-goreng/nasgor-ayam.webp" alt="Nasi Goreng Ayam"   class="lazy">
-        <h3>Nasi Goreng Ayam</h3>
-        <p>Nasi goreng dengan ayam</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">18 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('nasgor-ayam',-1)">−</button>
-            <span id="qty-nasgor-ayam">0</span>
-            <button class="qty-btn" onclick="chg('nasgor-ayam',1)">+</button>
+        <div class="menu-item">
+          <img src="foto-menu-madinah/nasi-goreng/nasgor-spesial.webp" alt="Nasi Goreng Spesial" onclick="openModal(this.src)">
+          <h3>Nasi Goreng Spesial</h3>
+          <p>Nasi goreng dengan ayam, udang, telur, dan kerupuk</p> 
+          <div class="menu-footer"><span class="menu-price">30 SAR</span><div class="qty-controls">
+          <button class="qty-btn" onclick="chg('nasgor-spesial',-1)">−</button><span class="qty-value" id="qty-nasgor-spesial">0</span>
+          <button class="qty-btn" onclick="chg('nasgor-spesial',1)">+</button></div></div>
+        </div>
+        <div class="menu-item">
+          <img src="foto-menu-madinah/nasi-goreng/nasgor-ayam.webp" alt="Nasi Goreng Ayam" onclick="openModal(this.src)">
+          <h3>Nasi Goreng Ayam</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">25 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('nasi-goreng-ayam',-1)">−</button>
+              <span class="qty-value" id="qty-nasi-goreng-ayam">0</span>
+              <button class="qty-btn" onclick="chg('nasi-goreng-ayam',1)">+</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="menu-item">
-        <img src="foto-menu-madinah/nasi-goreng/nasgor-seafood.webp" alt="Nasi Goreng Seafood"   class="lazy">
-        <h3>Nasi Goreng Seafood</h3>
-        <p>Nasi goreng dengan campuran seafood</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">20 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('nasgor-seafood',-1)">−</button>
-            <span id="qty-nasgor-seafood">0</span>
-            <button class="qty-btn" onclick="chg('nasgor-seafood',1)">+</button>
+        <div class="menu-item">
+          <img src="foto-menu-madinah/nasi-goreng/nasgor-seafood.webp" alt="Nasi Goreng Seafood" onclick="openModal(this.src)">
+          <h3>Nasi Goreng Seafood</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">30 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('nasi-goreng-seafood',-1)">−</button>
+              <span class="qty-value" id="qty-nasi-goreng-seafood">0</span>
+              <button class="qty-btn" onclick="chg('nasi-goreng-seafood',1)">+</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="menu-item">
-        <img src="foto-menu-madinah/nasi-goreng/nasgor-kampung.webp" alt="Nasi Goreng Kampung"   class="lazy">
-        <h3>Nasi Goreng Kampung</h3>
-        <p>Nasi goreng dengan potongan bakso dan telor</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">17 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('nasgor-kampung',-1)">−</button>
-            <span id="qty-nasgor-kampung">0</span>
-            <button class="qty-btn" onclick="chg('nasgor-kampung',1)">+</button>
+        <div class="menu-item">
+          <img src="foto-menu-madinah/nasi-goreng/nasgor-kampung.webp" alt="Nasi Goreng Kampung" onclick="openModal(this.src)">
+          <h3>Nasi Goreng Kampung</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">25 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('nasi-goreng-kampung',-1)">−</button>
+              <span class="qty-value" id="qty-nasi-goreng-kampung">0</span>
+              <button class="qty-btn" onclick="chg('nasi-goreng-kampung',1)">+</button>
+            </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 
@@ -302,227 +436,76 @@
   <div class="menu-category" data-category="soup">
     <h2>Aneka Soup</h2>
     <div class="menu-items">
-      <div class="menu-item">
-        <img src="foto-menu-madinah/aneka-soup/buntut.webp" alt="Soup Buntut"   class="lazy">
-        <h3>Soup Buntut</h3>
-        <p>Soup buntut dengan rempah pilihan</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">35 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('buntut',-1)">−</button>
-            <span id="qty-buntut">0</span>
-            <button class="qty-btn" onclick="chg('buntut',1)">+</button>
+      
+        <div class="menu-item">
+          <img src="foto-menu-madinah/aneka-soup/buntut.webp" alt="Soup Buntut" onclick="openModal(this.src)">
+          <h3>Soup Buntut</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">35 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('soup-buntut',-1)">−</button>
+              <span class="qty-value" id="qty-soup-buntut">0</span>
+              <button class="qty-btn" onclick="chg('soup-buntut',1)">+</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="menu-item">
-        <img src="foto-menu-madinah/aneka-soup/soup-ayam.webp" alt="Soup Ayam"   class="lazy">
-        <h3>Soup Ayam</h3>
-        <p>Soup ayam dengan kaldu gurih</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">16 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('soup-ayam',-1)">−</button>
-            <span id="qty-soup-ayam">0</span>
-            <button class="qty-btn" onclick="chg('soup-ayam',1)">+</button>
+        <div class="menu-item">
+          <img src="foto-menu-madinah/aneka-soup/soup-ayam.webp" alt="Soup Ayam" onclick="openModal(this.src)">
+          <h3>Soup Ayam</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">25 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('soup-ayam',-1)">−</button>
+              <span class="qty-value" id="qty-soup-ayam">0</span>
+              <button class="qty-btn" onclick="chg('soup-ayam',1)">+</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="menu-item">
-        <img src="foto-menu-madinah/aneka-soup/soto-ayam.webp" alt="Soto Ayam"   class="lazy">
-        <h3>Soto Ayam</h3>
-        <p>Soto ayam dengan suwiran ayam</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">16 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('soto-ayam',-1)">−</button>
-            <span id="qty-soto-ayam">0</span>
-            <button class="qty-btn" onclick="chg('soto-ayam',1)">+</button>
+        <div class="menu-item">
+          <img src="foto-menu-madinah/aneka-soup/soto-ayam.webp" alt="Soto Ayam" onclick="openModal(this.src)">
+          <h3>Soto Ayam</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">25 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('soto-ayam',-1)">−</button>
+              <span class="qty-value" id="qty-soto-ayam">0</span>
+              <button class="qty-btn" onclick="chg('soto-ayam',1)">+</button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Aneka Nasi Campur -->
-  <div class="menu-category" data-category="nasi-campur">
-    <h2>Aneka Nasi Campur</h2>
-    <div class="menu-items">
-      <div class="menu-item">
-        <img src="foto-menu-madinah/aneka-nasi-campur/rendang.webp" alt="Nasi Rendang"   class="lazy">
-        <h3>Nasi Rendang</h3>
-        <p>Nasi dengan rendang daging sapi khas Padang</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">25 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('rendang',-1)">−</button>
-            <span id="qty-rendang">0</span>
-            <button class="qty-btn" onclick="chg('rendang',1)">+</button>
+        <div class="menu-item">
+          <img src="foto-menu-madinah/aneka-soup/sayur-asam.webp" alt="Sayur Asam" onclick="openModal(this.src)">
+          <h3>Sayur Asam</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">20 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('sayur-asam',-1)">−</button>
+              <span class="qty-value" id="qty-sayur-asam">0</span>
+              <button class="qty-btn" onclick="chg('sayur-asam',1)">+</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="menu-item">
-        <img src="foto-menu-madinah/aneka-nasi-campur/nasi-campur.webp" alt="Nasi Campur"   class="lazy">
-        <h3>Nasi Campur</h3>
-        <p>Nasi dengan berbagai lauk pilihan</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">20 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('nasi-campur',-1)">−</button>
-            <span id="qty-nasi-campur">0</span>
-            <button class="qty-btn" onclick="chg('nasi-campur',1)">+</button>
+        <div class="menu-item">
+          <img src="foto-menu-madinah/aneka-soup/tomyam-soup.webp" alt="Tomyam Soup" onclick="openModal(this.src)">
+          <h3>Tomyam Soup</h3>
+          <p></p>
+          <div class="menu-footer">
+            <span class="menu-price">35 SAR</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="chg('tomyam-soup',-1)">−</button>
+              <span class="qty-value" id="qty-tomyam-soup">0</span>
+              <button class="qty-btn" onclick="chg('tomyam-soup',1)">+</button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Menu Pilihan -->
-  <div class="menu-category" data-category="pilihan">
-    <h2>Menu Pilihan</h2>
-    <div class="menu-items">
-      <div class="menu-item">
-        <img src="foto-menu-madinah/menu-pilihan/ayam-goreng.webp" alt="Ayam Goreng"   class="lazy">
-        <h3>Ayam Goreng</h3>
-        <p>Ayam goreng dengan tahu dan sambal goreng yang gurih</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">19 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('ayam-goreng',-1)">−</button>
-            <span id="qty-ayam-goreng">0</span>
-            <button class="qty-btn" onclick="chg('ayam-goreng',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/menu-pilihan/ayam-bakar.webp" alt="Ayam Bakar"   class="lazy">
-        <h3>Ayam Bakar</h3>
-        <p>Ayam bakar dengan bumbu kecap</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">20 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('ayam-bakar',-1)">−</button>
-            <span id="qty-ayam-bakar">0</span>
-            <button class="qty-btn" onclick="chg('ayam-bakar',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/menu-pilihan/ayam-penyet.webp" alt="Ayam Penyet"   class="lazy">
-        <h3>Ayam Penyet</h3>
-        <p>Ayam Penyet dengan dengan sambal ijo</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">18 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('ayam-penyet',-1)">−</button>
-            <span id="qty-ayam-penyet">0</span>
-            <button class="qty-btn" onclick="chg('ayam-penyet',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/menu-pilihan/bebek-goreng.webp" alt="Bebek Goreng"   class="lazy">
-        <h3>Bebek Goreng</h3>
-        <p>Bebek Goreng dengan bumbu khas</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">28 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('bebek-goreng',-1)">−</button>
-            <span id="qty-bebek-goreng">0</span>
-            <button class="qty-btn" onclick="chg('bebek-goreng',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/menu-pilihan/bebek-bakar.webp" alt="Bebek Bakar"   class="lazy">
-        <h3>Bebek Bakar</h3>
-        <p>Bebek bakar dengan bumbu kecap spesial</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">30 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('bebek-bakar',-1)">−</button>
-            <span id="qty-bebek-bakar">0</span>
-            <button class="qty-btn" onclick="chg('bebek-bakar',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/menu-pilihan/ikan-asam-manis.webp" alt="Ikan Asam Manis"   class="lazy">
-        <h3>Ikan Asam Manis</h3>
-        <p>Ikan dengan campuran sayur pilihan</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">25 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('ikan-asam-manis',-1)">−</button>
-            <span id="qty-ikan-asam-manis">0</span>
-            <button class="qty-btn" onclick="chg('ikan-asam-manis',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/menu-pilihan/ikan-bakar.webp" alt="Ikan Bakar"   class="lazy">
-        <h3>Ikan Bakar</h3>
-        <p>Ikan bakar dengan bumbu kecap gurih</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">27 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('ikan-bakar',-1)">−</button>
-            <span id="qty-ikan-bakar">0</span>
-            <button class="qty-btn" onclick="chg('ikan-bakar',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/menu-pilihan/ikan-goreng.webp" alt="Ikan Goreng"   class="lazy">
-        <h3>Ikan Goreng</h3>
-        <p>Ikan goreng dengan bumbu pilihan</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">24 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('ikan-goreng',-1)">−</button>
-            <span id="qty-ikan-goreng">0</span>
-            <button class="qty-btn" onclick="chg('ikan-goreng',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/menu-pilihan/sate-ayam.webp" alt="Sate Ayam"   class="lazy">
-        <h3>Sate Ayam</h3>
-        <p>Sate ayam dengan bumbu kacang Spesial</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">20 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('sate-ayam',-1)">−</button>
-            <span id="qty-sate-ayam">0</span>
-            <button class="qty-btn" onclick="chg('sate-ayam',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/menu-pilihan/sate-daging0.webp" alt="Sate Daging"   class="lazy">
-        <h3>Sate Daging</h3>
-        <p>Sate Daging dengan bumbu kacang spesial</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">22 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('sate-daging0',-1)">−</button>
-            <span id="qty-sate-daging0">0</span>
-            <button class="qty-btn" onclick="chg('sate-daging0',1)">+</button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -530,72 +513,73 @@
   <div class="menu-category" data-category="gorengan">
     <h2>Gorengan</h2>
     <div class="menu-items">
+
       <div class="menu-item">
-        <img src="foto-menu-madinah/gorengan/bala-bala.webp" alt="Bala-bala"   class="lazy">
-        <h3>Bala-bala</h3>
-        <p>Bala-bala goreng renyah</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">3 SAR</span>
-          <div>
+        <img src="foto-menu-madinah/gorengan/bala-bala.webp" alt="Bala-Bala" onclick="openModal(this.src)">
+        <h3>Bala-Bala</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('bala-bala',-1)">−</button>
-            <span id="qty-bala-bala">0</span>
+            <span class="qty-value" id="qty-bala-bala">0</span>
             <button class="qty-btn" onclick="chg('bala-bala',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
-        <img src="foto-menu-madinah/gorengan/tempe.webp" alt="Tempe"   class="lazy">
+        <img src="foto-menu-madinah/gorengan/tempe.webp" alt="Tempe" onclick="openModal(this.src)">
         <h3>Tempe</h3>
-        <p>Tempe goreng krispi</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">3 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('tempe',-1)">−</button>
-            <span id="qty-tempe">0</span>
+            <span class="qty-value" id="qty-tempe">0</span>
             <button class="qty-btn" onclick="chg('tempe',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
-        <img src="foto-menu-madinah/gorengan/molen.webp" alt="Molen"   class="lazy">
+        <img src="foto-menu-madinah/gorengan/risol.webp" alt="Risol" onclick="openModal(this.src)">
+        <h3>Risol</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('risol',-1)">−</button>
+            <span class="qty-value" id="qty-risol">0</span>
+            <button class="qty-btn" onclick="chg('risol',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-madinah/gorengan/molen.webp" alt="Molen" onclick="openModal(this.src)">
         <h3>Molen</h3>
-        <p>Pisang dengan baluran tepung renyah</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">4 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('molen',-1)">−</button>
-            <span id="qty-molen">0</span>
+            <span class="qty-value" id="qty-molen">0</span>
             <button class="qty-btn" onclick="chg('molen',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
-        <img src="foto-menu-madinah/gorengan/pastel.webp" alt="Pastel"   class="lazy">
+        <img src="foto-menu-madinah/gorengan/pastel.webp" alt="Pastel" onclick="openModal(this.src)">
         <h3>Pastel</h3>
-        <p>Pastel dengan isi campuran sayuran</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">4 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('pastel',-1)">−</button>
-            <span id="qty-pastel">0</span>
+            <span class="qty-value" id="qty-pastel">0</span>
             <button class="qty-btn" onclick="chg('pastel',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <img src="foto-menu-madinah/gorengan/risol.webp" alt="Risol"   class="lazy">
-        <h3>Risol</h3>
-        <p>Risol dengan isian sosis dan mayoneis</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">4 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('risol',-1)">−</button>
-            <span id="qty-risol">0</span>
-            <button class="qty-btn" onclick="chg('risol',1)">+</button>
           </div>
         </div>
       </div>
@@ -603,50 +587,66 @@
   </div>
 
   <!-- Aneka Es -->
-  <div class="menu-category" data-category="es">
+  <div class="menu-category" data-category="aneka-es">
     <h2>Aneka Es</h2>
     <div class="menu-items">
+
       <div class="menu-item">
-        <img src="foto-menu-madinah/aneka-es/es-campur.jpg" alt="Es Campur"   class="lazy">
+        <img src="foto-menu-madinah/aneka-es/es-cendol.webp" alt="Es Cendol" onclick="openModal(this.src)">
+        <h3>Es Cendol</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('es-cendol',-1)">−</button>
+            <span class="qty-value" id="qty-es-cendol">0</span>
+            <button class="qty-btn" onclick="chg('es-cendol',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-madinah/aneka-es/es-campur.webp" alt="Es Campur" onclick="openModal(this.src)">
         <h3>Es Campur</h3>
-        <p>Es dengan berbagai isian buah dan jelly</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">8 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('es-campur',-1)">−</button>
-            <span id="qty-es-campur">0</span>
+            <span class="qty-value" id="qty-es-campur">0</span>
             <button class="qty-btn" onclick="chg('es-campur',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
-        <img src="foto-menu-madinah/aneka-es/es-teler.webp" alt="Es Teler"   class="lazy">
-        <h3>Es Teler</h3>
-        <p>Es dengan isian jelly yang beragam dan coconut</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">8 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('es-teler',-1)">−</button>
-            <span id="qty-es-teler">0</span>
-            <button class="qty-btn" onclick="chg('es-teler',1)">+</button>
+        <img src="foto-menu-madinah/aneka-es/es-cincau.webp" alt="Es Cincau" onclick="openModal(this.src)">
+        <h3>Es Cincau</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('es-cincau',-1)">−</button>
+            <span class="qty-value" id="qty-es-cincau">0</span>
+            <button class="qty-btn" onclick="chg('es-cincau',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
-        <img src="foto-menu-madinah/aneka-es/es-cincau.jpg" alt="Es Cincau"   class="lazy">
-        <h3>Es Cincau</h3>
-        <p>Es dengan irisan cincau</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">5 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('es-cincau',-1)">−</button>
-            <span id="qty-es-cincau">0</span>
-            <button class="qty-btn" onclick="chg('es-cincau',1)">+</button>
+        <img src="foto-menu-madinah/aneka-es/es-teler.webp" alt="Es Teler" onclick="openModal(this.src)">
+        <h3>Es Teler</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('es-teler',-1)">−</button>
+            <span class="qty-value" id="qty-es-teler">0</span>
+            <button class="qty-btn" onclick="chg('es-teler',1)">+</button>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -654,54 +654,60 @@
   <div class="menu-category" data-category="hot-coffee">
     <h2>Hot Coffee</h2>
     <div class="menu-items">
+
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Kopi Kapal Api" onclick="openModal(this.src)">
         <h3>Kopi Kapal Api</h3>
-        <p>Kopi hitam khas dengan aroma kuat</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">4 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('kopi-kapal-api',-1)">−</button>
-            <span id="qty-kopi-kapal-api">0</span>
+            <span class="qty-value" id="qty-kopi-kapal-api">0</span>
             <button class="qty-btn" onclick="chg('kopi-kapal-api',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Kopi Hitam" onclick="openModal(this.src)">
         <h3>Kopi Hitam</h3>
-        <p>Kopi pahit khas Indonesia</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">4 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">5 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('kopi-hitam',-1)">−</button>
-            <span id="qty-kopi-hitam">0</span>
+            <span class="qty-value" id="qty-kopi-hitam">0</span>
             <button class="qty-btn" onclick="chg('kopi-hitam',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
-        <h3>Nescaffee</h3>
-        <p>Nescaffee yang disajikan dengan mesin khusus</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">5 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('nescaffee',-1)">−</button>
-            <span id="qty-nescaffee">0</span>
-            <button class="qty-btn" onclick="chg('nescaffee',1)">+</button>
+        <img src="foto-menu-madinah/" alt="Kopi Susu" onclick="openModal(this.src)">
+        <h3>Kopi Susu</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">8 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('kopi-susu',-1)">−</button>
+            <span class="qty-value" id="qty-kopi-susu">0</span>
+            <button class="qty-btn" onclick="chg('kopi-susu',1)">+</button>
           </div>
         </div>
       </div>
-
+      
+      
       <div class="menu-item">
-        <h3>Kopi Susu</h3>
-        <p>Susu dengan campuran kopi pahit</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">5 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('kopi-susu',-1)">−</button>
-            <span id="qty-kopi-susu">0</span>
-            <button class="qty-btn" onclick="chg('kopi-susu',1)">+</button>
+        <img src="foto-menu-madinah/" alt="Nescaffe" onclick="openModal(this.src)">
+        <h3>Nescaffe</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">7 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('nescaffe',-1)">−</button>
+            <span class="qty-value" id="qty-nescaffe">0</span>
+            <button class="qty-btn" onclick="chg('nescaffe',1)">+</button>
           </div>
         </div>
       </div>
@@ -712,57 +718,63 @@
   <div class="menu-category" data-category="ice-coffee">
     <h2>Ice Coffee</h2>
     <div class="menu-items">
-      <div class="menu-item">
-        <h3>Spanish Latte</h3>
-        <p>Espresso dengan susu</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">10 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('spanish-latte',-1)">−</button>
-            <span id="qty-spanish-latte">0</span>
-            <button class="qty-btn" onclick="chg('spanish-latte',1)">+</button>
-          </div>
-        </div>
-      </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Es Kopi Hitam" onclick="openModal(this.src)">
         <h3>Es Kopi Hitam</h3>
-        <p>Kopi hitam yang disajikan dengan es</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">5 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">7 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('es-kopi-hitam',-1)">−</button>
-            <span id="qty-es-kopi-hitam">0</span>
+            <span class="qty-value" id="qty-es-kopi-hitam">0</span>
             <button class="qty-btn" onclick="chg('es-kopi-hitam',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Es Kopi Susu" onclick="openModal(this.src)">
         <h3>Es Kopi Susu</h3>
-        <p>Kopi hitam dingin dicampur susu</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">5 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">8 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('es-kopi-susu',-1)">−</button>
-            <span id="qty-es-kopi-susu">0</span>
+            <span class="qty-value" id="qty-es-kopi-susu">0</span>
             <button class="qty-btn" onclick="chg('es-kopi-susu',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Nescaffee Ice" onclick="openModal(this.src)">
         <h3>Nescaffee Ice</h3>
-        <p>Nescaffee dengan tambahan es</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">5 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('nescaffee-ice',-1)">−</button>
-            <span id="qty-nescaffee-ice">0</span>
-            <button class="qty-btn" onclick="chg('nescaffee-ice',1)">+</button>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">8 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('nescaffe-ice',-1)">−</button>
+            <span class="qty-value" id="qty-nescaffe-ice">0</span>
+            <button class="qty-btn" onclick="chg('nescaffe-ice',1)">+</button>
           </div>
         </div>
       </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Spanish Latte" onclick="openModal(this.src)">
+        <h3>Spanish Latte</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">13 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('spanish-latte',-1)">−</button>
+            <span class="qty-value" id="qty-spanish-latte">0</span>
+            <button class="qty-btn" onclick="chg('spanish-latte',1)">+</button>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 
@@ -770,66 +782,72 @@
   <div class="menu-category" data-category="hot-drink">
     <h2>Hot Drink</h2>
     <div class="menu-items">
+
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Teh Panas" onclick="openModal(this.src)">
         <h3>Teh Panas</h3>
-        <p>Teh Panas/Hangat</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">2 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">2 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('teh-panas',-1)">−</button>
-            <span id="qty-teh-panas">0</span>
+            <span class="qty-value" id="qty-teh-panas">0</span>
             <button class="qty-btn" onclick="chg('teh-panas',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Teh Susu Panas" onclick="openModal(this.src)">
         <h3>Teh Susu Panas</h3>
-        <p>Susu dengan teh panas/hangat</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">4 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">5 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('teh-susu-panas',-1)">−</button>
-            <span id="qty-teh-susu-panas">0</span>
+            <span class="qty-value" id="qty-teh-susu-panas">0</span>
             <button class="qty-btn" onclick="chg('teh-susu-panas',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Hot Lemon" onclick="openModal(this.src)">
         <h3>Hot Lemon</h3>
-        <p>Perasan lemon panas/hangat</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">3 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">7 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('hot-lemon',-1)">−</button>
-            <span id="qty-hot-lemon">0</span>
-            <button class="qty-btn" onclick="chg('hot-leumon',1)">+</button>
+            <span class="qty-value" id="qty-hot-lemon">0</span>
+            <button class="qty-btn" onclick="chg('hot-lemon',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="hot lemon tea" onclick="openModal(this.src)">
         <h3>Hot Lemon Tea</h3>
-        <p>Teh panas/hangat dengan air lemon</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">3 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">7 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('hot-lemon-tea',-1)">−</button>
-            <span id="qty-hot-lemon-tea">0</span>
+            <span class="qty-value" id="qty-hot-lemon-tea">0</span>
             <button class="qty-btn" onclick="chg('hot-lemon-tea',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Karak Tea" onclick="openModal(this.src)">
         <h3>Karak Tea</h3>
-        <p>Teh karak panas/hangat</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">3 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">7 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('karak-tea',-1)">−</button>
-            <span id="qty-karak-tea">0</span>
+            <span class="qty-value" id="qty-karak-tea">0</span>
             <button class="qty-btn" onclick="chg('karak-tea',1)">+</button>
           </div>
         </div>
@@ -841,298 +859,357 @@
   <div class="menu-category" data-category="ice-drink">
     <h2>Ice Drink</h2>
     <div class="menu-items">
+      
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Es Teh" onclick="openModal(this.src)">
         <h3>Es Teh</h3>
-        <p>Teh dingin segar</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">2 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">5 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('es-teh',-1)">−</button>
-            <span id="qty-es-teh">0</span>
+            <span class="qty-value" id="qty-es-teh">0</span>
             <button class="qty-btn" onclick="chg('es-teh',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Es Teh Susu" onclick="openModal(this.src)">
         <h3>Es Teh Susu</h3>
-        <p>Teh dingin dengan susu</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">4 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">6 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('es-teh-susu',-1)">−</button>
-            <span id="qty-es-teh-susu">0</span>
+            <span class="qty-value" id="qty-es-teh-susu">0</span>
             <button class="qty-btn" onclick="chg('es-teh-susu',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Es Lemon Tea" onclick="openModal(this.src)">
         <h3>Es Lemon Tea</h3>
-        <p>es teh dengan lemon</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">3 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">6 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('es-lemon-tea',-1)">−</button>
-            <span id="qty-es-lemon-tea">0</span>
+            <span class="qty-value" id="qty-es-lemon-tea">0</span>
             <button class="qty-btn" onclick="chg('es-lemon-tea',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
-        <h3>Es Karak Tea</h3>
-        <p>Teh karak</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">3 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('es-karak-tea',-1)">−</button>
-            <span id="qty-es-karak-tea">0</span>
-            <button class="qty-btn" onclick="chg('es-karak-tea',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Jus Lemon" onclick="openModal(this.src)">
         <h3>Jus Lemon</h3>
-        <p>Perasan lemon dengan es</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">4 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('jus-lemon',-1)">−</button>
-            <span id="qty-jus-lemon">0</span>
+            <span class="qty-value" id="qty-jus-lemon">0</span>
             <button class="qty-btn" onclick="chg('jus-lemon',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Jus Jeruk" onclick="openModal(this.src)">
         <h3>Jus Jeruk</h3>
-        <p>Perasan Jeruk</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">4 SAR</span>
-          <div>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
             <button class="qty-btn" onclick="chg('jus-jeruk',-1)">−</button>
-            <span id="qty-jus-jeruk">0</span>
+            <span class="qty-value" id="qty-jus-jeruk">0</span>
             <button class="qty-btn" onclick="chg('jus-jeruk',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
-        <h3>Susu Soda</h3>
-        <p>Es susu dengan paduan soda</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">5 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('susu-soda',-1)">−</button>
-            <span id="qty-susu-soda">0</span>
-            <button class="qty-btn" onclick="chg('susu-soda',1)">+</button>
+        <img src="foto-menu-madinah/" alt="kukubima" onclick="openModal(this.src)">
+        <h3>Kukubima</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('kukubima',-1)">−</button>
+            <span class="qty-value" id="qty-kukubima">0</span>
+            <button class="qty-btn" onclick="chg('kukubima',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
-        <h3>Josua</h3>
-        <p>Extrajoss dan susu</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">4 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('josua',-1)">−</button>
-            <span id="qty-josua">0</span>
-            <button class="qty-btn" onclick="chg('josua',1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="extrajoss" onclick="openModal(this.src)">
         <h3>Extrajoss</h3>
-        <p>Health supplement</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">3 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('extrajoss',-1)">−</button>
-            <span id="qty-extrajoss">0</span>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('jus-jeruk',-1)">−</button>
+            <span class="qty-value" id="qty-extrajoss">0</span>
             <button class="qty-btn" onclick="chg('extrajoss',1)">+</button>
           </div>
         </div>
       </div>
 
       <div class="menu-item">
-        <h3>Kukubima</h3>
-        <p>Health supplement</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-          <span style="font-weight:bold">3 SAR</span>
-          <div>
-            <button class="qty-btn" onclick="chg('kukubima',-1)">−</button>
-            <span id="qty-kukubima">0</span>
-            <button class="qty-btn" onclick="chg('kukubima',1)">+</button>
+        <img src="foto-menu-madinah/" alt="josua" onclick="openModal(this.src)">
+        <h3>Josua</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">13 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('josua',-1)">−</button>
+            <span class="qty-value" id="qty-josua">0</span>
+            <button class="qty-btn" onclick="chg('josua',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-madinah/" alt="Susu Soda" onclick="openModal(this.src)">
+        <h3>Susu Soda</h3>
+        <p></p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('susu-soda',-1)">−</button>
+            <span class="qty-value" id="qty-susu-soda">0</span>
+            <button class="qty-btn" onclick="chg('susu-soda',1)">+</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Lanjutkan untuk kategori lain dengan format yang sama -->
+
   <a href="index.html" class="back-button">Kembali ke Beranda</a>
 </div>
 
-<!-- Cart Floating (kanan bawah) -->
-<button class="cart-float" id="cartBtn">
-  <i class="fas fa-shopping-cart"></i>
-  <span class="badge" id="cartCount">0</span>
-</button>
-
-<!-- Cart Drawer -->
+<button class="cart-float" id="cartBtn"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartCount">0</span></button>
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-content">
-    <h3 style="text-align:center">Keranjang Anda</h3>
+    <h3>Keranjang Anda</h3>
     <div id="cartList"></div>
-    <div style="text-align:center;font-size:13px;color:#666;margin:10px 0">
-      Semua item akan dikonfirmasi ketersediaan stok terlebih dahulu sebelum diproses.
-    </div>
+    <div style="text-align:center;font-size:13px;color:#666;margin:10px 0">Semua item akan dikonfirmasi stok sebelum diproses.</div>
     <button class="send-wa" onclick="sendWa()">Pesan Sekarang</button>
   </div>
 </div>
 
-<!-- Modal -->
 <div id="imageModal" class="modal">
   <span class="close" onclick="closeModal()" aria-label="Tutup">&times;</span>
-  <img class="modal-content" id="modalImage" alt="Enlarged view">
+  <img class="modal-content" id="modalImage" alt="">
 </div>
 
 <script>
-/* ---- DATA HARGA ---- */
-const prices = {
-  "mie-ayam":18,"mie-ayam-bakso":20,"mie-goreng":17,"mie-kuah":17,"mie-bakso":19,
-  "kwetiau-goreng":18,"kwetiau-kuah":18,"bubur-ayam":15,"nasgor-spesial":22,
-  "nasgor-ayam":18,"nasgor-seafood":20,"nasgor-kampung":17,"buntut":35,
-  "soup-ayam":16,"soto-ayam":16,"rendang":25,"nasi-campur":20,"ayam-goreng":19,
-  "ayam-bakar":20,"ayam-penyet":18,"bebek-goreng":28,"bebek-bakar":30,
-  "ikan-asam-manis":25,"ikan-bakar":27,"ikan-goreng":24,"sate-ayam":20,
-  "sate-daging0":22,"bala-bala":3,"tempe":3,"molen":4,"pastel":4,"risol":4,
-  "es-campur":8,"es-teler":8,"es-cincau":5,"kopi-kapal-api":4,"kopi-hitam":4,
-  "nescaffee":5,"kopi-susu":5,"spanish-latte":10,"es-kopi-hitam":5,
-  "es-kopi-susu":5,"nescaffee-ice":5,"teh-panas":2,"teh-susu-panas":4,
-  "hot-lemon":3,"hot-lemon-tea":3,"karak-tea":3,"es-teh":2,"es-teh-susu":4,
-  "es-lemon-tea":3,"es-karak-tea":3,"jus-lemon":4,"jus-jeruk":4,
-  "susu-soda":5,"josua":4,"extrajoss":3,"kukubima":3
-};
+  const prices = {
+    // Spesial Menu
+    "mie-ayam": 25,
+    "mie-bakso": 25,
+    "mie-ayam-bakso": 30,
+    "mie-goreng": 25,
+    "mie-kuah": 25,
+    "kwetiau-goreng": 25,
+    "kwetiau-kuah": 25,
 
-let cart = {}; // {id:{qty,note}}
+    // Sarapan
+    "bubur-ayam": 25,
 
-/* change qty */
-function chg(id,val){
-  if(!cart[id]) cart[id]={qty:0,note:''};
-  cart[id].qty = Math.max(0,cart[id].qty+val);
-  if(cart[id].qty===0) delete cart[id];
-  document.getElementById('qty-'+id).textContent = cart[id]?.qty || 0;
-  document.getElementById('cartCount').textContent = Object.values(cart).reduce((a,b)=>a+b.qty,0);
-}
+    // Nasi Campur
+    "nasi-rendang": 25,
+    "nasi-campur": 30,
 
-/* render cart */
-function renderCart(){
+    // Menu Pilihan
+    "ayam-goreng": 25,
+    "ayam-bakar": 25,
+    "ayam-penyet": 30,
+    "bebek-goreng": 35,
+    "bebek-bakar": 35,
+    "ikan-asam-manis": 35,
+    "ikan-goreng": 30,
+    "ikan-bakar": 30,
+    "sate-ayam": 25,
+    "sate-daging": 30,
+
+    // Nasi Goreng
+    "nasgor-spesial": 30,
+    "nasi-goreng-ayam": 25,
+    "nasi-goreng-seafood": 30,
+    "nasi-goreng-kampung": 25,
+
+    // Aneka Soup
+    "soup-buntut": 35,
+    "soup-ayam": 25,
+    "soto-ayam": 25,
+    "sayur-asam": 20,
+    "tomyam-soup": 35,
+
+    // Gorengan
+    "bala-bala": 10,
+    "tempe": 10,
+    "risol": 10,
+    "molen": 10,
+    "pastel": 10,
+
+    // Aneka Es
+    "es-cendol": 10,
+    "es-campur": 10,
+    "es-cincau": 10,
+    "es-teler": 10,
+
+    // Hot Coffee
+    "kopi-kapal-api": 10,
+    "kopi-hitam": 5,
+    "kopi-susu": 8,
+    "nescaffe": 7,
+
+    // Ice Coffee
+    "es-kopi-hitam": 7,
+    "es-kopi-susu": 8,
+    "nescaffe-ice": 8,
+    "spanish-latte": 13,
+
+    // Hot Drink
+    "teh-panas": 2,
+    "teh-susu-panas": 5,
+    "hot-lemon": 5,
+    "hot-lemon-tea": 4,
+    "karak-tea": 9,
+
+    // Ice Drink
+    "es-teh": 5,
+    "es-teh-susu": 6,
+    "es-lemon-tea": 6,
+    "jus-lemon": 10,
+    "jus-jeruk": 10,
+    "kukubima": 10,
+    "extrajoss": 10,
+    "josua": 13,
+    "susu-soda": 10
+  };
+
+  let cart = {};
+  function chg(id,val){
+    if(!cart[id]) cart[id]={qty:0,note:''};
+    cart[id].qty = Math.max(0, cart[id].qty + val);
+    if(cart[id].qty === 0) delete cart[id];
+    document.getElementById('qty-'+id).textContent = cart[id]?.qty || 0;
+    document.getElementById('cartCount').textContent = Object.values(cart).reduce((a,b)=>a+b.qty,0);
+  }
+  function renderCart() {
   const list = document.getElementById('cartList');
   list.innerHTML = '';
-  let total = 0;
-  for(const [id,data] of Object.entries(cart)){
-    total += prices[id]*data.qty;
+  let subTotal = 0;
+
+  for (const [id, data] of Object.entries(cart)) {
+    subTotal += prices[id] * data.qty;
     const div = document.createElement('div');
     div.className = 'cart-item';
     div.innerHTML = `
-      <span>
-        <b>${id.replace(/-/g,' ')} (${prices[id]} SAR) x ${data.qty}</b><br>
-        <span class="cart-note" contenteditable="true" oninput="cart['${id}'].note=this.innerText.trim()">${data.note || ''}</span>
-      </span>
-    `;
+      <span><b>${id.replace(/-/g, ' ')} (${prices[id]} SAR) × ${data.qty}</b>
+      <br><span class="cart-note" contenteditable
+                oninput="cart['${id}'].note=this.innerText.trim()">${data.note || ''}</span></span>`;
     list.appendChild(div);
   }
-  list.innerHTML += `<div style="font-weight:bold;margin-top:10px">Total: ${total} SAR</div>`;
+
+  const ongkir = 25; // <-- biaya kirim tetap
+  const total = subTotal + ongkir;
+
+  list.innerHTML += `
+    <div style="font-weight:bold;margin-top:10px">Sub-total: ${subTotal} SAR</div>
+    <div style="font-weight:bold">Ongkir: ${ongkir} SAR</div>
+    <div style="font-weight:bold">Total: ${total} SAR</div>`;
 }
+  document.getElementById('cartBtn').addEventListener('click',()=>{
+    document.getElementById('cartDrawer').classList.toggle('open');
+    renderCart();
+  });
+  document.getElementById('cartDrawer').addEventListener('click',e=>{
+    if(e.target.id==='cartDrawer') e.target.classList.remove('open');
+  });
+  function sendWa() {
+  if (Object.keys(cart).length === 0) {
+    alert('Keranjang kosong!');
+    return;
+  }
 
-/* toggle drawer */
-document.getElementById('cartBtn').addEventListener('click', ()=>{
-  document.getElementById('cartDrawer').classList.toggle('open');
-  renderCart();
-});
-document.getElementById('cartDrawer').addEventListener('click', e=>{
-  if(e.target.id==='cartDrawer') e.target.classList.remove('open');
-});
-
-/* send to WA */
-function sendWa(){
-  if(Object.keys(cart).length === 0){alert('Keranjang kosong!');return;}
   let text = 'Halo Nusantara, saya ingin memesan:\n';
-  let total = 0;
-  for(const [id,data] of Object.entries(cart)){
-    total += prices[id]*data.qty;
-    text += `- ${id.replace(/-/g,' ')} x ${data.qty} (${prices[id]*data.qty} SAR)`;
-    if(data.note) text += ` | Catatan: ${data.note}`;
+  let subTotal = 0;
+
+  for (const [id, data] of Object.entries(cart)) {
+    subTotal += prices[id] * data.qty;
+    text += `- ${id.replace(/-/g, ' ')} × ${data.qty} (${prices[id]} SAR)`;
+    if (data.note) text += ` | Catatan: ${data.note}`;
     text += '\n';
   }
-  text += `_____\n*Total: ${total} SAR*\n`; // <-- ditambahkan *bold*
-  window.open(`https://wa.me/966549179171?text=${encodeURIComponent(text)}`,'_blank');
+
+  const ongkir = 25; // tetap
+  const total = subTotal + ongkir;
+
+  text += '_____\n';
+  text += `Sub-total: ${subTotal} SAR\n`;
+  text += `Ongkir: ${ongkir} SAR\n`;
+  text += `*Total: ${total} SAR*`;
+
+  window.open(`https://wa.me/6283807733819?text=${encodeURIComponent(text)}`, '_blank');
 }
-
-/* loader & modal */
-window.addEventListener('load', () => document.getElementById('loader').classList.add('hidden'));
-function openModal(src,alt){
-  const modal=document.getElementById('imageModal');
-  document.getElementById('modalImage').src=src;
-  modal.style.display='block';
-  document.body.style.overflow='hidden';
-}
-function closeModal(){
-  document.getElementById('imageModal').style.display='none';
-  document.body.style.overflow='auto';
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-/* filter & search (kode Anda) */
-document.addEventListener('DOMContentLoaded', function () {
-  const searchInput = document.getElementById('searchInput');
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const menuCategories = document.querySelectorAll('.menu-category');
-  let searchTimeout;
-
-  filterButtons.forEach(btn => btn.addEventListener('click', function () {
-    filterButtons.forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    const cat = this.dataset.category;
-    menuCategories.forEach(el => el.style.display = (cat === 'all' || el.dataset.category === cat) ? 'block' : 'none');
-    searchInput.value = '';
-  }));
-
-  searchInput.addEventListener('input', function () {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => {
-      const term = this.value.trim().toLowerCase();
-      let hasResults = false;
-      menuCategories.forEach(cat => {
-        let catHas = false;
-        cat.querySelectorAll('.menu-item').forEach(item => {
-          const match = term === '' || item.textContent.toLowerCase().includes(term);
-          item.style.display = match ? 'block' : 'none';
-          if (match) { catHas = true; hasResults = true; }
+  window.addEventListener('load',()=>document.getElementById('loader').classList.add('hidden'));
+  function openModal(src){
+    const m=document.getElementById('imageModal');
+    m.style.display='block';
+    document.getElementById('modalImage').src=src;
+    document.body.style.overflow='hidden';
+  }
+  function closeModal(){
+    document.getElementById('imageModal').style.display='none';
+    document.body.style.overflow='auto';
+  }
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+  document.addEventListener('DOMContentLoaded',()=>{
+    const s=document.getElementById('searchInput'),f=document.querySelectorAll('.filter-btn'),c=document.querySelectorAll('.menu-category');
+    let t;
+    f.forEach(b=>b.addEventListener('click',()=>{
+      f.forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      const cat=b.dataset.category;
+      c.forEach(el=>el.style.display=(cat==='all'||el.dataset.category===cat)?'block':'none');
+      s.value='';
+    }));
+    s.addEventListener('input',()=>{
+      clearTimeout(t);
+      t=setTimeout(()=>{
+        const term=s.value.trim().toLowerCase();
+        let has=false;
+        c.forEach(cat=>{
+          let ok=false;
+          cat.querySelectorAll('.menu-item').forEach(i=>{
+            const m=term===''||i.textContent.toLowerCase().includes(term);
+            i.style.display=m?'block':'none';
+            if(m) ok=has=true;
+          });
+          const act=document.querySelector('.filter-btn.active').dataset.category;
+          cat.style.display=(act!=='all'&&!ok)?'none':'block';
         });
-        const active = document.querySelector('.filter-btn.active').dataset.category;
-        cat.style.display = active !== 'all' && !catHas ? 'none' : 'block';
-      });
-      const noRes = document.querySelector('.no-results');
-      if (!hasResults && term) {
-        if (!noRes) {
-          const div = document.createElement('div');
-          div.className = 'no-results';
-          div.textContent = 'Tidak ada hasil yang ditemukan';
-          document.querySelector('.container').insertBefore(div, document.querySelector('.back-button'));
-        }
-      } else if (noRes) noRes.remove();
-    }, 300);
+        const nr=document.querySelector('.no-results');
+        if(!has&&term){
+          if(!nr){
+            const d=document.createElement('div');
+            d.className='no-results';
+            d.textContent='Tidak ada hasil yang ditemukan';
+            document.querySelector('.container').insertBefore(d,document.querySelector('.back-button'));
+          }
+        }else if(nr) nr.remove();
+      },300);
+    });
   });
-});
-// Fallback: sembunyikan loader setelah 3 detik
-  setTimeout(() => {
-    document.getElementById('loader')?.classList.add('hidden');
-  }, 3000);
+  setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),3000);
 </script>
 </body>
 </html>
