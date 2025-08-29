@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nusantara Makkah</title>
+  <meta name="description" content="Menu lengkap Nusantara Restaurant dengan berbagai hidangan khas Indonesia di Arab Saudi"/>
+  <link rel="icon" href="logo/logo-nusantara.webp" type="image/webp"/>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    /* ===== VARIABLES ===== */
+    :root {
+      --clr-primary: #e60000;
+      --clr-primary-dark: #b30000;
+      --clr-accent: #2922e6;
+      --clr-bg: #fff5de;
+      --clr-text: #333;
+    }
+
+    /* ===== RESET & BASE STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== ORNAMENTS ===== */
+    .ornament {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: .2;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ornament-top-left {
+      top: 0;
+      left: -10px;
+      background-image: url('ornamen/top-left.webp');
+    }
+
+    .ornament-midle-top {
+      top: 960px;
+      right: 30px;
+      background-image: url('ornamen/midle-top.webp');
+    }
+
+    .ornament-midle-bottom {
+      bottom: 670px;
+      left: 15px;
+      background-image: url('ornamen/midle-bottom.webp');
+    }
+
+    .ornament-bottom-right {
+      bottom: 0;
+      right: -10px;
+      background-image: url('ornamen/bottom-right.webp');
+    }
+
+    /* ===== CONTAINER & HEADER ===== */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      background: rgba(255, 245, 222, .85);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, .05);
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      overflow: hidden;
+      border: 3px solid var(--clr-primary);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      color: var(--clr-primary);
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ddd, transparent);
+      margin: 20px 0;
+    }
+
+    /* ===== HEADINGS ===== */
+    h2 {
+      color: var(--clr-text);
+      margin: 25px 0 15px;
+      font-size: 22px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 3px;
+      background: var(--clr-primary);
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 3px;
+    }
+
+    /* ===== SEARCH & FILTER ===== */
+    .search-filter-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    .search-box i {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .filter-btn {
+      padding: 8px 15px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: .3s;
+      font-size: 14px;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--clr-accent);
+      color: #fff;
+      border-color: var(--clr-accent);
+    }
+
+    /* ===== MENU CATEGORIES ===== */
+    .menu-category {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .menu-items {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+
+    /* ===== MENU ITEMS ===== */
+    .menu-item {
+      background: #fff;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+      transition: .3s;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, .15);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .menu-item h3 {
+      color: var(--clr-primary);
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    .menu-item p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .menu-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 10px;
+    }
+
+    .menu-price {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .qty-btn {
+      width: 20px;
+      height: 20px;
+      border: none;
+      background: var(--clr-accent);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .qty-value {
+      font-size: 14px;
+      font-weight: bold;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    /* ===== BUTTONS ===== */
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: var(--clr-accent);
+      color: #fff;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: .3s;
+    }
+
+    .back-button:hover {
+      background: #1b17b0;
+      transform: translateY(-3px);
+    }
+
+    /* ===== NO RESULTS ===== */
+    .no-results {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+
+    /* ===== LOADER ===== */
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 245, 222, .9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: .5s;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      border-top-color: var(--clr-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      overflow: auto;
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 8px;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 35px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: var(--clr-primary);
+    }
+
+    /* ===== CART STYLES ===== */
+    .cart-float {
+      position: fixed;
+      right: 15px;
+      bottom: 15px;
+      z-index: 999;
+      background: var(--clr-accent);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-float .badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--clr-primary);
+      font-size: 12px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      line-height: 22px;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .5);
+      z-index: 1000;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .cart-drawer.open {
+      display: flex;
+    }
+
+    .cart-content {
+      background: var(--clr-bg);
+      width: 100%;
+      max-width: 500px;
+      max-height: 80vh;
+      border-radius: 15px 15px 0 0;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .cart-note {
+      display: inline-block;
+      border-bottom: 1px dashed #666;
+      font-size: 13px;
+      color: #666;
+      cursor: text;
+      outline: none;
+      min-width: 80px;
+    }
+
+    .cart-note:empty:before {
+      content: "Spesial note";
+      color: #aaa;
+    }
+
+    .send-wa {
+      background: var(--clr-accent);
+      color: #fff;
+      padding: 12px 0;
+      border: none;
+      border-radius: 25px;
+      width: 100%;
+      margin-top: 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== LOADER & ORNAMENTS ===== -->
+  <div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+  </div>
+  
+  <div class="ornament ornament-top-left"></div>
+  <div class="ornament ornament-midle-top"></div>
+  <div class="ornament ornament-midle-bottom"></div>
+  <div class="ornament ornament-bottom-right"></div>
+
+  <!-- ===== MAIN CONTAINER ===== -->
+  <div class="container">
+  <div class="logo"><img src="logo/logo-nusantara.webp" alt="Nusantara Restaurant"></div>
+  <h1>Nusantara Makkah</h1>
+  <p class="tagline">Nikmati kelezatan kuliner khas Indonesia dan Asia</p>
+  <hr>
+
+  <!-- SEARCH & FILTER -->
+  <div class="search-filter-container">
+    <div class="search-box">
+      <input id="searchInput" placeholder="Cari menu...">
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-category="all">Semua</button>
+      <button class="filter-btn" data-category="nasi">Aneka Nasi</button>
+      <button class="filter-btn" data-category="mie-bakso">Mie & Bakso</button>
+      <button class="filter-btn" data-category="soup">Soup</button>
+      <button class="filter-btn" data-category="gorengan">Gorengan</button>
+      <button class="filter-btn" data-category="tea">Tea</button>
+      <button class="filter-btn" data-category="coffee">Coffee</button>
+      <button class="filter-btn" data-category="non-coffee">Non Coffee</button>
+      <button class="filter-btn" data-category="signature">Our Signature</button>
+      <button class="filter-btn" data-category="tradisional">Tradisional</button>
+    </div>
+  </div>
+
+  <!-- Aneka Nasi -->
+  <div class="menu-category" data-category="nasi">
+    <h2>Aneka Nasi</h2>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/nasgor-spesial.webp" alt="Nasi Goreng Spesial" onclick="openModal(this.src)">
+        <h3>Nasi Goreng Spesial</h3>
+        <p>Nasi goreng ayam, udang, telur, sayuran, kerupuk</p>
+        <div class="menu-footer">
+          <span class="menu-price">30 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('nasgor-spesial',-1)">−</button>
+            <span class="qty-value" id="qty-nasgor-spesial">0</span>
+            <button class="qty-btn" onclick="chg('nasgor-spesial',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/nasgor-seafood.webp" alt="Nasi Goreng Seafood" onclick="openModal(this.src)">
+        <h3>Nasi Goreng Seafood</h3>
+        <p>Nasi goreng cumi, udang, kerang, rempah</p>
+        <div class="menu-footer">
+          <span class="menu-price">30 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('nasgor-seafood',-1)">−</button>
+            <span class="qty-value" id="qty-nasgor-seafood">0</span>
+            <button class="qty-btn" onclick="chg('nasgor-seafood',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/nasgor-ayam.webp" alt="Nasi Goreng Ayam" onclick="openModal(this.src)">
+        <h3>Nasi Goreng Ayam</h3>
+        <p>Nasi goreng ayam goreng & bawang goreng</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('nasgor-ayam',-1)">−</button>
+            <span class="qty-value" id="qty-nasgor-ayam">0</span>
+            <button class="qty-btn" onclick="chg('nasgor-ayam',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/nasgor-buntut.webp" alt="Nasi Goreng Buntut" onclick="openModal(this.src)">
+        <h3>Nasi Goreng Buntut</h3>
+        <p>Nasi goreng buntut empuk & bumbu spesial</p>
+        <div class="menu-footer">
+          <span class="menu-price">35 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('nasgor-buntut',-1)">−</button>
+            <span class="qty-value" id="qty-nasgor-buntut">0</span>
+            <button class="qty-btn" onclick="chg('nasgor-buntut',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/ayam-goreng.webp" alt="Nasi Ayam Goreng" onclick="openModal(this.src)">
+        <h3>Nasi Ayam Goreng</h3>
+        <p>Nasi + ayam goreng kremes, sambal, lalapan</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('ayam-goreng',-1)">−</button>
+            <span class="qty-value" id="qty-ayam-goreng">0</span>
+            <button class="qty-btn" onclick="chg('ayam-goreng',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/ayam-penyet.webp" alt="Nasi Ayam Penyet" onclick="openModal(this.src)">
+        <h3>Nasi Ayam Penyet</h3>
+        <p>Ayam goreng penyet + sambal + tempe tahu</p>
+        <div class="menu-footer">
+          <span class="menu-price">30 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('ayam-penyet',-1)">−</button>
+            <span class="qty-value" id="qty-ayam-penyet">0</span>
+            <button class="qty-btn" onclick="chg('ayam-penyet',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/ayam-bakar.webp" alt="Nasi Ayam Bakar" onclick="openModal(this.src)">
+        <h3>Nasi Ayam Bakar</h3>
+        <p>Ayam bakar kecap + nasi + sambal lalapan</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('ayam-bakar',-1)">−</button>
+            <span class="qty-value" id="qty-ayam-bakar">0</span>
+            <button class="qty-btn" onclick="chg('ayam-bakar',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/bebek-goreng.webp" alt="Nasi Bebek Goreng" onclick="openModal(this.src)">
+        <h3>Nasi Bebek Goreng</h3>
+        <p>Bebek goreng krispi + nasi + sambal lalapan</p>
+        <div class="menu-footer">
+          <span class="menu-price">35 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('bebek-goreng',-1)">−</button>
+            <span class="qty-value" id="qty-bebek-goreng">0</span>
+            <button class="qty-btn" onclick="chg('bebek-goreng',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/bebek-bakar.webp" alt="Nasi Bebek Bakar" onclick="openModal(this.src)">
+        <h3>Nasi Bebek Bakar</h3>
+        <p>Bebek bakar bumbu Jawa + nasi + sambal</p>
+        <div class="menu-footer">
+          <span class="menu-price">35 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('bebek-bakar',-1)">−</button>
+            <span class="qty-value" id="qty-bebek-bakar">0</span>
+            <button class="qty-btn" onclick="chg('bebek-bakar',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/nila-goreng.webp" alt="Ikan Nila Goreng" onclick="openModal(this.src)">
+        <h3>Ikan Nila Goreng</h3>
+        <p>Ikan nila goreng kering + nasi + sambal</p>
+        <div class="menu-footer">
+          <span class="menu-price">30 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('nila-goreng',-1)">−</button>
+            <span class="qty-value" id="qty-nila-goreng">0</span>
+            <button class="qty-btn" onclick="chg('nila-goreng',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/nasi-campur.webp" alt="Nasi Campur" onclick="openModal(this.src)">
+        <h3>Nasi Campur</h3>
+        <p>Nasi + ayam + tempe tahu + sambal kerupuk</p>
+        <div class="menu-footer">
+          <span class="menu-price">30 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('nasi-campur',-1)">−</button>
+            <span class="qty-value" id="qty-nasi-campur">0</span>
+            <button class="qty-btn" onclick="chg('nasi-campur',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/sate-ayam.webp" alt="Sate Ayam" onclick="openModal(this.src)">
+        <h3>Sate Ayam</h3>
+        <p>Sate ayam + lontong + bumbu kacang</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('sate-ayam',-1)">−</button>
+            <span class="qty-value" id="qty-sate-ayam">0</span>
+            <button class="qty-btn" onclick="chg('sate-ayam',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/aneka-nasi/sate-kambing.webp" alt="Sate Kambing" onclick="openModal(this.src)">
+        <h3>Sate Kambing</h3>
+        <p>Sate kambing muda + lontong + bumbu kacang/kecap</p>
+        <div class="menu-footer">
+          <span class="menu-price">30 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('sate-kambing',-1)">−</button>
+            <span class="qty-value" id="qty-sate-kambing">0</span>
+            <button class="qty-btn" onclick="chg('sate-kambing',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mie & Bakso -->
+  <div class="menu-category" data-category="mie-bakso">
+    <h2>Mie & Bakso</h2>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="foto-menu-makkah/mie-bakso/bakso.webp" alt="Bakso" onclick="openModal(this.src)">
+        <h3>Bakso</h3>
+        <p>Bakso sapi + kuah kaldu + mie tahu bihun</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('bakso',-1)">−</button>
+            <span class="qty-value" id="qty-bakso">0</span>
+            <button class="qty-btn" onclick="chg('bakso',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/mie-bakso/mie-ayam.webp" alt="Mie Ayam" onclick="openModal(this.src)">
+        <h3>Mie Ayam</h3>
+        <p>Mie kuning + ayam cincang + pangsit + kuah</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('mie-ayam',-1)">−</button>
+            <span class="qty-value" id="qty-mie-ayam">0</span>
+            <button class="qty-btn" onclick="chg('mie-ayam',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/mie-bakso/mie-ayam-bakso.webp" alt="Mie Ayam Bakso" onclick="openModal(this.src)">
+        <h3>Mie Ayam Bakso</h3>
+        <p>Mie ayam + bakso sapi</p>
+        <div class="menu-footer">
+          <span class="menu-price">30 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('mie-ayam-bakso',-1)">−</button>
+            <span class="qty-value" id="qty-mie-ayam-bakso">0</span>
+            <button class="qty-btn" onclick="chg('mie-ayam-bakso',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/mie-bakso/mie-goreng.webp" alt="Mie Goreng" onclick="openModal(this.src)">
+        <h3>Mie Goreng</h3>
+        <p>Mie goreng sayuran & bumbu khas</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('mie-goreng',-1)">−</button>
+            <span class="qty-value" id="qty-mie-goreng">0</span>
+            <button class="qty-btn" onclick="chg('mie-goreng',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/mie-bakso/mie-kuah.webp" alt="Mie Kuah" onclick="openModal(this.src)">
+        <h3>Mie Kuah</h3>
+        <p>Mie kuah sayuran & bumbu khas</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('mie-kuah',-1)">−</button>
+            <span class="qty-value" id="qty-mie-kuah">0</span>
+            <button class="qty-btn" onclick="chg('mie-kuah',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/mie-bakso/kwetiau-goreng.webp" alt="Kwetiau Goreng" onclick="openModal(this.src)">
+        <h3>Kwetiau Goreng</h3>
+        <p>Kwetiau goreng kecap + daging + udang</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('kwetiau-goreng',-1)">−</button>
+            <span class="qty-value" id="qty-kwetiau-goreng">0</span>
+            <button class="qty-btn" onclick="chg('kwetiau-goreng',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/mie-bakso/kwetiau-kuah.webp" alt="Kwetiau Kuah" onclick="openModal(this.src)">
+        <h3>Kwetiau Kuah</h3>
+        <p>Kwetiau kuah daging + udang + sayur</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('kwetiau-kuah',-1)">−</button>
+            <span class="qty-value" id="qty-kwetiau-kuah">0</span>
+            <button class="qty-btn" onclick="chg('kwetiau-kuah',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Soup -->
+  <div class="menu-category" data-category="soup">
+    <h2>Soup</h2>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="foto-menu-makkah/soup/sop-ayam.webp" alt="Soup Ayam" onclick="openModal(this.src)">
+        <h3>Soup Ayam</h3>
+        <p>Kuah ayam bening + wortel + kentang</p>
+        <div class="menu-footer">
+          <span class="menu-price">25 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('sop-ayam',-1)">−</button>
+            <span class="qty-value" id="qty-sop-ayam">0</span>
+            <button class="qty-btn" onclick="chg('sop-ayam',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/soup/sop-iga.webp" alt="Soup Iga" onclick="openModal(this.src)">
+        <h3>Soup Iga</h3>
+        <p>Iga sapi empuk + kuah bening + wortel</p>
+        <div class="menu-footer">
+          <span class="menu-price">35 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('sop-iga',-1)">−</button>
+            <span class="qty-value" id="qty-sop-iga">0</span>
+            <button class="qty-btn" onclick="chg('sop-iga',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/soup/sop-buntut.webp" alt="Soup Buntut" onclick="openModal(this.src)">
+        <h3>Soup Buntut</h3>
+        <p>Buntut sapi + kuah kental + wortel kentang</p>
+        <div class="menu-footer">
+          <span class="menu-price">35 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('sop-buntut',-1)">−</button>
+            <span class="qty-value" id="qty-sop-buntut">0</span>
+            <button class="qty-btn" onclick="chg('sop-buntut',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gorengan -->
+  <div class="menu-category" data-category="gorengan">
+    <h2>Gorengan</h2>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="foto-menu-makkah/gorengan/risol.webp" alt="Risol" onclick="openModal(this.src)">
+        <h3>Risol</h3>
+        <p>Risol mayo isi wortel, kentang, daging</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('risol',-1)">−</button>
+            <span class="qty-value" id="qty-risol">0</span>
+            <button class="qty-btn" onclick="chg('risol',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/gorengan/tahu-isi.webp" alt="Tahu Isi" onclick="openModal(this.src)">
+        <h3>Tahu Isi</h3>
+        <p>Tahu goreng isi sayuran gurih</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('tahu-isi',-1)">−</button>
+            <span class="qty-value" id="qty-tahu-isi">0</span>
+            <button class="qty-btn" onclick="chg('tahu-isi',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/gorengan/bala-bala.webp" alt="Bala-bala" onclick="openModal(this.src)">
+        <h3>Bala-bala</h3>
+        <p>Gorengan sayuran tepung khas Sunda</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('bala-bala',-1)">−</button>
+            <span class="qty-value" id="qty-bala-bala">0</span>
+            <button class="qty-btn" onclick="chg('bala-bala',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/gorengan/pastel.webp" alt="Pastel" onclick="openModal(this.src)">
+        <h3>Pastel</h3>
+        <p>Isi bihun wortel daging cincang</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('pastel',-1)">−</button>
+            <span class="qty-value" id="qty-pastel">0</span>
+            <button class="qty-btn" onclick="chg('pastel',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/gorengan/pisang-molen.webp" alt="Pisang Molen" onclick="openModal(this.src)">
+        <h3>Pisang Molen</h3>
+        <p>Pisang pastry goreng renyah</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('pisang-molen',-1)">−</button>
+            <span class="qty-value" id="qty-pisang-molen">0</span>
+            <button class="qty-btn" onclick="chg('pisang-molen',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/gorengan/pisang-goreng-cokelat (2).webp" alt="Pisang Nugget" onclick="openModal(this.src)">
+        <h3>Pisang Nugget</h3>
+        <p>Pisang goreng topping coklat keju</p>
+        <div class="menu-footer">
+          <span class="menu-price">12 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('pisang-nugget',-1)">−</button>
+            <span class="qty-value" id="qty-pisang-nugget">0</span>
+            <button class="qty-btn" onclick="chg('pisang-nugget',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/gorengan/tempe-mendoan.webp" alt="Tempe Mendoan" onclick="openModal(this.src)">
+        <h3>Tempe Mendoan</h3>
+        <p>Tempe tipis tepung gurih</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('tempe-mendoan',-1)">−</button>
+            <span class="qty-value" id="qty-tempe-mendoan">0</span>
+            <button class="qty-btn" onclick="chg('tempe-mendoan',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tea -->
+  <div class="menu-category" data-category="tea">
+    <h2>Tea</h2>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="foto-menu-makkah/tea/fresh-tea.webp" alt="Tea" onclick="openModal(this.src)">
+        <h3>Tea</h3>
+        <p>Teh panas / dingin segar</p>
+        <div class="menu-footer">
+          <span class="menu-price">5 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('tea',-1)">−</button>
+            <span class="qty-value" id="qty-tea">0</span>
+            <button class="qty-btn" onclick="chg('tea',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/tea/fresh-tea.webp" alt="Lemon Tea" onclick="openModal(this.src)">
+        <h3>Lemon Tea</h3>
+        <p>Tea + lemon segar</p>
+        <div class="menu-footer">
+          <span class="menu-price">6 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('lemon-tea',-1)">−</button>
+            <span class="qty-value" id="qty-lemon-tea">0</span>
+            <button class="qty-btn" onclick="chg('lemon-tea',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/tea/fresh-tea.webp" alt="Lychee Tea" onclick="openModal(this.src)">
+        <h3>Lychee Tea</h3>
+        <p>Tea + sirup leci manis</p>
+        <div class="menu-footer">
+          <span class="menu-price">7 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('lychee-tea',-1)">−</button>
+            <span class="qty-value" id="qty-lychee-tea">0</span>
+            <button class="qty-btn" onclick="chg('lychee-tea',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coffee -->
+  <div class="menu-category" data-category="coffee">
+    <h2>Coffee</h2>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="foto-menu-makkah/coffee/coffee.webp" alt="Espresso" onclick="openModal(this.src)">
+        <h3>Espresso</h3>
+        <p>Kopi kuat 1 shot</p>
+        <div class="menu-footer">
+          <span class="menu-price">7 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('espresso',-1)">−</button>
+            <span class="qty-value" id="qty-espresso">0</span>
+            <button class="qty-btn" onclick="chg('espresso',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/coffee/coffee.webp" alt="Americano" onclick="openModal(this.src)">
+        <h3>Americano</h3>
+        <p>Espresso + air panas</p>
+        <div class="menu-footer">
+          <span class="menu-price">8 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('americano',-1)">−</button>
+            <span class="qty-value" id="qty-americano">0</span>
+            <button class="qty-btn" onclick="chg('americano',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/coffee/coffee.webp" alt="Drip Coffee" onclick="openModal(this.src)">
+        <h3>Drip Coffee</h3>
+        <p>Kopi tubruk manual</p>
+        <div class="menu-footer">
+          <span class="menu-price">8 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('drip-coffee',-1)">−</button>
+            <span class="qty-value" id="qty-drip-coffee">0</span>
+            <button class="qty-btn" onclick="chg('drip-coffee',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/coffee/coffee.webp" alt="Latte" onclick="openModal(this.src)">
+        <h3>Latte</h3>
+        <p>Espresso + susu steamed</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('latte',-1)">−</button>
+            <span class="qty-value" id="qty-latte">0</span>
+            <button class="qty-btn" onclick="chg('latte',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/coffee/coffee.webp" alt="Cappuccino" onclick="openModal(this.src)">
+        <h3>Cappuccino</h3>
+        <p>Espresso + susu foam</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('cappuccino',-1)">−</button>
+            <span class="qty-value" id="qty-cappuccino">0</span>
+            <button class="qty-btn" onclick="chg('cappuccino',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/coffee/coffee.webp" alt="Mochaccino" onclick="openModal(this.src)">
+        <h3>Mochaccino</h3>
+        <p>Cokelat + espresso + susu</p>
+        <div class="menu-footer">
+          <span class="menu-price">12 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('mochaccino',-1)">−</button>
+            <span class="qty-value" id="qty-mochaccino">0</span>
+            <button class="qty-btn" onclick="chg('mochaccino',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/coffee/coffee.webp" alt="Spanish Latte" onclick="openModal(this.src)">
+        <h3>Spanish Latte</h3>
+        <p>Latte + susu kental manis</p>
+        <div class="menu-footer">
+          <span class="menu-price">13 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('spanish-latte',-1)">−</button>
+            <span class="qty-value" id="qty-spanish-latte">0</span>
+            <button class="qty-btn" onclick="chg('spanish-latte',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/coffee/coffee.webp" alt="Caramel Latte" onclick="openModal(this.src)">
+        <h3>Caramel Latte</h3>
+        <p>Latte + sirup caramel</p>
+        <div class="menu-footer">
+          <span class="menu-price">12 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('caramel-latte',-1)">−</button>
+            <span class="qty-value" id="qty-caramel-latte">0</span>
+            <button class="qty-btn" onclick="chg('caramel-latte',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/coffee/coffee.webp" alt="Kopi Susu Gula Aren" onclick="openModal(this.src)">
+        <h3>Kopi Susu Gula Aren</h3>
+        <p>Kopi + susu + gula aren asli</p>
+        <div class="menu-footer">
+          <span class="menu-price">12 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('kopi-susu-gula-aren',-1)">−</button>
+            <span class="qty-value" id="qty-kopi-susu-gula-aren">0</span>
+            <button class="qty-btn" onclick="chg('kopi-susu-gula-aren',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Non Coffee -->
+  <div class="menu-category" data-category="non-coffee">
+    <h2>Non Coffee</h2>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="foto-menu-makkah/non coffee/non-coffee.webp" alt="Matcha Latte" onclick="openModal(this.src)">
+        <h3>Matcha Latte</h3>
+        <p>Matcha + susu steamed</p>
+        <div class="menu-footer">
+          <span class="menu-price">12 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('matcha-latte',-1)">−</button>
+            <span class="qty-value" id="qty-matcha-latte">0</span>
+            <button class="qty-btn" onclick="chg('matcha-latte',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/non coffee/non-coffee.webp" alt="Chocolate" onclick="openModal(this.src)">
+        <h3>Chocolate</h3>
+        <p>Cokelat panas/dingin + whipped cream</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('chocolate',-1)">−</button>
+            <span class="qty-value" id="qty-chocolate">0</span>
+            <button class="qty-btn" onclick="chg('chocolate',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Our Signature -->
+  <div class="menu-category" data-category="signature">
+    <h2>Our Signature</h2>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="foto-menu-makkah/signiture/es-kelepon.webp" alt="Es Klepon" onclick="openModal(this.src)">
+        <h3>Es Klepon</h3>
+        <p>Klepon + es serut manis</p>
+        <div class="menu-footer">
+          <span class="menu-price">12 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('es-klepon',-1)">−</button>
+            <span class="qty-value" id="qty-es-klepon">0</span>
+            <button class="qty-btn" onclick="chg('es-klepon',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/signiture/pina-colada.webp" alt="Pina Colada" onclick="openModal(this.src)">
+        <h3>Pina Colada</h3>
+        <p>Jus nanas + aroma kelapa</p>
+        <div class="menu-footer">
+          <span class="menu-price">12 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('pina-colada',-1)">−</button>
+            <span class="qty-value" id="qty-pina-colada">0</span>
+            <button class="qty-btn" onclick="chg('pina-colada',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tradisional -->
+  <div class="menu-category" data-category="tradisional">
+    <h2>Tradisional</h2>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="foto-menu-makkah/minuman/kopi-kapal-api.webp" alt="Kopi Kapal Api" onclick="openModal(this.src)">
+        <h3>Kopi Kapal Api</h3>
+        <p>Kopi tubruk khas Indonesia</p>
+        <div class="menu-footer">
+          <span class="menu-price">5 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('kopi-kapal-api',-1)">−</button>
+            <span class="qty-value" id="qty-kopi-kapal-api">0</span>
+            <button class="qty-btn" onclick="chg('kopi-kapal-api',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/minuman/soda-gembira.webp" alt="Soda Gembira" onclick="openModal(this.src)">
+        <h3>Soda Gembira</h3>
+        <p>Soda + sirup merah + susu kental</p>
+        <div class="menu-footer">
+          <span class="menu-price">8 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('soda-gembira',-1)">−</button>
+            <span class="qty-value" id="qty-soda-gembira">0</span>
+            <button class="qty-btn" onclick="chg('soda-gembira',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/tradisional/cincau.webp" alt="Es Cincau" onclick="openModal(this.src)">
+        <h3>Es Cincau</h3>
+        <p>Cincau hitam + santan + gula merah</p>
+        <div class="menu-footer">
+          <span class="menu-price">8 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('es-cincau',-1)">−</button>
+            <span class="qty-value" id="qty-es-cincau">0</span>
+            <button class="qty-btn" onclick="chg('es-cincau',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/tradisional/es-campur.webp" alt="Es Campur" onclick="openModal(this.src)">
+        <h3>Es Campur</h3>
+        <p>Campur nata, kolang-kaling, alpukat, sirup</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('es-campur',-1)">−</button>
+            <span class="qty-value" id="qty-es-campur">0</span>
+            <button class="qty-btn" onclick="chg('es-campur',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/tradisional/es-cendol.webp" alt="Es Cendol" onclick="openModal(this.src)">
+        <h3>Es Cendol</h3>
+        <p>Cendol + santan + gula merah</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('es-cendol',-1)">−</button>
+            <span class="qty-value" id="qty-es-cendol">0</span>
+            <button class="qty-btn" onclick="chg('es-cendol',1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="foto-menu-makkah/minuman/stmj.webp" alt="STMJ" onclick="openModal(this.src)">
+        <h3>STMJ</h3>
+        <p>Susu + Telur + Madu + Jahe hangat</p>
+        <div class="menu-footer">
+          <span class="menu-price">10 SAR</span>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="chg('stmj',-1)">−</button>
+            <span class="qty-value" id="qty-stmj">0</span>
+            <button class="qty-btn" onclick="chg('stmj',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-button">Kembali ke Beranda</a>
+</div>
+
+<!-- CART FLOAT & DRAWER -->
+<button class="cart-float" id="cartBtn">
+  <i class="fas fa-shopping-cart"></i>
+  <span class="badge" id="cartCount">0</span>
+</button>
+
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-content">
+    <h3>Keranjang Anda</h3>
+    <div id="cartList"></div>
+    <div style="text-align:center;font-size:13px;color:#666;margin:10px 0">Semua item akan dikonfirmasi stok sebelum diproses.</div>
+    <button class="send-wa" onclick="sendWa()">Pesan Sekarang</button>
+  </div>
+</div>
+
+<!-- IMAGE MODAL -->
+<div id="imageModal" class="modal">
+  <span class="close" onclick="closeModal()" aria-label="Tutup">&times;</span>
+  <img class="modal-content" id="modalImage" alt="">
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+/* ===== PRICE LIST (isi semua menu Anda) ===== */
+const prices = {
+  'nasgor-spesial':30,
+  'nasgor-seafood':30,
+  'nasgor-ayam':25,
+  'nasgor-buntut':35,
+  'ayam-goreng':25,
+  'ayam-penyet':30,
+  'ayam-bakar':25,
+  'bebek-goreng':35,
+  'bebek-bakar':35,
+  'nila-goreng':30,
+  'nasi-campur':30,
+  'sate-ayam':25,
+  'sate-kambing':30,
+  'bakso':25,
+  'mie-ayam':25,
+  'mie-ayam-bakso':30,
+  'mie-goreng':25,
+  'mie-kuah':25,
+  'kwetiau-goreng':25,
+  'kwetiau-kuah':25,
+  'sop-ayam':25,
+  'sop-iga':35,
+  'sop-buntut':35,
+  'risol':10,
+  'tahu-isi':10,
+  'bala-bala':10,
+  'pastel':10,
+  'pisang-molen':10,
+  'pisang-nugget':12,
+  'tempe-mendoan':10,
+  'tea':5,
+  'lemon-tea':6,
+  'lychee-tea':7,
+  'espresso':7,
+  'americano':8,
+  'drip-coffee':8,
+  'latte':10,
+  'cappuccino':10,
+  'mochaccino':12,
+  'spanish-latte':13,
+  'caramel-latte':12,
+  'kopi-susu-gula-aren':12,
+  'matcha-latte':12,
+  'chocolate':10,
+  'es-klepon':12,
+  'pina-colada':12,
+  'kopi-kapal-api':5,
+  'soda-gembira':8,
+  'es-cincau':8,
+  'es-campur':10,
+  'es-cendol':10,
+  'stmj':10
+};
+
+/* ===== CART LOGIC ===== */
+let cart = {};
+function chg(id,val){
+  if(!cart[id]) cart[id]={qty:0,note:''};
+  cart[id].qty = Math.max(0,cart[id].qty+val);
+  if(cart[id].qty===0) delete cart[id];
+  document.getElementById('qty-'+id).textContent=cart[id]?.qty||0;
+  document.getElementById('cartCount').textContent=Object.values(cart).reduce((a,b)=>a+b.qty,0);
+}
+
+function renderCart(){
+  const list=document.getElementById('cartList');
+  list.innerHTML='';
+  let sub=0;
+  for(const [id,data] of Object.entries(cart)){
+    sub+=prices[id]*data.qty;
+    const div=document.createElement('div');
+    div.className='cart-item';
+    div.innerHTML=`<span><b>${id.replace(/-/g,' ')} (${prices[id]} SAR) × ${data.qty}</b><br><span class="cart-note" contenteditable oninput="cart['${id}'].note=this.innerText.trim()">${data.note||''}</span></span>`;
+    list.appendChild(div);
+  }
+  // Hanya tampilkan total tanpa ongkir
+  list.innerHTML+=`<div style="font-weight:bold;margin-top:10px">Total: ${sub} SAR</div>`;
+}
+
+document.getElementById('cartBtn').addEventListener('click',()=>{
+  document.getElementById('cartDrawer').classList.toggle('open');
+  renderCart();
+});
+
+document.getElementById('cartDrawer').addEventListener('click',e=>{
+  if(e.target.id==='cartDrawer') e.target.classList.remove('open');
+});
+
+function sendWa(){
+  if(Object.keys(cart).length===0){alert('Keranjang kosong!');return;}
+  let text='Halo Nusantara Makkah, saya ingin memesan:\n';
+  let sub=0;
+  for(const [id,data] of Object.entries(cart)){
+    sub+=prices[id]*data.qty;
+    text+=`- ${id.replace(/-/g,' ')} × ${data.qty} (${prices[id]} SAR)`;
+    if(data.note) text+=` | Catatan: ${data.note}`;
+    text+='\n';
+  }
+  text+=`_____\n*Total: ${sub} SAR*`;
+  window.open(`https://wa.me/966599970959?text=${encodeURIComponent(text)}`,'_blank');
+}
+
+/* ===== MODAL ===== */
+function openModal(src,alt){
+  const m=document.getElementById('imageModal');
+  m.style.display='block';
+  document.getElementById('modalImage').src=src;
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('imageModal').style.display='none';
+  document.body.style.overflow='auto';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();});
+
+/* ===== SEARCH & FILTER ===== */
+document.addEventListener('DOMContentLoaded',()=>{
+  const s=document.getElementById('searchInput');
+  const f=document.querySelectorAll('.filter-btn');
+  const c=document.querySelectorAll('.menu-category');
+  let t;
+  f.forEach(b=>b.addEventListener('click',()=>{
+    f.forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const cat=b.dataset.category;
+    c.forEach(el=>el.style.display=(cat==='all'||el.dataset.category===cat)?'block':'none');
+    s.value='';
+  }));
+  s.addEventListener('input',()=>{
+    clearTimeout(t);
+    t=setTimeout(()=>{
+      const term=s.value.trim().toLowerCase();
+      let has=false;
+      c.forEach(cat=>{
+        let ok=false;
+        cat.querySelectorAll('.menu-item').forEach(i=>{
+          const m=term===''||i.textContent.toLowerCase().includes(term);
+          i.style.display=m?'block':'none';
+          if(m) ok=has=true;
+        });
+        const act=document.querySelector('.filter-btn.active').dataset.category;
+        cat.style.display=(act!=='all'&&!ok)?'none':'block';
+      });
+      const nr=document.querySelector('.no-results');
+      if(!has&&term){
+        if(!nr){
+          const d=document.createElement('div');
+          d.className='no-results';
+          d.textContent='Tidak ada hasil yang ditemukan';
+          document.querySelector('.container').insertBefore(d,document.querySelector('.back-button'));
+        }
+      } else if(nr){
+        nr.remove();
+      }
+    },300);
+  });
+});
+
+/* ===== LOADER HIDE ===== */
+window.addEventListener('load',()=>document.getElementById('loader').classList.add('hidden'));
+setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),3000);
+</script>
+</body>
+</html>
